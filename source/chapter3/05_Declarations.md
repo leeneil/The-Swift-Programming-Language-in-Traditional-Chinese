@@ -1,35 +1,32 @@
-> 翻译：marsprince
+> 翻譯：CMW
+# 聲明
+ -----------------
 
-> 校对：numbbbbb
+本頁包含內容：
 
-# 声明
- -----------------
+- [模塊範圍](#module_scope)
+- [代碼塊](#code_blocks)
+- [引入聲明](#import_declaration)
+- [常量聲明](#constant_declaration)
+- [變量聲明](#variable_declaration)
+- [類型的別名聲明](#type_alias_declaration)
+- [函數聲明](#function_declaration)
+- [枚舉聲明](#enumeration_declaration)
+- [結構體聲明](#structure_declaration)
+- [類聲明](#class_declaration)
+- [協議聲明](#protocol_declaration)
+- [構造器聲明](#initializer_declaration)
+- [析構聲明](#deinitializer_declaration)
+- [擴展聲明](#extension_declaration)
+- [附屬腳本聲明](#subscript_declaration)
+- [運算符聲明](#operator_declaration)
 
-本页包含内容：
+一條聲明可以在你的程序裡引入新的名字和構造。舉例來說，你可以使用聲明來引入函數和方法，變量和常量，或者來定義
+新的命名好的枚舉，結構，類和協議類型。你也可以使用一條聲明來延長一個已經存在的命名好​​的類型的行為。或者在你的
+程序裡引入在其他地方聲明的符號。
 
-- [模块范围](#module_scope)
-- [代码块](#code_blocks)
-- [引入声明](#import_declaration)
-- [常量声明](#constant_declaration)
-- [变量声明](#variable_declaration)
-- [类型的别名声明](#type_alias_declaration)
-- [函数声明](#function_declaration)
-- [枚举声明](#enumeration_declaration)
-- [结构体声明](#structure_declaration)
-- [类声明](#class_declaration)
-- [协议声明](#protocol_declaration)
-- [构造器声明](#initializer_declaration)
-- [析构声明](#deinitializer_declaration)
-- [扩展声明](#extension_declaration)
-- [附属脚本声明](#subscript_declaration)
-- [运算符声明](#operator_declaration)
-
-一条声明可以在你的程序里引入新的名字和构造。举例来说，你可以使用声明来引入函数和方法，变量和常量，或者来定义
-新的命名好的枚举，结构，类和协议类型。你也可以使用一条声明来延长一个已经存在的命名好的类型的行为。或者在你的
-程序里引入在其他地方声明的符号。
-
-在swift中，大多数声明在某种意义上讲也是执行或同事声明它们的初始化定义。这意味着，因为协议和他们的成员不匹配，
-大多数协议成员需要单独的声明。为了方便起见，也因为这些区别在swift里不是很重要，声明语句同时包含了声明和定义。
+在swift中，大多數聲明在某種意義上講也是執行或同事聲明它們的初始化定義。這意味著，因為協議和他們的成員不匹配，
+大多數協議成員需要單獨的聲明。為了方便起見，也因為這些區別在swift裡不是很重要，聲明語句同時包含了聲明和定義。
 
 >GRAMMAR OF A DECLARATION
 
@@ -61,842 +58,842 @@
 
 >declaration → operator-declaration­
 
->declarations → declaration­declarations­opt­
+>declarations → declarationdeclarationsopt
 
->declaration-specifiers → declaration-specifier­declaration-specifiers­opt­
+>declaration-specifiers → declaration-specifierdeclaration-specifiersopt
 
->declaration-specifier → class­ | mutating ­| nonmutating­ | override­ | static­ | unowned |
+>declaration-specifier → class | mutating | nonmutating | override | static | unowned |
 
 <a name="module_scope"></a>
-##模块范围
+##模塊範圍
 
-模块范围定义了对模块中其他源文件可见的代码。（注：待改进）在swift的源文件中，最高级别的代码由零个或多个语句，
-声明和表达组成。变量，常量和其他的声明语句在一个源文件的最顶级被声明，使得他们对同一模块中的每个源文件都是可见的。
+模塊範圍定義了對模塊中其他源文件可見的代碼。 （注：待改進）在swift的源文件中，最高級別的代碼由零個或多個語句，
+聲明和表達組成。變量，常量和其他的聲明語句在一個源文件的最頂級被聲明，使得他們對同一模塊中的每個源文件都是可見的。
 
 >GRAMMAR OF A TOP-LEVEL DECLARATION
 
 >top-level-declaration → statements ­opt
 
 <a name="code_blocks"></a>
-##代码块
+##代碼塊
 
-代码块用来将一些声明和控制结构的语句组织在一起。它有如下的形式：
+代碼塊用來將一些聲明和控制結構的語句組織在一起。它有如下的形式：
 
-    {
-        `statements`
-    }
+    {
+        `statements`
+    }
 
-代码块中的语句包括声明，表达式和各种其他类型的语句，它们按照在源码中的出现顺序被依次执行。
+代碼塊中的語句包括聲明，表達式和各種其他類型的語句，它們按照在源碼中的出現順序被依次執行。
 
 >GRAMMAR OF A CODE BLOCK
 
 >code-block → ­statements ­opt­
 
 <a name="import_declaration"></a>
-##引入声明
+##引入聲明
 
-引入声明使你可以使用在其他文件中声明的内容。引入语句的基本形式是引入整个代码模块；它由import关键字开始，后面
-紧跟一个模块名：
+引入聲明使你可以使用在其他文件中聲明的內容。引入語句的基本形式是引入整個代碼模塊；它由import關鍵字開始，後面
+緊跟一個模塊名：
 
-    import  module
+    import module
 
-你可以提供更多的细节来限制引入的符号，如声明一个特殊的子模块或者在一个模块或子模块中做特殊的声明。（待改进）
-当你使用了这些细节后，在当前的程序汇总只有引入的符号是可用的（并不是声明的整个模块）。
+你可以提供更多的細節來限制引入的符號，如聲明一個特殊的子模塊或者在一個模塊或子模塊中做特殊的聲明。 （待改進）
+當你使用了這些細節後，在當前的程序匯總只有引入的符號是可用的（並不是聲明的整個模塊）。
 
-    import import kind module.symbol name
-    import module.submodule
+    import import kind module.symbol name
+    import module.submodule
 
 >GRAMMAR OF AN IMPORT DECLARATION
 
->import-declaration → attributes ­opt ­import­ import-kind­ opt import-path­
->import-kind → typealias­ | struct­ | class­ | enum­ | protocol­ | var­ | func­
->import-path → import-path-identifier­  import-path-identifier­.­import-path­
->import-path-identifier → identifier­  operator
+>import-declaration → attributes opt import import-kind opt import-path
+>import-kind → typealias | struct | class | enum | protocol | var | func
+>import-path → import-path-identifier import-path-identifier.import-path
+>import-path-identifier → identifier operator
 
 <a name="constant_declaration"></a>
-##常量声明
+##常量聲明
 
-常量声明可以在你的程序里命名一个常量。常量以关键词let来声明，遵循如下的格式:
+常量聲明可以在你的程序裡命名一個常量。常量以關鍵詞let來聲明，遵循如下的格式:
 
-    let constant name: type = expression
+    let constant name: type = expression
 
-当常量的值被给定后，常量就将常量名称和表达式初始值不变的结合在了一起，而且不能更改。
-这意味着如果常量以类的形式被初始化，类本身的内容是可以改变的，但是常量和类之间的结合关系是不能改变的。
-当一个常量被声明为全局变量，它必须被给定一个初始值。当一个常量在类或者结构体中被声明时，他被认为是一个常量
-属性。常量并不是可计算的属性，因此不包含getters和setters。（译者注：getters和setters不知道怎么翻译，待改进）
+當常量的值被給定後，常量就將常量名稱和表達式初始值不變的結合在了一起，而且不能更改。
+這意味著如果常量以類的形式被初始化，類本身的內容是可以改變的，但是常量和類之間的結合關係是不能改變的。
+當一個常量被聲明為全局變量，它必須被給定一個初始值。當一個常量在類或者結構體中被聲明時，他被認為是一個常量
+屬性。常量並不是可計算的屬性，因此不包含getters和setters。 （譯者註：getters和setters不知道怎麼翻譯，待改進）
 
-如果常量名是一个元祖形式，元祖中的每一项初始化表达式中都要有对应的值
+如果常量名是一個元祖形式，元祖中的每一項初始化表達式中都要有對應的值
 
-    let (firstNumber, secondNumber) = (10, 42)
+    let (firstNumber, secondNumber) = (10, 42)
 
-在上例中，firstNumber是一个值为10的常量，secnodeName是一个值为42的常量。所有常量都可以独立的使用：
+在上例中，firstNumber是一個值為10的常量，secnodeName是一個值為42的常量。所有常量都可以獨立的使用：
 
-    1  println("The first number is \(firstNumber).")
-    2  // prints "The first number is 10."
-    3  println("The second number is \(secondNumber).")
-    4  // prints "The second number is 42."
+    1 println("The first number is \(firstNumber).")
+    2 // prints "The first number is 10."
+    3 println("The second number is \(secondNumber).")
+    4 // prints "The second number is 42."
 
-类型注释（:type）在常量声明中是一个可选项，它可以用来描述在类型接口（type inference）中找到的类型。
+類型註釋（:type）在常量聲明中是一個可選項，它可以用來描述在類型接口（type inference）中找到的類型。
 
-声明一个静态常量要使用关键字static。静态属性在类型属性（type propetries）中有介绍。
+聲明一個靜態常量要使用關鍵字static。靜態屬性在類型屬性（type propetries）中有介紹。
 
-如果还想获得更多关于常量的信息或者想在使用中获得帮助，请查看常量和变量（constants and variables）,
-存储属性（stored properties）等节。
+如果還想獲得更多關於常量的信息或者想在使用中獲得幫助，請查看常量和變量（constants and variables）,
+存儲屬性（stored properties）等節。
 
 >GRAMMAR OF A CONSTANT DECLARATION
 
->constant-declaration → attributes­ opt ­declaration-specifiers­ opt ­let­pattern-initializer-list­
->pattern-initializer-list → pattern-initializer­ | pattern-initializer­ , pattern-initializer-list­
->pattern-initializer → pattern ­initializer ­opt­
+>constant-declaration → attributes opt declaration-specifiers opt letpattern-initializer-list
+>pattern-initializer-list → pattern-initializer | pattern-initializer , pattern-initializer-list
+>pattern-initializer → pattern initializer opt
 >initializer → =­expression
 
 <a name="variable_declaration"></a>
-##变量声明
+##變量聲明
 
-变量声明可以在你的程序里声明一个变量，它以关键字var来声明。根据声明变量类型和值的不同，如存储和计算
-变量和属性，存储变量和属性监视，和静态变量属性，有着不同的声明形式。（待改进）
-所使用的声明形式取决于变量所声明的范围和你打算声明的变量类型。
+變量聲明可以在你的程序裡聲明一個變量，它以關鍵字var來聲明。根據聲明變量類型和值的不同，如存儲和計算
+變量和屬性，存儲變量和屬性監視，和靜態變量屬性，有著不同的聲明形式。 （待改進）
+所使用的聲明形式取決於變量所聲明的範圍和你打算聲明的變量類型。
 
 >注意：
 >
-你也可以在协议声明的上下文声明属性，详情参见类型属性声明。
+你也可以在協議​​聲明的上下文聲明屬性，詳情參見類型屬性聲明。
 
-###存储型变量和存储型属性
+###存儲型變量和存儲型屬性
 
-下面的形式声明了一个存储型变量或存储型变量属性
+下面的形式聲明了一個存儲型變量或存儲型變量屬性
 
-    var variable name: type = expression
+    var variable name: type = expression
 
-你可以在全局，函数内，或者在类和结构体的声明(context)中使用这种形式来声明一个变量。当变量以这种形式
-在全局或者一个函数内被声明时，它代表一个存储型变量。当他在类或者结构体中被声明时，他代表一个存储型变量属性。
+你可以在全局，函數內，或者在類和結構體的聲明(context)中使用這種形式來聲明一個變量。當變量以這種形式
+在全局或者一個函數內被聲明時，它代表一個存儲型變量。當他在類或者結構體中被聲明時，他代表一個存儲型變量屬性。
 
-构造器表达式可以被
+構造器表達式可以被
 
-和常量声明相比，如果变量名是一个元祖类型，元祖的每一项的名字都要和初始化表达式一致。
+和常量聲明相比，如果變量名是一個元祖類型，元祖的每一項的名字都要和初始化表達式一致。
 
-正如名字一样，存储型变量的值或存储型变量属性存储在内存中。
+正如名字一樣，存儲型變量的值或存儲型變量屬性存儲在內存中。
 
-###计算型变量和计算型属性
+###計算型變量和計算型屬性
 
-如下形式声明一个一个存储型变量或存储型属性：
+如下形式聲明一個一個存儲型變量或存儲型屬性：
 
-    var variable name: type {
-    get {
-        statements
-    }
-    set(setter name) {
-        statements
-    }
-    }
+    var variable name: type {
+    get {
+        statements
+    }
+    set(setter name) {
+        statements
+    }
+    }
 
-你可以在全局，函数体内或者类，结构体，枚举，扩展声明的上下文中使用这种形式的声明。
-当变量以这种形式在全局或者一个函数内被声明时，它代表一个计算型变量。当他在类，结构体，枚举，扩展声明的上下文
-中中被声明时，他代表一个计算型变量属性。
+你可以在全局，函數體內或者類，結構體，枚舉，擴展聲明的上下文中使用這種形式的聲明。
+當變量以這種形式在全局或者一個函數內被聲明時，它代表一個計算型變量。當他在類，結構體，枚舉，擴展聲明的上下文
+中中被聲明時，他代表一個計算型變量屬性。
 
-getter用来读取变量值，setter用来写入变量值。setter子句是可选择的，只有getter是必需的，你可以将这些语句
-都省略，只是简单的直接返回请求值，正如在只读计算属性(read-only computed properites)中描述的那样。
-但是如果你提供了一个setter语句，你也必需提供一个getter语句。
+getter用來讀取變量值，setter用來寫入變量值。 setter子句是可選擇的，只有getter是必需的，你可以將這些語句
+都省略，只是簡單的直接返回請求值，正如在只讀計算屬性(read-only computed properites)中描述的那樣。
+但是如果你提供了一個setter語句，你也必需提供一個getter語句。
 
-setter的名字和圆括号内的语句是可选的。如果你写了一个setter名，它就会作为setter的参数被使用。如果你不写setter名，
-setter的初始名为newValue，正如在seter声明速记(shorthand setter declaration)中提到的那样。
+setter的名字和圓括號內的語句是可選的。如果你寫了一個setter名，它就會作為setter的參數被使用。如果你不寫setter名，
+setter的初始名為new​​Value，正如在seter聲明速記(shorthand setter declaration)中提到的那樣。
 
-不像存储型变量和存储型属性那样，计算型属性和计算型变量的值不存储在内存中。
+不像存儲型變量和存儲型屬性那樣，計算型屬性和計算型變量的值不存儲在內存中。
 
-获得更多信息，查看更多关于计算型属性的例子，请查看计算型属性(computed properties)一节。
+獲得更多信息，查看更多關於計算型屬性的例子，請查看計算型屬性(computed properties)一節。
 
-###存储型变量监视器和属性监视器
+###存儲型變量監視器和屬性監視器
 
-你可以用willset和didset监视器来声明一个存储型变量或属性。一个包含监视器的存储型变量或属性按如下的形式声明：
+你可以用willset和didset監視器來聲明一個存儲型變量或屬性。一個包含監視器的存儲型變量或屬性按如下的形式聲明：
 
-    var variable name: type = expression {
-    willSet(setter name) {
-        statements
-    }
-    didSet(setter name {
-        statements
-    }
-    }
+    var variable name: type = expression {
+    willSet(setter name) {
+        statements
+    }
+    didSet(setter name {
+        statements
+    }
+    }
 
-你可以在全局，函数体内或者类，结构体，枚举，扩展声明的上下文中使用这种形式的声明。
-当变量以这种形式在全局或者一个函数内被声明时，监视器代表一个存储型变量监视器；
-当他在类，结构体，枚举，扩展声明的上下文中被声明时，监视器代表属性监视器。
+你可以在全局，函數體內或者類，結構體，枚舉，擴展聲明的上下文中使用這種形式的聲明。
+當變量以這種形式在全局或者一個函數內被聲明時，監視器代表一個存儲型變量監視器；
+當他在類，結構體，枚舉，擴展聲明的上下文中被聲明時，監視器代表屬性監視器。
 
-你可以为适合的监视器添加任何存储型属性。你也可以通过重写子类属性的方式为适合的监视器添加任何继承的属性
-(无论是存储型还是计算型的)，参见重写属性监视器(overriding properyt observers)。
+你可以為適合的監視器添加任何存儲型屬性。你也可以通過重寫子類屬性的方式為適合的監視器添加任何繼承的屬性
+(無論是存儲型還是計算型的)，參見重寫屬性監視器(overriding properyt observers)。
 
-初始化表达式在类或者结构体的声明中是可选的，但是在其他地方是必需的。无论在什么地方声明，
-所有包含监视器的变量声明都必须有类型注释(type annotation)。
+初始化表達式在類或者結構體的聲明中是可選的，但是在其他地方是必需的。無論在什麼地方聲明，
+所有包含監視器的變量聲明都必須有類型註釋(type annotation)。
 
-当变量或属性的值被改变时，willset和didset监视器提供了一个监视方法（适当的回应）。
-监视器不会在变量或属性第一次初始化时不会被运行，他们只有在值被外部初始化语句改变时才会被运行。
+當變量或屬性的值被改變時，willset和didset監視器提供了一個監視方法（適當的回應）。
+監視器不會在變量或屬性第一次初始化時不會被運行，他們只有在值被外部初始化語句改變時才會被運行。
 
-willset监视器只有在变量或属性值被改变之前运行。新的值作为一个常量经过过willset监视器，因此不可以在
-willset语句中改变它。didset监视器在变量或属性值被改变后立即运行。和willset监视器相反，为了以防止你仍然
-需要获得旧的数据，旧变量值或者属性会经过didset监视器。这意味着，如果你在变量或属性自身的didiset监视器语句
-中设置了一个值，你设置的新值会取代刚刚在willset监视器中经过的那个值。
+willset監視器只有在變量或屬性值被改變之前運行。新的值作為一個常量經過過willset監視器，因此不可以在
+willset語句中改變它。 didset監視器在變量或屬性值被改變後立即運行。和willset監視器相反，為了以防止你仍然
+需要獲得舊的數據，舊變量值或者屬性會經過didset監視器。這意味著，如果你在變量或屬性自身的didiset監視器語句
+中設置了一個值，你設置的新值會取代剛剛在willset監視器中經過的那個值。
 
-在willset和didset语句中，setter名和圆括号的语句是可选的。如果你写了一个setter名，它就会作为willset和didset的参数被使用。如果你不写setter名，
-willset监视器初始名为newvalue，didset监视器初始名为oldvalue。
+在willset和didset語句中，setter名和圓括號的語句是可選的。如果你寫了一個setter名，它就會作為willset和didset的參數被使用。如果你不寫setter名，
+willset監視器初始名為new​​value，didset監視器初始名為oldvalue。
 
-当你提供一个willset语句时，didset语句是可选的。同样的，在你提供了一个didset语句时，willset语句是可选的。
+當你提供一個willset語句時，didset語句是可選的。同樣的，在你提供了一個didset語句時，willset語句是可選的。
 
-获得更多信息，查看如何使用属性监视器的例子，请查看属性监视器(prpperty observers)一节。
+獲得更多信息，查看如何使用屬性監視器的例子，請查看屬性監視器(prpperty observers)一節。
 
-###类和静态变量属性
+###類和靜態變量屬性
 
-class关键字用来声明类的计算型属性。static关键字用来声明类的静态变量属性。类和静态变量在类型属性(type properties)中有详细讨论。
+class關鍵字用來聲明類的計算型屬性。 static關鍵字用來聲明類的靜態變量屬性。類和靜態變量在類型屬性(type properties)中有詳細討論。
 
 >GRAMMAR OF A VARIABLE DECLARATION
 
->variable-declaration → variable-declaration-head­pattern-initializer-list­
+>variable-declaration → variable-declaration-headpattern-initializer-list
 
->variable-declaration → variable-declaration-head ­variable-name ­type-annotation ­code-block­
+>variable-declaration → variable-declaration-head variable-name type-annotation code-block
 
->variable-declaration → variable-declaration-head ­variable-name ­type-annotation ­getter-setter-block­
+>variable-declaration → variable-declaration-head variable-name type-annotation getter-setter-block
 
->variable-declaration → variable-declaration-head ­variable-name­ type-annotation ­getter-setter-keyword-block­
+>variable-declaration → variable-declaration-head variable-name type-annotation getter-setter-keyword-block
 
- > variable-declaration → variable-declaration-head­ variable-name ­type-annotation­initializer­ opt ­willSet-didSet-block­
+ > variable-declaration → variable-declaration-head variable-name type-annotationinitializer opt willSet-didSet-block
 
->variable-declaration-head → attributes ­opt­ declaration-specifiers ­opt ­var
-­
+>variable-declaration-head → attributes opt declaration-specifiers opt var
+
 >variable-name → identifier­
 
->getter-setter-block → {­getter-clause ­setter-clause­ opt­}­
+>getter-setter-block → {getter-clause setter-clause opt}
 
->getter-setter-block → {­setter-clause ­getter-clause­}­
+>getter-setter-block → {setter-clause getter-clause}
 
->getter-clause → attributes ­opt­get­code-block­
+>getter-clause → attributes optgetcode-block
 
->setter-clause → attributes ­opt ­set­ setter-name­ opt­ code-block­
+>setter-clause → attributes opt set setter-name opt code-block
 
 >setter-name → (­identifier­)­
 
->getter-setter-keyword-block → {­getter-keyword-clause ­setter-keyword-clause­ opt­}
-­
->getter-setter-keyword-block → {­setter-keyword-clause ­getter-keyword-clause­}
+>getter-setter-keyword-block → {getter-keyword-clause setter-keyword-clause opt}
 
->getter-keyword-clause → attributes­ opt­ get­
+>getter-setter-keyword-block → {setter-keyword-clause getter-keyword-clause}
 
->setter-keyword-clause → attributes ­opt­ set­
+>getter-keyword-clause → attributes opt get
 
->willSet-didSet-block → {­willSet-clause ­didSet-clause ­opt­}­
+>setter-keyword-clause → attributes opt set
 
->willSet-didSet-block → {­didSet-clause ­willSet-clause­}­
+>willSet-didSet-block → {willSet-clause didSet-clause opt}
 
->willSet-clause → attributes ­opt ­willSet ­setter-name­ opt ­code-block­
+>willSet-didSet-block → {didSet-clause willSet-clause}
 
->didSet-clause → attributes ­opt ­didSet ­setter-name ­opt­ code-block­
+>willSet-clause → attributes opt willSet setter-name opt code-block
+
+>didSet-clause → attributes opt didSet setter-name opt code-block
 
 <a name="type_alias_declaration"></a>
-##类型的别名声明
+##類型的別名聲明
 
-类型别名的声明可以在你的程序里为一个已存在的类型声明一个别名。类型的别名声明以关键字typealias开始，遵循如下的
+類型別名的聲明可以在你的程序里為一個已存在的類型聲明一個別名。類型的別名聲明以關鍵字typealias開始，遵循如下的
 形式：
 
-    typealias name = existing type
+    typealias name = existing type
 
-当一个类型被别名被声明后，你可以在你程序的任何地方使用别名来代替已存在的类型。已存在的类型可以是已经被命名的
-类型或者是混合类型。类型的别名不产生新的类型，它只是简单的和已存在的类型做名称替换。
+當一個類型被別名被聲明後，你可以在你程序的任何地方使用別名來代替已存在的類型。已存在的類型可以是已經被命名的
+類型或者是混合類型。類型的別名不產生新的類型，它只是簡單的和已存在的類型做名稱替換。
 
 查看更多Protocol Associated Type Declaration.
 
 >GRAMMAR OF A TYPE ALIAS DECLARATION
 
-> typealias-declaration → typealias-head­ typealias-assignment
+> typealias-declaration → typealias-head typealias-assignment
 > typealias-head → typealias­ typealias-name
 > typealias-name → identifier
 > typealias-assignment → =type
 
 <a name="function_declaration"></a>
-##函数声明
+##函數聲明
 
-你可以使用函数声明在你的程序里引入新的函数。函数可以在类的上下文，结构体，枚举，或者作为方法的协议中被声明。
-函数声明使用关键字func，遵循如下的形式：
+你可以使用函數聲明在你的程序裡引入新的函數。函數可以在類的上下文，結構體，枚舉，或者作為方法的協議中被聲明。
+函數聲明使用關鍵字func，遵循如下的形式：
 
-    func function name(parameters) -> return type {
-        statements
-    }
+    func function name(parameters) -> return type {
+        statements
+    }
 
-如果函数不返回任何值，返回类型可以被忽略，如下所示：
+如果函數不返回任何值，返回類型可以被忽略，如下所示：
 
-    func function name(parameters) {
-        statements
-    }
+    func function name(parameters) {
+        statements
+    }
 
-每个参数的类型都要标明，它们不能被推断出来。初始时函数的参数是常值。在这些参数前面添加var使它们成为变量，
-作用域内任何对变量的改变只在函数体内有效，或者用inout使的这些改变可以在调用域内生效。
-更多关于in-out参数的讨论，参见in-out参数(in-out parameters)
+每個參數的類型都要標明，它們不能被推斷出來。初始時函數的參數是常值。在這些參數前面添加var使它們成為變量，
+作用域內任何對變量的改變只在函數體內有效，或者用inout使的這些改變可以在調用域內生效。
+更多關於in-out參數的討論，參見in-out參數(in-out parameters)
 
-函数可以使用元组类型作为返回值来返回多个变量。
+函數可以使用元組類型作為返回值來返回多個變量。
 
-函数定义可以出现在另一个函数声明内。这种函数被称作nested函数。更多关于nested函数的讨论，参见nestde functions。
+函數定義可以出現在另一個函數聲明內。這種函數被稱作nested函數。更多關於nested函數的討論，參見nestde functions。
 
-###参数名
+###參數名
 
-函数的参数是一个以逗号分隔的列表 。函数调用是的变量顺序必须和函数声明时的参数顺序一致。
-最简单的参数列表有着如下的形式：
+函數的參數是一個以逗號分隔的列表。函數調用是的變量順序必須和函數聲明時的參數順序一致。
+最簡單的參數列表有著如下的形式：
 
-    parameter name: parameter type
+    parameter name: parameter type
 
-对于函数参数来讲，参数名在函数体内被使用，而不是在函数调用时使用。对于方法参数，参数名在函数体内被使用，
-同时也在方法被调用时作为标签被使用。该方法的第一个参数名仅仅在函数体内被使用，就像函数的参数一样，举例来讲：
+對於函數參數來講，參數名在函數體內被使用，而不是在函數調用時使用。對於方法參數，參數名在函數體內被使用，
+同時也在方法被調用時作為標籤被使用。該方法的第一個參數名僅僅在函數體內被使用，就像函數的參數一樣，舉例來講：
 
-    func f(x: Int, y: String) -> String {
-        return y + String(x)
-    }
-    f(7, "hello")  // x and y have no name
+    func f(x: Int, y: String) -> String {
+        return y + String(x)
+    }
+    f(7, "hello") // x and y have no name
 
-    class C {
-        func f(x: Int, y: String) -> String {
-           return y + String(x)
-        }
-    }
-    let c = C()
-    c.f(7, y: "hello")  // x没有名称，y有名称
+    class C {
+        func f(x: Int, y: String) -> String {
+           return y + String(x)
+        }
+    }
+    let c = C()
+    c.f(7, y: "hello") // x沒有名稱，y有名稱
 
-你可以按如下的形式，重写参数名被使用的过程：
+你可以按如下的形式，重寫參數名被使用的過程：
 
-    external parameter name local parameter name: parameter type
-    #parameter name: parameter type
-    _ local parameter name: parameter type
+    external parameter name local parameter name: parameter type
+    #parameter name: parameter type
+    _ local parameter name: parameter type
 
-在本地参数前命名的第二名称(second name)使得参数有一个扩展名。且不同于本地的参数名。
-扩展参数名在函数被调用时必须被使用。对应的参数在方法或函数被调用时必须有扩展名 。
+在本地參數前命名的第二名稱(second name)使得參數有一個擴展名。且不同於本地的參數名。
+擴展參數名在函數被調用時必須被使用。對應的參數在方法或函數被調用時必須有擴展名。
 
-在参数名前所写的哈希符号(#)代表着这个参数名可以同时作为外部或本体参数名来使用。等同于书写两次本地参数名。
-在函数或方法调用时，与其对应的语句必须包含这个名字。
+在參數名前所寫的哈希符號(#)代表著這個參數名可以同時作為外部或本體參數名來使用。等同於書寫兩次本地參數名。
+在函數或方法調用時，與其對應的語句必須包含這個名字。
 
-本地参数名前的强调字符(_)使参数在函数被调用时没有名称。在函数或方法调用时，与其对应的语句必须没有名字。
+本地參數名前的強調字符(_)使參數在函數被調用時沒有名稱。在函數或方法調用時，與其對應的語句必須沒有名字。
 
-###特殊类型的参数
+###特殊類型的參數
 
-参数可以被忽略，值可以是变化的，并且提供一个初始值，这种方法有着如下的形式：
+參數可以被忽略，值可以是變化的，並且提供一個初始值，這種方法有著如下的形式：
 
-    _ : <#parameter type#.
-    parameter name: parameter type...
-    parameter name: parameter type = default argument value
+    _ : <#parameter type#.
+    parameter name: parameter type...
+    parameter name: parameter type = default argument value
 
-以强调符(_)命名的参数明确的在函数体内不能被访问。
+以強調符(_)命名的參數明確的在函數體內不能被訪問。
 
-一个以基础类型名的参数，如果紧跟着三个点(...)，被理解为是可变参数。一个函数至多可以拥有一个可变参数，
-且必须是最后一个参数。可变参数被作为该基本类型名的数组来看待。举例来讲，可变参数int...被看做是int[]。
-查看可变参数的使用例子，详见可变参数(variadic parameters)一节。
+一個以基礎類型名的參數，如果緊跟著三個點(...)，被理解為是可變參數。一個函數至多可以擁有一個可變參數，
+且必須是最後一個參數。可變參數被作為該基本類型名的數組來看待。舉例來講，可變參數int...被看做是int[]。
+查看可變參數的使用例子，詳見可變參數(variadic parameters)一節。
 
-在参数的类型后面有一个以等号(=)连接的表达式，这样的参数被看做有着给定表达式的初试值。如果参数在函数
-调用时被省略了，就会使用初始值。如果参数没有胜率，那么它在函数调用是必须有自己的名字.举例来讲，
-f()和f(x:7)都是只有一个变量x的函数的有效调用，但是f(7)是非法的，因为它提供了一个值而不是名称。
+在參數的類型後面有一個以等號(=)連接的表達式，這樣的參數被看做有著給定表達式的初試值。如果參數在函數
+調用時被省略了，就會使用初始值。如果參數沒有勝率，那麼它在函數調用是必須有自己的名字.舉例來講，
+f()和f(x:7)都是只有一個變量x的函數的有效調用，但是f(7)是非法的，因為它提供了一個值而不是名稱。
 
 ###特殊方法
 
-以self修饰的枚举或结构体方法必须以mutating关键字作为函数声明头。
+以self修飾的枚舉或結構體方法必須以mutating關鍵字作為函數聲明頭。
 
-子类重写的方法必须以override关键字作为函数声明头。不用override关键字重写的方法，使用了override关键字
-却并没有重写父类方法都会报错。
+子類重寫的方法必須以override關鍵字作為函數聲明頭。不用override關鍵字重寫的方法，使用了override關鍵字
+卻並沒有重寫父類方法都會報錯。
 
-和类型相关而不是和类型实例相关的方法必须在static声明的结构以或枚举内，亦或是以class关键字定义的类内。
+和類型相關而不是和類型實例相關的方法必須在static聲明的結構以或枚舉內，亦或是以class關鍵字定義的類內。
 
-###柯里化函数和方法
+###柯里化函數和方法
 
-柯里化函数或方法有着如下的形式：
+柯里化函數或方法有著如下的形式：
 
-    func function name(parameters)(parameters) -> return type {
-        statements
-    }
+    func function name(parameters)(parameters) -> return type {
+        statements
+    }
 
-以这种形式定义的函数的返回值是另一个函数。举例来说，下面的两个声明时等价的:
+以這種形式定義的函數的返回值是另一個函數。舉例來說，下面的兩個聲明時等價的:
 
-    func addTwoNumbers(a: Int)(b: Int) -> Int {
-        return a + b
-    }
-    func addTwoNumbers(a: Int) -> (Int -> Int) {
-        func addTheSecondNumber(b: Int) -> Int {
-            return a + b
-        }
-        return addTheSecondNumber
-    }
+    func addTwoNumbers(a: Int)(b: Int) -> Int {
+        return a + b
+    }
+    func addTwoNumbers(a: Int) -> (Int -> Int) {
+        func addTheSecondNumber(b: Int) -> Int {
+            return a + b
+        }
+        return addTheSecondNumber
+    }
 
-    addTwoNumbers(4)(5) // Returns 9
+    addTwoNumbers(4)(5) // Returns 9
 
-多级柯里化应用如下
+多級柯里化應用如下
 
 >GRAMMAR OF A FUNCTION DECLARATION
 
->function-declaration → function-head­ function-name­ generic-parameter-clause ­opt­function-signature­ function-body­
-> function-head → attributes ­opt ­declaration-specifiers ­opt ­func­
-> function-name → identifier­  operator­
->function-signature → parameter-clauses ­function-result ­opt­
-> function-result → ->­attributes ­opt ­type­
->  function-body → code-block­
->  parameter-clauses → parameter-clause ­parameter-clauses ­opt­
->  parameter-clause → (­)­  (­parameter-list­...­opt­)­
->  parameter-list → parameter­  parameter­,­parameter-list­
-> parameter → inout ­opt ­let ­opt­#­opt­parameter-name local-parameter-name ­opt­ type-annotation ­default-argument-clause ­opt­
-> parameter → inout­opt­var­#­opt­parameter-name­local-parameter-name ­opt­ type-annotation­default-argument-clause ­opt­
+>function-declaration → function-head function-name generic-parameter-clause optfunction-signature function-body
+> function-head → attributes opt declaration-specifiers opt func
+> function-name → identifier­ operator­
+>function-signature → parameter-clauses function-result opt
+> function-result → ->attributes opt type
+> function-body → code-block­
+> parameter-clauses → parameter-clause parameter-clauses opt
+> parameter-clause → () (parameter-list...opt)
+> parameter-list → parameter parameter,parameter-list
+> parameter → inout opt​​ let opt​​#optparameter-name local-parameter-name opt type-annotation default-argument-clause opt
+> parameter → inoutoptvar#optparameter-namelocal-parameter-name opt type-annotationdefault-argument-clause opt
 > parameter → attributes ­opt ­type­
-> parameter-name → identifier­  _­
->  local-parameter-name → identifier­  _­
->  default-argument-clause → =­expression­：
+> parameter-name → identifier­ _­
+> local-parameter-name → identifier­ _­
+> default-argument-clause → =­expression­：
 
 <a name="enumeration_declaration"></a>
-##枚举声明
+##枚舉聲明
 
-在你的程序里使用枚举声明来引入一个枚举类型。
+在你的程序裡使用枚舉聲明來引入一個枚舉類型。
 
-枚举声明有两种基本的形式，使用关键字enum来声明。枚举声明体使用从零开始的变量——叫做枚举事件，和任意数量的
-声明，包括计算型属性，实例方法，静态方法，构造器，类型别名，甚至其他枚举，结构体，和类。枚举声明不能
-包含析构器或者协议声明。
+枚舉聲明有兩種基本的形式，使用關鍵字enum來聲明。枚舉聲明體使用從零開始的變量——叫做枚舉事件，和任意數量的
+聲明，包括計算型屬性，實例方法，靜態方法，構造器，類型別名，甚至其他枚舉，結構體，和類。枚舉聲明不能
+包含析構器或者協議聲明。
 
-不像类或者结构体。枚举类型并不提供隐式的初始构造器，所有构造器必须显式的声明。构造器可以委托枚举中的其他
-构造器，但是构造过程仅当构造器将一个枚举时间完成后才全部完成。
+不像類或者結構體。枚舉類型並不提供隱式的初始構造器，所有構造器必須顯式的聲明。構造器可以委託枚舉中的其他
+構造器，但是構造過程僅當構造器將一個枚舉時間完成後才全部完成。
 
-和结构体类似但是和类不同，枚举是值类型：枚举实例在赋予变量或常量时，或者被函数调用时被复制。
-更多关于值类型的信息，参见结构体和枚举都是值类型(Structures and Enumerations Are Value Types)一节。
+和結構體類似但是和類不同，枚舉是值類型：枚舉實例在賦予變量或常量時，或者被函數調用時被複製。
+更多關於值類型的信息，參見結構體和枚舉都是值類型(Structures and Enumerations Are Value Types)一節。
 
-你可以扩展枚举类型，正如在扩展名声明(Extension Declaration)中讨论的一样。
+你可以擴展枚舉類型，正如在擴展名聲明(Extension Declaration)中討論的一樣。
 
-###任意事件类型的枚举
+###任意事件類型的枚舉
 
-如下的形式声明了一个包含任意类型枚举时间的枚举变量
+如下的形式聲明了一個包含任意類型枚舉時間的枚舉變量
 
-    enum enumeration name {
-        case enumeration case 1
-        case enumeration case 2(associated value types)
-    }
+    enum enumeration name {
+        case enumeration case 1
+        case enumeration case 2(associated value types)
+    }
 
-这种形式的枚举声明在其他语言中有时被叫做可识别联合(discrinminated)。
+這種形式的枚舉聲明在其他語​​言中有時被叫做可識別聯合(discrinminated)。
 
-这种形式中，每一个事件块由关键字case开始，后面紧接着一个或多个以逗号分隔的枚举事件。每一个事件名必须是
-独一无二的。每一个事件也可以指定它所存储的指定类型的值，这些类型在关联值类型的元祖里被指定，立即书写在事件
-名后。获得更多关于关联值类型的信息和例子，请查看关联值(associated values)一节。
+這種形式中，每一個事件塊由關鍵字case開始，後面緊接著一個或多個以逗號分隔的枚舉事件。每一個事件名必須是
+獨一無二的。每一個事件也可以指定它所存儲的指定類型的值，這些類型在關聯值類型的元祖裡被指定，立即書寫在事件
+名後。獲得更多關於關聯值類型的信息和例子，請查看關聯值(associated values​​)一節。
 
-###使用原始事件值的枚举
+###使用原始事件值的枚舉
 
-以下的形式声明了一个包含相同基础类型的枚举事件的枚举：
+以下的形式聲明了一個包含相同基礎類型的枚舉事件的枚舉：
 
-    enum enumeration name: raw value type {
-        case enumeration case 1 = raw value 1
-        case enumeration case 2 = raw value 2
-    }
+    enum enumeration name: raw value type {
+        case enumeration case 1 = raw value 1
+        case enumeration case 2 = raw value 2
+    }
 
-在这种形式中，每一个事件块由case关键字开始，后面紧接着一个或多个以逗号分隔的枚举事件。和第一种形式的枚举
-事件不同，这种形式的枚举事件包含一个同类型的基础值，叫做原始值(raw value)。这些值的类型在原始值类型(raw value type)
-中被指定，必须是字面上的整数，浮点数，字符或者字符串。
+在這種形式中，每一個事件塊由case關鍵字開始，後面緊接著一個或多個以逗號分隔的枚舉事件。和第一種形式的枚舉
+事件不同，這種形式的枚舉事件包含一個同類型的基礎值，叫做原始值(raw value)。這些值的類型在原始值類型(raw value type)
+中被指定，必須是字面上的整數，浮點數，字符或者字符串。
 
-每一个事件必须有唯一的名字，必须有一个唯一的初始值。如果初始值类型被指定为int，则不必为事件显式的指定值，
-它们会隐式的被标为值0,1,2等。每一个没有被赋值的Int类型时间会隐式的赋予一个初始值，它们是自动递增的。
+每一個事件必須有唯一的名字，必須有一個唯一的初始值。如果初始值類型被指定為int，則不必為事件顯式的指定值，
+它們會隱式的被標為值0,1,2等。每一個沒有被賦值的Int類型時間會隱式的賦予一個初始值，它們是自動遞增的。
 
-    num ExampleEnum: Int {
-        case A, B, C = 5, D
-    }
+    num ExampleEnum: Int {
+        case A, B, C = 5, D
+    }
 
-在上面的例子中，ExampleEnum.A的值是0，ExampleEnum.B的值是。因为ExampleEnum.C的值被显式的设定为5，因此
-ExampleEnum.D的值会自动增长为6.
+在上面的例子中，ExampleEnum.A的值是0，ExampleEnum.B的值是。因為ExampleEnum.C的值被顯式的設定為5，因此
+ExampleEnum.D的值會自動增長為6.
 
-枚举事件的初始值可以调用方法roRaw获得，如ExampleEnum.B.toRaw()。你也可以通过调用fromRaw方法来使用初始值找到
-其对应的事件，并返回一个可选的事件。查看更多信息和获取初始值类型事件的信息，参阅初始值(raw values)。
+枚舉事件的初始值可以調用方法roRaw獲得，如ExampleEnum.B.toRaw()。你也可以通過調用fromRaw方法來使用初始值找到
+其對應的事件，並返回一個可選的事件。查看更多信息和獲取初始值類型事件的信息，參閱初始值(raw values​​)。
 
-###获得枚举事件
+###獲得枚舉事件
 
-使用点(.)来引用枚举类型的事件，如 EnumerationType.EnumerationCase。当枚举类型可以上下文推断出时，你可以
-省略它(.仍然需要)，参照枚举语法(Enumeration Syntax)和显式成员表达(Implicit Member Expression).
+使用點(.)來引用枚舉類型的事件，如EnumerationType.EnumerationCase。當枚舉類型可以上下文推斷出時，你可以
+省略它(.仍然需要)，參照枚舉語法(Enumeration Syntax)和顯式成員表達(Implicit Member Expression).
 
-使用switch语句来检验枚举事件的值，正如使用switch语句匹配枚举值（Matching Enumeration Values with a Switch Statement)一节描述的那样。
+使用switch語句來檢驗枚舉事件的值，正如使用switch語句匹配枚舉值（Matching Enumeration Values​​ with a Switch Statement)一節描述的那樣。
 
-枚举类型是模式匹配(pattern-matched)的，和其相反的是switch语句case块中枚举事件匹配，在枚举事件类型(Enumeration Case Pattern)中有描述。
+枚舉類型是模式匹配(pattern-matched)的，和其相反的是switch語句case塊中枚舉事件匹配，在枚舉事件類型(Enumeration Case Pattern)中有描述。
 
 >GRAMMAR OF AN ENUMERATION DECLARATION
 
->   enum-declaration → attributes­opt­union-style-enum­  attributes­opt­raw-value-style-enum­
->    union-style-enum → enum-name­generic-parameter-clause­opt­{­union-style-enum-members­opt­}­
-    union-style-enum-members → union-style-enum-member­union-style-enum-members­opt­
-    union-style-enum-member → declaration­  union-style-enum-case-clause­
-    union-style-enum-case-clause → attributes­opt­case­union-style-enum-case-list­
-    union-style-enum-case-list → union-style-enum-case­  union-style-enum-case­,­union-style-enum-case-list­
-    union-style-enum-case → enum-case-name­tuple-type­opt­
-    enum-name → identifier­
-    enum-case-name → identifier­
-    raw-value-style-enum → enum-name­generic-parameter-clause­opt­:­type-identifier­{­raw-value-style-enum-members­opt­}­
-    raw-value-style-enum-members → raw-value-style-enum-member­raw-value-style-enum-members­opt­
-    raw-value-style-enum-member → declaration­  raw-value-style-enum-case-clause­
-    raw-value-style-enum-case-clause → attributes­opt­case­raw-value-style-enum-case-list­
-    raw-value-style-enum-case-list → raw-value-style-enum-case­  raw-value-style-enum-case­,­raw-value-style-enum-case-list­
-    raw-value-style-enum-case → enum-case-name­raw-value-assignment­opt­
-    raw-value-assignment → =­literal­
+> enum-declaration → attributesoptunion-style-enum attributesoptraw-value-style-enum
+> union-style-enum → enum-namegeneric-parameter-clauseopt{union-style-enum-membersopt}
+    union-style-enum-members → union-style-enum-memberunion-style-enum-membersopt
+    union-style-enum-member → declaration union-style-enum-case-clause
+    union-style-enum-case-clause → attributesoptcaseunion-style-enum-case-list
+    union-style-enum-case-list → union-style-enum-case union-style-enum-case,union-style-enum-case-list
+    union-style-enum-case → enum-case-nametuple-typeopt
+    enum-name → identifier­
+    enum-case-name → identifier­
+    raw-value-style-enum → enum-namegeneric-parameter-clauseopt:type-identifier{raw-value-style-enum-membersopt}
+    raw-value-style-enum-members → raw-value-style-enum-memberraw-value-style-enum-membersopt
+    raw-value-style-enum-member → declaration raw-value-style-enum-case-clause
+    raw-value-style-enum-case-clause → attributesoptcaseraw-value-style-enum-case-list
+    raw-value-style-enum-case-list → raw-value-style-enum-case raw-value-style-enum-case,raw-value-style-enum-case-list
+    raw-value-style-enum-case → enum-case-nameraw-value-assignmentopt
+    raw-value-assignment → =­literal­
 
 <a name="structure_declaration"></a>
-##结构体声明
+##結構體聲明
 
-使用结构体声明可以在你的程序里引入一个结构体类型。结构体声明使用struct关键字，遵循如下的形式：
+使用結構體聲明可以在你的程序裡引入一個結構體類型。結構體聲明使用struct關鍵字，遵循如下的形式：
 
-    struct structure name: adopted protocols {
-        declarations
-    }
+    struct structure name: adopted protocols {
+        declarations
+    }
 
-结构体内包含零或多个声明。这些声明可以包括存储型和计算型属性，静态属性，实例方法，静态方法，构造器，
-类型别名，甚至其他结构体，类，和枚举声明。结构体声明不能包含析构器或者协议声明。详细讨论和包含多种结构体
-声明的实例，参见类和结构体一节。
+結構體內包含零或多個聲明。這些聲明可以包括存儲型和計算型屬性，靜態屬性，實例方法，靜態方法，構造器，
+類型別名，甚至其他結構體，類，和枚舉聲明。結構體聲明不能包含析構器或者協議聲明。詳細討論和包含多種結構體
+聲明的實例，參見類和結構體一節。
 
-结构体可以包含任意数量的协议，但是不能继承自类，枚举或者其他结构体。
+結構體可以包含任意數量的協議，但是不能繼承自類，枚舉或者其他結構體。
 
-有三种方法可以创建一个声明过的结构体实例：
+有三種方法可以創建一個聲明過的結構體實例：
 
--调用结构体内声明的构造器，参照构造器(initializers)一节。
+-調用結構體內聲明的構造器，參照構造器(initializers)一節。
 
-—如果没有声明构造器，调用结构体的逐个构造器，详情参见Memberwise Initializers for Structure Types.
+—如果沒有聲明構造器，調用結構體的逐個構造器，詳情參見Memberwise Initializers for Structure Types.
 
-—如果没有声明析构器，结构体的所有属性都有初始值，调用结构体的默认构造器，详情参见默认构造器(Default Initializers).
+—如果沒有聲明析構器，結構體的所有屬性都有初始值，調用結構體的默認構造器，詳情參見默認構造器(Default Initializers).
 
-结构体的构造过程参见初始化(initiaization)一节。
+結構體的構造過程參見初始化(initiaization)一節。
 
-结构体实例属性可以用点(.)来获得，详情参见获得属性(Accessing Properties)一节。
+結構體實例屬性可以用點(.)來獲得，詳情參見獲得屬性(Accessing Properties)一節。
 
-结构体是值类型；结构体的实例在被赋予变量或常量，被函数调用时被复制。获得关于值类型更多信息，参见
-结构体和枚举都是值类型(Structures and Enumerations Are Value Types)一节。
+結構體是值類型；結構體的實例在被賦予變量或常量，被函數調用時被複製。獲得關於值類型更多信息，參見
+結構體和枚舉都是值類型(Structures and Enumerations Are Value Types)一節。
 
-你可以使用扩展声明来扩展结构体类型的行为，参见扩展声明(Extension Declaration).
+你可以使用擴展聲明來擴展結構體類型的行為，參見擴展聲明(Extension Declaration).
 
 >GRAMMAR OF A STRUCTURE DECLARATION
 
->    struct-declaration → attributes­opt­struct­struct-name­generic-parameter-clause­opt­type-inheritance-clause­opt­struct-body­
->    struct-name → identifier­
->    struct-body → {­declarations­opt­}
+> struct-declaration → attributesoptstructstruct-namegeneric-parameter-clauseopttype-in​​heritance-clauseoptstruct-body
+> struct-name → identifier­
+> struct-body → {­declarations­opt­}
 
 <a name="class_declaration"></a>
-##类声明
+##類聲明
 
-你可以在你的程序中使用类声明来引入一个类。类声明使用关键字class，遵循如下的形式：
+你可以在你的程序中使用類聲明來引入一個類。類聲明使用關鍵字class，遵循如下的形式：
 
-    class class name: superclass, adopted protocols {
-        declarations
-    }
+    class class name: superclass, adopted protocols {
+        declarations
+    }
 
-一个类内包含零或多个声明。这些声明可以包括存储型和计算型属性，实例方法，类方法，构造器，单独的析构器方法，
-类型别名，甚至其他结构体，类，和枚举声明。类声明不能包含协议声明。详细讨论和包含多种类声明的实例，参见类和
-结构体一节。
+一個類內包含零或多個聲明。這些聲明可以包括存儲型和計算型屬性，實例方法，類方法，構造器，單獨的析構器方法，
+類型別名，甚至其他結構體，類，和枚舉聲明。類聲明不能包含協議聲明。詳細討論和包含多種類聲明的實例，參見類和
+結構體一節。
 
-一个类只能继承一个父类，超类，但是可以包含任意数量的协议。这些超类第一次在type-inheritance-clause出现，遵循任意协议。
+一個類只能繼承一個父類，超類，但是可以包含任意數量的協議。這些超類第一次在type-in​​heritance-clause出現，遵循任意協議。
 
-正如在初始化声明(Initializer Declaration)谈及的那样，类可以有指定和方便的构造器。当你声明任一中构造器时，
-你可以使用requierd变量来标记构造器，要求任意子类来重写它。指定类的构造器必须初始化类所有的已声明的属性，
-它必须在子类构造器调用前被执行。
+正如在初始化聲明(Initializer Declaration)談及的那樣，類可以有指定和方便的構造器。當你聲明任一中構造器時，
+你可以使用requierd變量來標記構造器，要求任意子類來重寫它。指定類的構造器必須初始化類所有的已聲明的屬性，
+它必須在子類構造器調用前被執行。
 
-类可以重写属性，方法和它的超类的构造器。重写的方法和属性必须以override标注。
+類可以重寫屬性，方法和它的超類的構造器。重寫的方法和屬性必須以override標註。
 
-虽然超类的属性和方法声明可以被当前类继承，但是超类声明的指定构造器却不能。这意味着，如果当前类重写了超类
-的所有指定构造器，它就继承了超类的方便构造器。Swift的类并不是继承自一个全局基础类。
+雖然超類的屬性和方法聲明可以被當前類繼承，但是超類聲明的指定構造器卻不能。這意味著，如果當前類重寫了超類
+的所有指定構造器，它就繼承了超類的方便構造器。 Swift的類並不是繼承自一個全局基礎類。
 
-有两种方法来创建已声明的类的实例：
+有兩種方法來創建已聲明的類的實例：
 
--调用类的一个构造器，参见构造器(initializers)。
+-調用類的一個構造器，參見構造器(initializers)。
 
--如果没有声明构造器，而且类的所有属性都被赋予了初始值，调用类的默认构造器，参见默认构造器(default initializers).
+-如果沒有聲明構造器，而且類的所有屬性都被賦予了初始值，調用類的默認構造器，參見默認構造器(default initializers).
 
-类实例属性可以用点(.)来获得，详情参见获得属性(Accessing Properties)一节。
+類實例屬性可以用點(.)來獲得，詳情參見獲得屬性(Accessing Properties)一節。
 
-类是引用类型；当被赋予常量或变量，函数调用时，类的实例是被引用，而不是复制。获得更多关于引用类型的信息，
-结构体和枚举都是值类型(Structures and Enumerations Are Value Types)一节。
+類是引用類型；當被賦予常量或變量，函數調用時，類的實例是被引用，而不是複制。獲得更多關於引用類型的信息，
+結構體和枚舉都是值類型(Structures and Enumerations Are Value Types)一節。
 
-你可以使用扩展声明来扩展类的行为，参见扩展声明(Extension Declaration).
+你可以使用擴展聲明來擴展類的行為，參見擴展聲明(Extension Declaration).
 
- >  GRAMMAR OF A CLASS DECLARATION
+ > GRAMMAR OF A CLASS DECLARATION
 
- >   class-declaration → attributes­opt­class­class-name­generic-parameter-clause­opt­type-inheritance-clause­opt­class-body­
- >   class-name → identifier­
- >  class-body → {­declarations­opt­}
+ > class-declaration → attributesoptclassclass-namegeneric-parameter-clauseopttype-in​​heritance-clauseoptclass-body
+ > class-name → identifier­
+ > class-body → {­declarations­opt­}
 
 <a name="protocol_declaration"></a>
-##协议声明(translated by 小一)
+##協議聲明(translated by 小一)
 
-一个协议声明为你的程序引入一个命名了的协议类型。协议声明使用 `protocol` 关键词来进行声明并有下面这样的形式：
+一個協議聲明為你的程序引入一個命名了的協議類型。協議聲明使用`protocol` 關鍵詞來進行聲明並有下面這樣的形式：
 
-```javascript
+```ja​​vascript
 protocol protocol name: inherited protocols {
-	protocol member declarations
+protocol member declarations
 }
 ```
 
-协议的主体包含零或多个协议成员声明，这些成员描述了任何采用该协议必须满足的一致性要求。特别的，一个协议可以声明必须实现某些属性、方法、初始化程序及附属脚本的一致性类型。协议也可以声明专用种类的类型别名，叫做关联类型，它可以指定协议的不同声明之间的关系。协议成员声明会在下面的详情里进行讨论。
+協議的主體包含零或多個協議成員聲明，這些成員描述了任何採用該協議必須滿足的一致性要求。特別的，一個協議可以聲明必須實現某些屬性、方法、初始化程序及附屬腳本的一致性類型。協議也可以聲明專用種類的類型別名，叫做關聯類型，它可以指定協議的不同聲明之間的關係。協議成員聲明會在下面的詳情裡進行討論。
 
-协议类型可以从很多其它协议那继承。当一个协议类型从其它协议那继承的时候，来自其它协议的所有要求就集合了，而且从当前协议继承的任何类型必须符合所有的这些要求。对于如何使用协议继承的例子，查看[协议继承](../chapter2/21_Protocols.html#protocol_inheritance)
+協議類型可以從很多其它協議那繼承。當一個協議類型從其它協議那繼承的時候，來自其它協議的所有要求就集合了，而且從當前協議繼承的任何類型必須符合所有的這些要求。對於如何使用協議繼承的例子，查看[協議繼承](../chapter2/21_Protocols.html#protocol_inheritance)
 
 > 注意：
 >
-你也可以使用协议合成类型集合多个协议的一致性要求，详情参见[协议合成类型](../chapter3/03_Types.html#protocol_composition_type)和[协议合成](../chapter2/21_Protocols.html#protocol_composition)
+你也可以使用協議合成類型集合多個協議的一致性要求，詳情參見[協議合成類型](../chapter3/03_Types.html#protocol_composition_type)和[協議合成](../chapter2/21_Protocols.html# protocol_composition)
 
-你可以通过采用在类型的扩展声明中的协议来为之前声明的类型添加协议一致性。在扩展中你必须实现所有采用协议的要求。如果该类型已经实现了所有的要求，你可以让这个扩展声明的主题留空。
+你可以通過採用在類型的擴展聲明中的協議來為之前聲明的類型添加協議一致性。在擴展中你必須實現所有採用協議的要求。如果該類型已經實現了所有的要求，你可以讓這個擴展聲明的主題留空。
 
-默认地，符合某一个协议的类型必须实现所有声明在协议中的属性、方法和附属脚本。也就是说，你可以用`optional`属性标注这些协议成员声明以指定它们的一致性类型实现是可选的。`optional`属性仅仅可以用于使用`objc`属性标记过的协议。这样的结果就是仅仅类类型可以采用并符合包含可选成员要求的协议。更多关于如何使用`optional`属性的信息及如何访问可选协议成员的指导——比如当你不能肯定是否一致性的类型实现了它们——参见[可选协议要求](../chapter2/21_Protocols.html#optional_protocol_requirements)
+默認地，符合某一個協議的類型必須實現所有聲明在協議中的屬性、方法和附屬腳本。也就是說，你可以用`optional`屬性標註這些協議成員聲明以指定它們的一致性類型實現是可選的。 `optional`屬性僅僅可以用於使用`objc`屬性標記過的協議。這樣的結果就是僅僅類類型可以採用並符合包含可選成員要求的協議。更多關於如何使用`optional`屬性的信息及如何訪問可選協議成員的指導——比如當你不能肯定是否一致性的類型實現了它們——參見[可選協議要求](../chapter2/ 21_Protocols.html#optional_protocol_requirements)
 
-为了限制协议的采用仅仅针对类类型，需要使用`class_protocol`属性标记整个协议声明。任意继承自标记有`class_protocol`属性协议的协议都可以智能地仅能被类类型采用。
+為了限制協議的採用僅僅針對類類型，需要使用`class_protocol`屬性標記整個協議聲明。任意繼承自標記有`class_protocol`屬性協議的協議都可以智能地僅能被類類型採用。
 
 >注意：
 >
-如果协议已经用`object`属性标记了，`class_protocol`属性就隐性地应用于该协议；没有必要再明确地使用`class_protocol`属性来标记该协议了。
+如果協議已經用`object`屬性標記了，`class_protocol`屬性就隱性地應用於該協議；沒有必要再明確地使用`class_protocol`屬性來標記該協議了。
 
-协议是命名的类型，因此它们可以以另一个命名类型出现在你代码的所有地方，就像[协议类型](../chapter2/21_Protocols.html#protocols_as_types)里讨论的那样。然而你不能构造一个协议的实例，因为协议实际上不提供它们指定的要求的实现。
+協議是命名的類型，因此它們可以以另一個命名類型出現在你代碼的所有地方，就像[協議類型](../chapter2/21_Protocols.html#protocols_as_types)裡討論的那樣。然而你不能構造一個協議的實例，因為協議實際上不提供​​它們指定的要求的實現。
 
-你可以使用协议来声明一个类的代理的方法或者应该实现的结构，就像[委托(代理)模式](../chapter2/21_Protocols.html#delegation)描述的那样。
+你可以使用協議來聲明一個類的代理的方法或者應該實現的結構，就像[委託(代理)模式](../chapter2/21_Protocols.html#delegation)描述的那樣。
 
->协议声明的语法
-protocol-declaration → attributes­opt­protocol­protocol-name­type-inheritance-clause­opt­protocol-body­
+>協議聲明的語法
+protocol-declaration → attributesoptprotocolprotocol-nametype-in​​heritance-clauseoptprotocol-body
 protocol-name → identifier­
-protocol-body → {­protocol-member-declarations­opt­}­
-protocol-member-declaration → protocol-property-declaration­
-protocol-member-declaration → protocol-method-declaration­
-protocol-member-declaration → protocol-initializer-declaration­
-protocol-member-declaration → protocol-subscript-declaration­
-protocol-member-declaration → protocol-associated-type-declaration­
-protocol-member-declarations → protocol-member-declaration­protocol-member-declarations­opt­
+protocol-body → {protocol-member-declarationsopt}
+protocol-member-declaration → protocol-property-declaration
+protocol-member-declaration → protocol-method-declaration
+protocol-member-declaration → protocol-initializer-declaration
+protocol-member-declaration → protocol-subscript-declaration
+protocol-member-declaration → protocol-associated-type-declaration
+protocol-member-declarations → protocol-member-declarationprotocol-member-declarationsopt
 
 <a name="protocol_property_declaration"></a>
-###协议属性声明
+###協議屬性聲明
 
-协议声明了一致性类型必须在协议声明的主体里通过引入一个协议属性声明来实现一个属性。协议属性声明有一种特殊的类型声明形式：
+協議聲明了一致性類型必須在協議聲明的主體里通過引入一個協議屬性聲明來實現一個屬性。協議屬性聲明有一種特殊的類型聲明形式：
 
-```javascript
+```ja​​vascript
 var property name: type { get set }
 ```
 
-同其它协议成员声明一样，这些属性声明仅仅针对符合该协议的类型声明了`getter`和`setter`要求。结果就是你不需要在协议里它被声明的地方实现`getter`和`setter`。
+同其它協議成員聲明一樣，這些屬性聲明僅僅針對符合該協議的類型聲明了`getter`和`setter`要求。結果就是你不需要在協議裡它被聲明的地方實現`getter`和`setter`。
 
-`getter`和`setter`要求可以通过一致性类型以各种方式满足。如果属性声明包含`get`和`set`关键词，一致性类型就可以用可读写（实现了`getter`和`setter`）的存储型变量属性或计算型属性，但是属性不能以常量属性或只读计算型属性实现。如果属性声明仅仅包含`get`关键词的话，它可以作为任意类型的属性被实现。比如说实现了协议的属性要求的一致性类型，参见[属性要求](../chapter2/21_Protocols.html#property_requirements)
+`getter`和`setter`要求可以通過一致性類型以各種方式滿足。如果屬性聲明包含`get`和`set`關鍵詞，一致性類型就可以用可讀寫（實現了`getter`和`setter`）的存儲型變量屬性或計算型屬性，但是屬性不能以常量屬性或只讀計算型屬性實現。如果屬性聲明僅僅包含`get`關鍵詞的話，它可以作為任意類型的屬性被實現。比如說實現了協議的屬性要求的一致性類型，參見[屬性要求](../chapter2/21_Protocols.html#property_requirements)
 
-更多参见[变量声明](../chapter3/05_Declarations.html#variable_declaration)
+更多參見[變量聲明](../chapter3/05_Declarations.html#variable_declaration)
 
->协议属性声明语法
-protocol-property-declaration → variable-declaration-head­variable-name­type-annotation­getter-setter-keyword-block­
+>協議屬性聲明語法
+protocol-property-declaration → variable-declaration-headvariable-nametype-annotationgetter-setter-keyword-block
 
-###协议方法声明
+###協議方法聲明
 
-协议声明了一致性类型必须在协议声明的主体里通过引入一个协议方法声明来实现一个方法.
-协议方法声明和函数方法声明有着相同的形式，包含如下两条规则：他们不包括函数体，你不能在类的声明内为他们的
-参数提供初始值.举例来说，符合的类型执行协议必需的方法。参见必需方法一节。
+協議聲明了一致性類型必須在協議聲明的主體里通過引入一個協議方法聲明來實現一個方法.
+協議方法聲明和函數方法聲明有著相同的形式，包含如下兩條規則：他們不包括函數體，你不能在類的聲明內為他們的
+參數提供初始值.舉例來說，符合的類型執行協議必需的方法。參見必需方法一節。
 
-使用关键字class可以在协议声明中声明一个类或必需的静态方法。执行这些方法的类也用关键字class声明。
-相反的，执行这些方法的结构体必须以关键字static声明。如果你想使用扩展方法，在扩展类时使用class关键字，
-在扩展结构体时使用static关键字。
+使用關鍵字class可以在協議​​聲明中聲明一個類或必需的靜態方法。執行這些方法的類也用關鍵字class聲明。
+相反的，執行這些方法的結構體必須以關鍵字static聲明。如果你想使用擴展方法，在擴展類時使用class關鍵字，
+在擴展結構體時使用static關鍵字。
 
-更多请参阅函数声明。
+更多請參閱函數聲明。
 
 >GRAMMAR OF A PROTOCOL METHOD DECLARATION
 
->protocol-method-declaration → function-head­function-name­generic-parameter-clause­opt­function-signature­
+>protocol-method-declaration → function-headfunction-namegeneric-parameter-clauseoptfunction-signature
 
-###协议构造器声明
+###協議構造器聲明
 
-协议声明了一致性类型必须在协议声明的主体里通过引入一个协议构造器声明来实现一个构造器。协议构造器声明
-除了不包含构造器体外，和构造器声明有着相同的形式，
+協議聲明了一致性類型必須在協議聲明的主體里通過引入一個協議構造器聲明來實現一個構造器。協議構造器聲明
+除了不包含構造器體外，和構造器聲明有著相同的形式，
 
-更多请参阅构造器声明。
+更多請參閱構造器聲明。
 
 >GRAMMAR OF A PROTOCOL INITIALIZER DECLARATION
 
->protocol-initializer-declaration → initializer-head­generic-parameter-clause­opt­parameter-clause­
+>protocol-initializer-declaration → initializer-headgeneric-parameter-clauseoptparameter-clause
 
-###协议附属脚本声明
+###協議附屬腳本聲明
 
-协议声明了一致性类型必须在协议声明的主体里通过引入一个协议附属脚本声明来实现一个附属脚本。协议属性声明
-对附属脚本声明有一个特殊的形式：
+協議聲明了一致性類型必須在協議聲明的主體里通過引入一個協議附屬腳本聲明來實現一個附屬腳本。協議屬性聲明
+對附屬腳本聲明有一個特殊的形式：
 
 >subscript (parameters) -> return type { get set }
 
-附属脚本声明只为和协议一致的类型声明了必需的最小数量的的getter和setter。如果附属脚本申明包含get和set关键字，
-一致的类型也必须有一个getter和setter语句。如果附属脚本声明值包含get关键字，一致的类型必须至少包含一个
-getter语句，可以选择是否包含setter语句。
+附屬腳本聲明只為和協議一致的類型聲明了必需的最小數量的的getter和setter。如果附屬腳本申明包含get和set關鍵字，
+一致的類型也必須有一個getter和setter語句。如果附屬腳本聲明值包含get關鍵字，一致的類型必須至少包含一個
+getter語句，可以選擇是否包含setter語句。
 
-更多参阅附属脚本声明。
+更多參閱附屬腳本聲明。
 
 >GRAMMAR OF A PROTOCOL SUBSCRIPT DECLARATION
 
->protocol-subscript-declaration → subscript-head­subscript-result­getter-setter-keyword-block­
+>protocol-subscript-declaration → subscript-headsubscript-resultgetter-setter-keyword-block
 
-###协议相关类型声明
+###協議相關類型聲明
 
-协议声明相关类型使用关键字typealias。相关类型为作为协议声明的一部分的类型提供了一个别名。相关类型和参数
-语句中的类型参数很相似，但是它们在声明的协议中包含self关键字。在这些语句中，self指代和协议一致的可能的类型。
-获得更多信息和例子，查看相关类型或类型别名声明。
+協議聲明相關類型使用關鍵字typealias。相關類型為作為協議聲明的一部分的類型提供了一個別名。相關類型和參數
+語句中的類型參數很相似，但是它們在聲明的協議中包含self關鍵字。在這些語句中，self指代和協議一致的可能的類型。
+獲得更多信息和例子，查看相關類型或類型別名聲明。
 
 >GRAMMAR OF A PROTOCOL ASSOCIATED TYPE DECLARATION
 
->protocol-associated-type-declaration → typealias-head­type-inheritance-clause­opt­typealias-assignment­opt­
+>protocol-associated-type-declaration → typealias-headtype-in​​heritance-clauseopttypealias-assignmentopt
 
 <a name="initializer_declaration"></a>
-##构造器声明
+##構造器聲明
 
-构造器声明会为程序内的类，结构体或枚举引入构造器。构造器使用关键字Init来声明，遵循两条基本形式。
+構造器聲明會為程序內的類，結構體或枚舉引入構造器。構造器使用關鍵字Init來聲明，遵循兩條基本形式。
 
-结构体，枚举，类可以有任意数量的构造器，但是类的构造器的规则和行为是不一样的。不像结构体和枚举那样，类
-有两种结构体，designed initializers 和convenience initializers，参见构造器一节。
+結構體，枚舉，類可以有任意數量的構造器，但是類的構造器的規則和行為是不一樣的。不像結構體和枚舉那樣，類
+有兩種結構體，designed initializers 和convenience initializers，參見構造器一節。
 
-如下的形式声明了结构体，枚举和类的指定构造器：
+如下的形式聲明了結構體，枚舉和類的指定構造器：
 
-    init(parameters) {
-         statements
-    }
+    init(parameters) {
+         statements
+    }
 
-类的指定构造器将类的所有属性直接初始化。如果类有超类，它不能调用该类的其他构造器,它只能调用超类的一个
-指定构造器。如果该类从它的超类处继承了任何属性，这些属性在当前类内被赋值或修饰时，必须带哦用一个超类的
-指定构造器。
+類的指定構造器將類的所有屬性直接初始化。如果類有超類，它不能調用該類的其他構造器,它只能調用超類的一個
+指定構造器。如果該類從它的超類處繼承了任何屬性，這些屬性在當前類內被賦值或修飾時，必須帶哦用一個超類的
+指定構造器。
 
-指定构造器可以在类声明的上下文中声明，因此它不能用扩展声明的方法加入一个类中。
+指定構造器可以在類聲明的上下文中聲明，因此它不能用擴展聲明的方法加入一個類中。
 
-结构体和枚举的构造器可以带哦用其他的已声明的构造器，来委托其中一个火全部进行初始化过程。
+結構體和枚舉的構造器可以帶哦用其他的已聲明的構造器，來委託其中一個火全部進行初始化過程。
 
-以关键字convenience来声明一个类的便利构造器：
+以關鍵字convenience來聲明一個類的便利構造器：
 
-    convenience init(parameters) {
-       statements
-    }
+    convenience init(parameters) {
+       statements
+    }
 
-便利构造器可以将初始化过程委托给另一个便利构造器或类的一个指定构造器。这意味着，类的初始化过程必须
-以一个将所有类属性完全初始化的指定构造器的调用作为结束。便利构造器不能调用超类的构造器。
+便利構造器可以將初始化過程委託給另一個便利構造器或類的一個指定構造器。這意味著，類的初始化過程必須
+以一個將所有類屬性完全初始化的指定構造器的調用作為結束。便利構造器不能調用超類的構造器。
 
-你可以使用requierd关键字，将便利构造器和指定构造器标记为每个子类的构造器都必须拥有的。因为指定构造器
-不被子类继承，他们必须被立即执行。当子类直接执行所有超类的指定构造器(或使用便利构造器重写指定构造器)时，
-必需的便利构造器可以被隐式的执行，亦可以被继承。不像方法，附属脚本那样，你不需要为这些重写的构造器标注
-overrride关键字。
+你可以使用requierd關鍵字，將便利構造器和指定構造器標記為每個子類的構造器都必須擁有的。因為指定構造器
+不被子類繼承，他們必須被立即執行。當子類直接執行所有超類的指定構造器(或使用便利構造器重寫指定構造器)時，
+必需的便利構造器可以被隱式的執行，亦可以被繼承。不像方法，附屬腳本那樣，你不需要為這些重寫的構造器標註
+overrride關鍵字。
 
-查看更多关于不同声明方法的构造器的例子，参阅构造过程一节。
+查看更多關於不同聲明方法的構造器的例子，參閱構造過程一節。
 
 >GRAMMAR OF AN INITIALIZER DECLARATION
 
->initializer-declaration → initializer-head­generic-parameter-clause­opt­parameter-clause­initializer-body­
->initializer-head → attributes­opt­convenience­opt­init­
+>initializer-declaration → initializer-headgeneric-parameter-clauseoptparameter-clauseinitializer-body
+>initializer-head → attributesoptconvenienceoptinit
 >initializer-body → code-block­
 
-<a name="deinitializer_declaration"></a>
-##析构声明
+<a name="d​​einitializer_declaration"></a>
+##析構聲明
 
-析构声明为类声明了一个析构器。析构器没有参数，遵循如下的格式：
+析構聲明為類聲明了一個析構器。析構器沒有參數，遵循如下的格式：
 
-    deinit {
-       statements
-    }
+    deinit {
+       statements
+    }
 
-当类没有任何语句时将要被释放时，析构器会自动的被调用。析构器在类的声明体内只能被声明一次——但是不能在
-类的扩展声明内，每个类最多只能有一个。
+當類沒有任何語句時將要被釋放時，析構器會自動的被調用。析構器在類的聲明體內只能被聲明一次——但是不能在
+類的擴展聲明內，每個類最多只能有一個。
 
-子类继承了它的超类的析构器，在子类将要被释放时隐式的调用。子类在所有析构器被执行完毕前不会被释放。
+子類繼承了它的超類的析構器，在子類將要被釋放時隱式的調用。子類在所有析構器被執行完畢前不會被釋放。
 
-析构器不会被直接调用。
+析構器不會被直接調用。
 
-查看例子和如何在类的声明中使用析构器，参见析构过程一节
+查看例子和如何在類的聲明中使用析構器，參見析構過程一節
 。
 
 >GRAMMAR OF A DEINITIALIZER DECLARATION
 
->deinitializer-declaration → attributes­opt­deinit­code-block
+>deinitializer-declaration → attributesoptdeinitcode-block
 
 <a name="extension_declaration"></a>
-##扩展声明
+##擴展聲明
 
-扩展声明用于扩展一个现存的类，结构体，枚举的行为。扩展声明以关键字extension开始，遵循如下的规则：
+擴展聲明用於擴展一個現存的類，結構體，枚舉的行為。擴展聲明以關鍵字extension開始，遵循如下的規則：
 
-    extension type: adopted protocols {
-       declarations
-    }
+    extension type: adopted protocols {
+       declarations
+    }
 
-一个扩展声明体包括零个或多个声明。这些声明可以包括计算型属性，计算型静态属性，实例方法，静态和类方法，构造器，
-附属脚本声明，甚至其他结构体，类，和枚举声明。扩展声明不能包含析构器，协议声明，存储型属性，属性监测器或其他
-的扩展属性。详细讨论和查看包含多种扩展声明的实例，参见扩展一节。
+一個擴展聲明體包括零個或多個聲明。這些聲明可以包括計算型屬性，計算型靜態屬性，實例方法，靜態和類方法，構造器，
+附屬腳本聲明，甚至其他結構體，類，和枚舉聲明。擴展聲明不能包含析構器，協議聲明，存儲型屬性，屬性監測器或其他
+的擴展屬性。詳細討論和查看包含多種擴展聲明的實例，參見擴展一節。
 
-扩展声明可以向现存的类，结构体，枚举内添加一致的协议。扩展声明不能向一个类中添加继承的类，因此
-type-inheritance-clause是一个只包含协议列表的扩展声明。
+擴展聲明可以向現存的類，結構體，枚舉內添加一致的協議。擴展聲明不能向一個類中添加繼承的類，因此
+type-in​​heritance-clause是一個只包含協議列表的擴展聲明。
 
-属性，方法，现存类型的构造器不能被它们类型的扩展所重写。
+屬性，方法，現存類型的構造器不能被它們類型的擴展所重寫。
 
-扩展声明可以包含构造器声明，这意味着，如果你扩展的类型在其他模块中定义，构造器声明必须委托另一个在
-那个模块里声明的构造器来恰当的初始化。
+擴展聲明可以包含構造器聲明，這意味著，如果你擴展的類型在其他模塊中定義，構造器聲明必須委託另一個在
+那個模塊裡聲明的構造器來恰當的初始化。
 
 >GRAMMAR OF AN EXTENSION DECLARATION
 
->extension-declaration → extension­type-identifier­type-inheritance-clause­opt­extension-body­
+>extension-declaration → extensiontype-identifiertype-in​​heritance-clauseoptextension-body
 >extension-body → {­declarations­opt­}­
 
 <a name="subscript_declaration"></a>
-##附属脚本声明(translated by 林)
+##附屬腳本聲明(translated by 林)
 
-附属脚本用于向特定类型添加附属脚本支持，通常为访问集合，列表和序列的元素时提供语法便利。附属脚本声明使用关键字`subscript`，声明形式如下：
+附屬腳本用於向特定類型添加附屬腳本支持，通常為訪問集合，列表和序列的元素時提供語法便利。附屬腳本聲明使用關鍵字`subscript`，聲明形式如下：
 > subscript (`parameter`) -> (return type){
-    get{
-      `statements`
-    }
-    set(`setter name`){
-      `statements`
-    }
+    get{
+      `statements`
+    }
+    set(`setter name`){
+      `statements`
+    }
 }
-附属脚本声明只能在类，结构体，枚举，扩展和协议声明的上下文进行声明。
+附屬腳本聲明只能在類，結構體，枚舉，擴展和協議聲明的上下文進行聲​​明。
 
-_变量(parameters)_指定一个或多个用于在相关类型的附属脚本中访问元素的索引（例如，表达式`object[i]`中的`i`）。尽管用于元素访问的索引可以是任意类型的，但是每个变量必须包含一个用于指定每种索引类型的类型标注。_返回类型(return type)_指定被访问的元素的类型。
+_變量(parameters)_指定一個或多個用於在相關類型的附屬腳本中訪問元素的索引（例如，表達式`object[i]`中的`i`）。儘管用於元素訪問的索引可以是任意類型的，但是每個變量必須包含一個用於指定每種索引類型的類型標註。 _返回類型(return type)_指定被訪問的元素的類型。
 
-和计算性属性一样，附属脚本声明支持对访问元素的读写操作。getter用于读取值，setter用于写入值。setter子句是可选的，当仅需要一个getter子句时，可以将二者都忽略且直接返回请求的值即可。也就是说，如果使用了setter子句，就必须使用getter子句。
+和計算性屬性一樣，附屬腳本聲明支持對訪問元素的讀寫操作。 getter用於讀取值，setter用於寫入值。 setter子句是可選的，當僅需要一個getter子句時，可以將二者都忽略且直接返回請求的值即可。也就是說，如果使用了setter子句，就必須使用getter子句。
 
-setter的名字和封闭的括号是可选的。如果使用了setter名称，它会被当做传给setter的变量的名称。如果不使用setter名称，那么传给setter的变量的名称默认是`value`。setter名称的类型必须与_返回类型(return type)_的类型相同。
+setter的名字和封閉的括號是可選的。如果使用了setter名稱，它會被當做傳給setter的變量的名稱。如果不使用setter名稱，那麼傳給setter的變量的名稱默認是`value`。 setter名稱的類型必須與_返回類型(return type)_的類型相同。
 
-可以在附属脚本声明的类型中，可以重载附属脚本，只要_变量(parameters)_或_返回类型(return type)_与先前的不同即可。此时，必须使用`override`关键字声明那个被覆盖的附属脚本。(注：好乱啊！到底是重载还是覆盖？！)
+可以在附屬腳本聲明的類型中，可以重載附屬腳本，只要_變量(parameters)_或_返回類型(return type)_與先前的不同即可。此時，必須使用`override`關鍵字聲明那個被覆蓋的附屬腳本。 (注：好亂啊！到底是重載還是覆蓋？！)
 
-同样可以在协议声明的上下文中声明附属脚本，[Protocol Subscript Declaration](https://developer.apple.com/library/prerelease/ios/documentation/Swift/Conceptual/Swift_Programming_Language/Declarations.html#//apple_ref/doc/uid/TP40014097-CH34-XID_619)中有所描述。
+同樣可以在協議​​聲明的上下文中聲明附屬腳本，[Protocol Subscript Declaration](https://developer.apple.com/library/prerelease/ios/documentation/Swift/Conceptual/Swift_Programming_Language/Declarations.html#//apple_ref/ doc/uid/TP40014097-CH34-XID_619)中有所描述。
 
-更多关于附属脚本和附属脚本声明的例子，请参考[Subscripts](https://developer.apple.com/library/prerelease/ios/documentation/Swift/Conceptual/Swift_Programming_Language/Subscripts.html#//apple_ref/doc/uid/TP40014097-CH16-XID_393)。
+更多關於附屬腳本和附屬腳本聲明的例子，請參考[Subscripts](https://developer.apple.com/library/prerelease/ios/documentation/Swift/Conceptual/Swift_Programming_Language/Subscripts.html#//apple_ref/ doc/uid/TP40014097-CH16-XID_393)。
 
 >GRAMMAR OF A SUBSCRIPT DECLARATION
 
->subscript-declaration → subscript-head­subscript-result­code-block­
->subscript-declaration → subscript-head­subscript-result­getter-setter-block­
->subscript-declaration → subscript-head­subscript-result­getter-setter-keyword-block­
->subscript-head → attributes­opt­subscript­parameter-clause­
+>subscript-declaration → subscript-headsubscript-resultcode-block
+>subscript-declaration → subscript-headsubscript-resultgetter-setter-block
+>subscript-declaration → subscript-headsubscript-resultgetter-setter-keyword-block
+>subscript-head → attributesoptsubscriptparameter-clause
 >subscript-result → ->­attributes­opt­type­
 
 <a name="operator_declaration"></a>
-##运算符声明(translated by 林)
+##運算符聲明(translated by 林)
 
-运算符声明会向程序中引入中缀、前缀或后缀运算符，它使用上下文关键字`operator`声明。
-可以声明三种不同的缀性：中缀、前缀和后缀。操作符的缀性描述了操作符与它的操作数的相对位置。
-运算符声明有三种基本形式，每种缀性各一种。运算符的缀性通过在`operator`和运算符之间添加上下文关键字`infix`，`prefix`或`postfix`来指定。每种形式中，运算符的名字只能包含[Operators](https://developer.apple.com/library/prerelease/ios/documentation/Swift/Conceptual/Swift_Programming_Language/LexicalStructure.html#//apple_ref/doc/uid/TP40014097-CH30-XID_871)中定义的运算符字符。
+運算符聲明會向程序中引入中綴、前綴或後綴運算符，它使用上下文關鍵字`operator`聲明。
+可以聲明三種不同的綴性：中綴、前綴和後綴。操作符的綴性描述了操作符與它的操作數的相對位置。
+運算符聲明有三種基本形式，每種綴性各一種。運算符的綴性通過在`operator`和運算符之間添加上下文關鍵字`infix`，`prefix`或`postfix`來指定。每種形式中，運算符的名字只能包含[Operators](https://developer.apple.com/library/prerelease/ios/documentation/Swift/Conceptual/Swift_Programming_Language/LexicalStructure.html#//apple_ref/doc/ uid/TP40014097-CH30-XID_871)中定義的運算符字符。
 
-下面的这种形式声明了一个新的中缀运算符：
+下面的這種形式聲明了一個新的中綴運算符：
 > operator infix `operator name`{
-    precedence `precedence level`
-    associativity `associativity`
- }
+    precedence `precedence level`
+    associativity `associativity`
+ }
 
-_中缀_运算符是二元运算符，它可以被置于两个操作数之间，比如表达式`1 + 2` 中的加法运算符(`+`)。
+_中綴_運算符是二元運算符，它可以被置於兩個操作數之間，比如表達式`1 + 2` 中的加法運算符(`+`)。
 
-中缀运算符可以可选地指定优先级，结合性，或两者同时指定。
+中綴運算符可以可選地指定優先級，結合性，或兩者同時指定。
 
-运算符的_优先级_可以指定在没有括号包围的情况下，运算符与它的操作数如何紧密绑定的。可以使用上下文关键字`precedence`并_优先级(precedence level)_一起来指定一个运算符的优先级。_优先级_可以是0到255之间的任何一个数字(十进制整数)；与十进制整数字面量不同的是，它不可以包含任何下划线字符。尽管优先级是一个特定的数字，但它仅用作与另一个运算符比较(大小)。也就是说，一个操作数可以同时被两个运算符使用时，例如`2 + 3 * 5`，优先级更高的运算符将优先与操作数绑定。
+運算符的_優先級_可以指定在沒有括號包圍的情況下，運算符與它的操作數如何緊密綁定的。可以使用上下文關鍵字`precedence`並_優先級(precedence level)_一起來指定一個運算符的優先級。 _優先級_可以是0到255之間的任何一個數字(十進制整數)；與十進制整數字面量不同的是，它不可以包含任何下劃線字符。儘管優先級是一個特定的數字，但它僅用作與另一個運算符比較(大小)。也就是說，一個操作數可以同時被兩個運算符使用時，例如`2 + 3 * 5`，優先級更高的運算符將優先與操作數綁定。
 
-运算符的_结合性_可以指定在没有括号包围的情况下，优先级相同的运算符以何种顺序被分组的。可以使用上下文关键字`associativity`并_结合性(associativity)_一起来指定一个运算符的结合性，其中_结合性_可以说是上下文关键字`left`，`right`或`none`中的任何一个。左结合运算符以从左到右的形式分组。例如，减法运算符(`-`)具有左结合性，因此`4 - 5 - 6`被以`(4 - 5) - 6`的形式分组，其结果为`-7`。
-右结合运算符以从右到左的形式分组，对于设置为`none`的非结合运算符，它们不以任何形式分组。具有相同优先级的非结合运算符，不可以互相邻接。例如，表达式`1 < 2 < 3`非法的。
+運算符的_結合性_可以指定在沒有括號包圍的情況下，優先級相同的運算符以何種順序被分組的。可以使用上下文關鍵字`associativity`並_結合性(associativity)_一起來指定一個運算符的結合性，其中_結合性_可以說是上下文關鍵字`left`，`right`或`none`中的任何一個。左結合運算符以從左到右的形式分組。例如，減法運算符(`-`)具有左結合性，因此`4 - 5 - 6`被以`(4 - 5) - 6`的形式分組，其結果為`-7`。
+右結合運算符以從右到左的形式分組，對於設置為`none`的非結合運算符，它們不以任何形式分組。具有相同優先級的非結合運算符，不可以互相鄰接。例如，表達式`1 < 2 < 3`非法的。
 
-声明时不指定任何优先级或结合性的中缀运算符，它们的优先级会被初始化为100，结合性被初始化为`none`。
+聲明時不指定任何優先級或結合性的中綴運算符，它們的優先級會被初始化為100，結合性被初始化為`none`。
 
-下面的这种形式声明了一个新的前缀运算符：
+下面的這種形式聲明了一個新的前綴運算符：
 > operator prefix `operator name`{}
 
-紧跟在操作数前边的_前缀运算符(prefix operator)_是一元运算符，例如表达式`++i`中的前缀递增运算符(`++`)。
+緊跟在操作數前邊的_前綴運算符(prefix operator)_是一元運算符，例如表達式`++i`中的前綴遞增運算符(`++`)。
 
-前缀运算符的声明中不指定优先级。前缀运算符是非结合的。
+前綴運算符的聲明中不指定優先級。前綴運算符是非結合的。
 
-下面的这种形式声明了一个新的后缀运算符：
+下面的這種形式聲明了一個新的後綴運算符：
 
 > operator postfix `operator name`{}
 
-紧跟在操作数后边的_后缀运算符(postfix operator)_是一元运算符，例如表达式`i++`中的前缀递增运算符(`++`)。
+緊跟在操作數後邊的_後綴運算符(postfix operator)_是一元運算符，例如表達式`i++`中的前綴遞增運算符(`++`)。
 
-和前缀运算符一样，后缀运算符的声明中不指定优先级。后缀运算符是非结合的。
+和前綴運算符一樣，後綴運算符的聲明中不指定優先級。後綴運算符是非結合的。
 
-声明了一个新的运算符以后，需要声明一个跟这个运算符同名的函数来实现这个运算符。如何实现一个新的运算符，请参考[Custom Operators](https://developer.apple.com/library/prerelease/ios/documentation/Swift/Conceptual/Swift_Programming_Language/AdvancedOperators.html#//apple_ref/doc/uid/TP40014097-CH27-XID_48)。
+聲明了一個新的運算符以後，需要聲明一個跟這個運算符同名的函數來實現這個運算符。如何實現一個新的運算符，請參考[Custom Operators](https://developer.apple.com/library/prerelease/ios/documentation/Swift/Conceptual/Swift_Programming_Language/AdvancedOperators.html#//apple_ref/doc/uid /TP40014097-CH27-XID_48)。
 
 >GRAMMAR OF AN OPERATOR DECLARATION
 >
->operator-declaration → prefix-operator-declaration­  postfix-operator-declaration­  >infix-operator-declaration­
->prefix-operator-declaration → operator ­prefix­ operator­{­}­
->postfix-operator-declaration → operator ­postfix­ operator­{­}­
->infix-operator-declaration → operator­infix­operator­{­infix-operator-attributes­opt­}­
->infix-operator-attributes → precedence-clause­opt­associativity-clause­opt­
->precedence-clause → precedence­precedence-level­
+>operator-declaration → prefix-operator-declaration postfix-operator-declaration >infix-operator-declaration
+>prefix-operator-declaration → operator prefix operator{}
+>postfix-operator-declaration → operator postfix operator{}
+>infix-operator-declaration → operatorinfixoperator{infix-operator-attributesopt}
+>infix-operator-attributes → precedence-clauseoptassociativity-clauseopt
+>precedence-clause → precedenceprecedence-level
 >precedence-level → Digit 0 through 255
->associativity-clause → associativity­associativity­
->associativity → left­  right­  none
+>associativity-clause → associativityassociativity
+>associativity → left­ right­ none
