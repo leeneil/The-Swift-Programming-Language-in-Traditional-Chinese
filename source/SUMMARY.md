@@ -1,6 +1,5 @@
 # Summary
 
-* [繁體中文版簡介](intro/intro.md)
 * [歡迎使用 Swift](chapter1/chapter1.md)
    * [關於 Swift](chapter1/01_swift.md)
    * [Swift 初见](chapter1/02_a_swift_tour.md)
