@@ -1,8 +1,14 @@
 #Swift 雨燕編程語言 繁體中文版
-The Swift Programming Language in Traditional Chinese
-=====================================================
+#The Swift Programming Language in Traditional Chinese
 
 繁體中文版 Apple 官方 Swift 教程《The Swift Programming Language》
+
+# 當前階段
+
+Swift 雨燕編程語言 繁體中文版
+2014/6/15 12:30翻譯完成
+
+翻譯者:CMW
 
 請幫忙翻譯或者校對,謝謝！
 https://github.com/SwiftPlus/The-Swift-Programming-Language-in-Traditional-Chinese
@@ -15,11 +21,6 @@ http://goo.gl/5u4iMH
 使用Gitbook製作，可以直接[在線閱讀](swiftplus.github.io/The-Swift-Programming-Language-in-Traditional-Chinese)。
 
 其他格式可以通過PDF轉換
-
-# 當前階段
-
-文章翻譯中...
-
 
 # 貢獻力量
 
