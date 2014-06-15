@@ -1,0 +1,706 @@
+<!DOCTYPE HTML>
+<html lang="en-US" manifest="../manifest.appcache">
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <title>類型嵌套 | Swift 雨燕編程語言 繁體中文版</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 0.5.2">
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    
+    
+    <meta name="author" content="SwiftPlus">
+    
+    
+    <link rel="next" href="../chapter2/20_Extensions.html" />
+    
+    
+    <link rel="prev" href="../chapter2/18_Type_Casting.html" />
+    
+
+        
+    </head>
+    <body>
+        
+        
+<link rel="stylesheet" href="../gitbook/style.css">
+
+
+        
+    <div class="book" data-github="SwiftPlus/The-Swift-Programming-Language-in-Traditional-Chinese" data-level="2.19" data-basepath=".." data-revision="1402808251858">
+    <div class="book-header">
+    <!-- Actions Left -->
+    <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
+    
+    <a href="https://github.com/SwiftPlus/The-Swift-Programming-Language-in-Traditional-Chinese" target="_blank" class="btn pull-left home-bookmark" aria-label="GitHub home"><i class="fa fa-bookmark-o"></i></a>
+    
+    <a href="#" class="btn pull-left toggle-search" aria-label="Toggle search"><i class="fa fa-search"></i></a>
+    <span id="font-settings-wrapper">
+        <a href="#" class="btn pull-left toggle-font-settings" aria-label="Toggle font settings"><i class="fa fa-font"></i>
+        </a>
+        <div class="dropdown-menu font-settings">
+    <div class="dropdown-caret">
+        <span class="caret-outer"></span>
+        <span class="caret-inner"></span>
+    </div>
+
+    <div class="btn-group btn-block">
+        <button id="reduce-font-size" class="btn btn-default">A</button>
+        <button id="enlarge-font-size" class="btn btn-default">A</button>
+    </div>
+
+    <ul class="list-group font-family-list">
+        <li class="list-group-item" data-font="0">Serif</li>
+        <li class="list-group-item" data-font="1">Sans</li>
+    </ul>
+
+    <div class="btn-group btn-group-xs btn-block color-theme-list">
+        <button type="button" class="btn btn-default" id="color-theme-preview-0" data-theme="0">White</button>
+        <button type="button" class="btn btn-default" id="color-theme-preview-1" data-theme="1">Sepia</button>
+        <button type="button" class="btn btn-default" id="color-theme-preview-2" data-theme="2">Night</button>
+    </div>
+</div>
+
+    </span>
+
+    <!-- Actions Right -->
+    
+    <a href="#" target="_blank" class="btn pull-right google-plus-sharing-link sharing-link" data-sharing="google-plus" aria-label="Share on Google Plus"><i class="fa fa-google-plus"></i></a>
+    
+    
+    <a href="#" target="_blank" class="btn pull-right facebook-sharing-link sharing-link" data-sharing="facebook" aria-label="Share on Facebook"><i class="fa fa-facebook"></i></a>
+    
+    
+    <a href="#" target="_blank" class="btn pull-right twitter-sharing-link sharing-link" data-sharing="twitter" aria-label="Share on Twitter"><i class="fa fa-twitter"></i></a>
+    
+
+    
+    <a href="https://github.com/SwiftPlus/The-Swift-Programming-Language-in-Traditional-Chinese/stargazers" target="_blank" class="btn pull-right count-star hidden-xs"><i class="fa fa-star-o"></i> Star (<span>-</span>)</a>
+    <a href="https://github.com/SwiftPlus/The-Swift-Programming-Language-in-Traditional-Chinese/watchers" target="_blank" class="btn pull-right count-watch hidden-xs"><i class="fa fa-eye"></i> Watch (<span>-</span>)</a>
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-spinner fa-spin"></i>
+        <a href="../" >Swift 雨燕編程語言 繁體中文版</a>
+    </h1>
+</div>
+
+    
+
+<div class="book-summary">
+    <div class="book-search">
+        <input type="text" placeholder="Search" class="form-control" />
+    </div>
+    <ul class="summary">
+        
+        
+        
+        <li>
+            <a href="https://github.com/SwiftPlus" target="blank" class="author-link">About the author</a>
+        </li>
+        
+
+        
+        
+        <li>
+            <a href="https://github.com/SwiftPlus/The-Swift-Programming-Language-in-Traditional-Chinese/issues" target="blank"class="issues-link">Questions and Issues</a>
+        </li>
+        
+
+        
+        
+        <li>
+            <a href="https://github.com/SwiftPlus/The-Swift-Programming-Language-in-Traditional-Chinese/edit/master/chapter2/19_Nested_Types.md" target="blank" class="contribute-link">Edit and Contribute</a>
+        </li>
+        
+
+        
+        <li class="divider"></li>
+        
+
+        <li data-level="0" data-path="index.html">
+            <a href="../"><i class="fa fa-check"></i> Introduction</a>
+        </li>
+        
+    
+        <li class="chapter " data-level="1" data-path="chapter1/chapter1.html">
+            
+            <a href="../chapter1/chapter1.html">
+                <i class="fa fa-check"></i> <b>1.</b> 歡迎使用 Swift
+            </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1" data-path="chapter1/01_swift.html">
+            
+            <a href="../chapter1/01_swift.html">
+                <i class="fa fa-check"></i> <b>1.1.</b> 關於 Swift
+            </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="chapter1/02_a_swift_tour.html">
+            
+            <a href="../chapter1/02_a_swift_tour.html">
+                <i class="fa fa-check"></i> <b>1.2.</b> Swift 初見
+            </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="chapter2/chapter2.html">
+            
+            <a href="../chapter2/chapter2.html">
+                <i class="fa fa-check"></i> <b>2.</b> Swift 教程
+            </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1" data-path="chapter2/01_The_Basics.html">
+            
+            <a href="../chapter2/01_The_Basics.html">
+                <i class="fa fa-check"></i> <b>2.1.</b> 基础部分
+            </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="chapter2/02_Basic_Operators.html">
+            
+            <a href="../chapter2/02_Basic_Operators.html">
+                <i class="fa fa-check"></i> <b>2.2.</b> 基本運算符
+            </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="chapter2/03_Strings_and_Characters.html">
+            
+            <a href="../chapter2/03_Strings_and_Characters.html">
+                <i class="fa fa-check"></i> <b>2.3.</b> 字符串和字符
+            </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" data-path="chapter2/04_Collection_Types.html">
+            
+            <a href="../chapter2/04_Collection_Types.html">
+                <i class="fa fa-check"></i> <b>2.4.</b> 集合類型
+            </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5" data-path="chapter2/05_Control_Flow.html">
+            
+            <a href="../chapter2/05_Control_Flow.html">
+                <i class="fa fa-check"></i> <b>2.5.</b> 控制流
+            </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6" data-path="chapter2/06_Functions.html">
+            
+            <a href="../chapter2/06_Functions.html">
+                <i class="fa fa-check"></i> <b>2.6.</b> 函數
+            </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.7" data-path="chapter2/07_Closures.html">
+            
+            <a href="../chapter2/07_Closures.html">
+                <i class="fa fa-check"></i> <b>2.7.</b> 閉包
+            </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.8" data-path="chapter2/08_Enumerations.html">
+            
+            <a href="../chapter2/08_Enumerations.html">
+                <i class="fa fa-check"></i> <b>2.8.</b> 枚舉
+            </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.9" data-path="chapter2/09_Classes_and_Structures.html">
+            
+            <a href="../chapter2/09_Classes_and_Structures.html">
+                <i class="fa fa-check"></i> <b>2.9.</b> 類和結構體
+            </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.10" data-path="chapter2/10_Properties.html">
+            
+            <a href="../chapter2/10_Properties.html">
+                <i class="fa fa-check"></i> <b>2.10.</b> 屬性
+            </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.11" data-path="chapter2/11_Methods.html">
+            
+            <a href="../chapter2/11_Methods.html">
+                <i class="fa fa-check"></i> <b>2.11.</b> 方法
+            </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.12" data-path="chapter2/12_Subscripts.html">
+            
+            <a href="../chapter2/12_Subscripts.html">
+                <i class="fa fa-check"></i> <b>2.12.</b> 附屬腳本
+            </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.13" data-path="chapter2/13_Inheritance.html">
+            
+            <a href="../chapter2/13_Inheritance.html">
+                <i class="fa fa-check"></i> <b>2.13.</b> 繼承
+            </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.14" data-path="chapter2/14_Initialization.html">
+            
+            <a href="../chapter2/14_Initialization.html">
+                <i class="fa fa-check"></i> <b>2.14.</b> 構造過程
+            </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.15" data-path="chapter2/15_Deinitialization.html">
+            
+            <a href="../chapter2/15_Deinitialization.html">
+                <i class="fa fa-check"></i> <b>2.15.</b> 析構過程
+            </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.16" data-path="chapter2/16_Automatic_Reference_Counting.html">
+            
+            <a href="../chapter2/16_Automatic_Reference_Counting.html">
+                <i class="fa fa-check"></i> <b>2.16.</b> 自動引用計數
+            </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.17" data-path="chapter2/17_Optional_Chaining.html">
+            
+            <a href="../chapter2/17_Optional_Chaining.html">
+                <i class="fa fa-check"></i> <b>2.17.</b> 可選鏈
+            </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.18" data-path="chapter2/18_Type_Casting.html">
+            
+            <a href="../chapter2/18_Type_Casting.html">
+                <i class="fa fa-check"></i> <b>2.18.</b> 類型轉換
+            </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.19" data-path="chapter2/19_Nested_Types.html">
+            
+            <a href="../chapter2/19_Nested_Types.html">
+                <i class="fa fa-check"></i> <b>2.19.</b> 類型嵌套
+            </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.20" data-path="chapter2/20_Extensions.html">
+            
+            <a href="../chapter2/20_Extensions.html">
+                <i class="fa fa-check"></i> <b>2.20.</b> 擴展
+            </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.21" data-path="chapter2/21_Protocols.html">
+            
+            <a href="../chapter2/21_Protocols.html">
+                <i class="fa fa-check"></i> <b>2.21.</b> 協議
+            </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.22" data-path="chapter2/22_Generics.html">
+            
+            <a href="../chapter2/22_Generics.html">
+                <i class="fa fa-check"></i> <b>2.22.</b> 泛型
+            </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.23" data-path="chapter2/23_Advanced_Operators.html">
+            
+            <a href="../chapter2/23_Advanced_Operators.html">
+                <i class="fa fa-check"></i> <b>2.23.</b> 高級運算符
+            </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3" data-path="chapter3/chapter3.html">
+            
+            <a href="../chapter3/chapter3.html">
+                <i class="fa fa-check"></i> <b>3.</b> 語言參考
+            </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1" data-path="chapter3/01_About_the_Language_Reference.html">
+            
+            <a href="../chapter3/01_About_the_Language_Reference.html">
+                <i class="fa fa-check"></i> <b>3.1.</b> 關於語言附註
+            </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="chapter3/02_Lexical_Structure.html">
+            
+            <a href="../chapter3/02_Lexical_Structure.html">
+                <i class="fa fa-check"></i> <b>3.2.</b> 詞法結構
+            </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="chapter3/03_Types.html">
+            
+            <a href="../chapter3/03_Types.html">
+                <i class="fa fa-check"></i> <b>3.3.</b> 類型
+            </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4" data-path="chapter3/04_Expressions.html">
+            
+            <a href="../chapter3/04_Expressions.html">
+                <i class="fa fa-check"></i> <b>3.4.</b> 表達式
+            </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5" data-path="chapter3/10_Statements.html">
+            
+            <a href="../chapter3/10_Statements.html">
+                <i class="fa fa-check"></i> <b>3.5.</b> 語句
+            </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.6" data-path="chapter3/05_Declarations.html">
+            
+            <a href="../chapter3/05_Declarations.html">
+                <i class="fa fa-check"></i> <b>3.6.</b> 聲明
+            </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.7" data-path="chapter3/06_Attributes.html">
+            
+            <a href="../chapter3/06_Attributes.html">
+                <i class="fa fa-check"></i> <b>3.7.</b> 特性
+            </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.8" data-path="chapter3/07_Patterns.html">
+            
+            <a href="../chapter3/07_Patterns.html">
+                <i class="fa fa-check"></i> <b>3.8.</b> 模式
+            </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.9" data-path="chapter3/08_Generic_Parameters_and_Arguments.html">
+            
+            <a href="../chapter3/08_Generic_Parameters_and_Arguments.html">
+                <i class="fa fa-check"></i> <b>3.9.</b> 泛型參數
+            </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.10" data-path="chapter3/09_Summary_of_the_Grammar.html">
+            
+            <a href="../chapter3/09_Summary_of_the_Grammar.html">
+                <i class="fa fa-check"></i> <b>3.10.</b> 语法总结
+            </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+
+        
+        <li class="divider"></li>
+        <li>
+            <a href="http://www.gitbook.io/" target="blank" class="gitbook-link">Generated using GitBook</a>
+        </li>
+        
+    </ul>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="page-wrapper" tabindex="-1">
+                <div class="book-progress">
+    <div class="bar">
+        <div class="inner" style="width: 39.473684210526315%;min-width: 36.8421052631579%;"></div>
+    </div>
+    <div class="chapters">
+    
+        <a href="../index.html" title="Introduction" class="chapter done new-chapter" data-progress="0" style="left: 0%;"></a>
+    
+        <a href="../chapter1/chapter1.html" title="歡迎使用 Swift" class="chapter done new-chapter" data-progress="1" style="left: 2.6315789473684212%;"></a>
+    
+        <a href="../chapter1/01_swift.html" title="關於 Swift" class="chapter done " data-progress="1.1" style="left: 5.2631578947368425%;"></a>
+    
+        <a href="../chapter1/02_a_swift_tour.html" title="Swift 初見" class="chapter done " data-progress="1.2" style="left: 7.894736842105263%;"></a>
+    
+        <a href="../chapter2/chapter2.html" title="Swift 教程" class="chapter done new-chapter" data-progress="2" style="left: 10.526315789473685%;"></a>
+    
+        <a href="../chapter2/01_The_Basics.html" title="基础部分" class="chapter done " data-progress="2.1" style="left: 13.157894736842104%;"></a>
+    
+        <a href="../chapter2/10_Properties.html" title="屬性" class="chapter done " data-progress="2.10" style="left: 15.789473684210526%;"></a>
+    
+        <a href="../chapter2/11_Methods.html" title="方法" class="chapter done " data-progress="2.11" style="left: 18.42105263157895%;"></a>
+    
+        <a href="../chapter2/12_Subscripts.html" title="附屬腳本" class="chapter done " data-progress="2.12" style="left: 21.05263157894737%;"></a>
+    
+        <a href="../chapter2/13_Inheritance.html" title="繼承" class="chapter done " data-progress="2.13" style="left: 23.68421052631579%;"></a>
+    
+        <a href="../chapter2/14_Initialization.html" title="構造過程" class="chapter done " data-progress="2.14" style="left: 26.31578947368421%;"></a>
+    
+        <a href="../chapter2/15_Deinitialization.html" title="析構過程" class="chapter done " data-progress="2.15" style="left: 28.94736842105263%;"></a>
+    
+        <a href="../chapter2/16_Automatic_Reference_Counting.html" title="自動引用計數" class="chapter done " data-progress="2.16" style="left: 31.57894736842105%;"></a>
+    
+        <a href="../chapter2/17_Optional_Chaining.html" title="可選鏈" class="chapter done " data-progress="2.17" style="left: 34.21052631578947%;"></a>
+    
+        <a href="../chapter2/18_Type_Casting.html" title="類型轉換" class="chapter done " data-progress="2.18" style="left: 36.8421052631579%;"></a>
+    
+        <a href="../chapter2/19_Nested_Types.html" title="類型嵌套" class="chapter done " data-progress="2.19" style="left: 39.473684210526315%;"></a>
+    
+        <a href="../chapter2/02_Basic_Operators.html" title="基本運算符" class="chapter  " data-progress="2.2" style="left: 42.10526315789474%;"></a>
+    
+        <a href="../chapter2/20_Extensions.html" title="擴展" class="chapter  " data-progress="2.20" style="left: 44.73684210526316%;"></a>
+    
+        <a href="../chapter2/21_Protocols.html" title="協議" class="chapter  " data-progress="2.21" style="left: 47.36842105263158%;"></a>
+    
+        <a href="../chapter2/22_Generics.html" title="泛型" class="chapter  " data-progress="2.22" style="left: 50%;"></a>
+    
+        <a href="../chapter2/23_Advanced_Operators.html" title="高級運算符" class="chapter  " data-progress="2.23" style="left: 52.63157894736842%;"></a>
+    
+        <a href="../chapter2/03_Strings_and_Characters.html" title="字符串和字符" class="chapter  " data-progress="2.3" style="left: 55.26315789473684%;"></a>
+    
+        <a href="../chapter2/04_Collection_Types.html" title="集合類型" class="chapter  " data-progress="2.4" style="left: 57.89473684210526%;"></a>
+    
+        <a href="../chapter2/05_Control_Flow.html" title="控制流" class="chapter  " data-progress="2.5" style="left: 60.526315789473685%;"></a>
+    
+        <a href="../chapter2/06_Functions.html" title="函數" class="chapter  " data-progress="2.6" style="left: 63.1578947368421%;"></a>
+    
+        <a href="../chapter2/07_Closures.html" title="閉包" class="chapter  " data-progress="2.7" style="left: 65.78947368421052%;"></a>
+    
+        <a href="../chapter2/08_Enumerations.html" title="枚舉" class="chapter  " data-progress="2.8" style="left: 68.42105263157895%;"></a>
+    
+        <a href="../chapter2/09_Classes_and_Structures.html" title="類和結構體" class="chapter  " data-progress="2.9" style="left: 71.05263157894737%;"></a>
+    
+        <a href="../chapter3/chapter3.html" title="語言參考" class="chapter  new-chapter" data-progress="3" style="left: 73.6842105263158%;"></a>
+    
+        <a href="../chapter3/01_About_the_Language_Reference.html" title="關於語言附註" class="chapter  " data-progress="3.1" style="left: 76.3157894736842%;"></a>
+    
+        <a href="../chapter3/09_Summary_of_the_Grammar.html" title="语法总结" class="chapter  " data-progress="3.10" style="left: 78.94736842105263%;"></a>
+    
+        <a href="../chapter3/02_Lexical_Structure.html" title="詞法結構" class="chapter  " data-progress="3.2" style="left: 81.57894736842105%;"></a>
+    
+        <a href="../chapter3/03_Types.html" title="類型" class="chapter  " data-progress="3.3" style="left: 84.21052631578948%;"></a>
+    
+        <a href="../chapter3/04_Expressions.html" title="表達式" class="chapter  " data-progress="3.4" style="left: 86.84210526315789%;"></a>
+    
+        <a href="../chapter3/10_Statements.html" title="語句" class="chapter  " data-progress="3.5" style="left: 89.47368421052632%;"></a>
+    
+        <a href="../chapter3/05_Declarations.html" title="聲明" class="chapter  " data-progress="3.6" style="left: 92.10526315789474%;"></a>
+    
+        <a href="../chapter3/06_Attributes.html" title="特性" class="chapter  " data-progress="3.7" style="left: 94.73684210526316%;"></a>
+    
+        <a href="../chapter3/07_Patterns.html" title="模式" class="chapter  " data-progress="3.8" style="left: 97.36842105263158%;"></a>
+    
+        <a href="../chapter3/08_Generic_Parameters_and_Arguments.html" title="泛型參數" class="chapter  " data-progress="3.9" style="left: 100%;"></a>
+    
+    </div>
+</div>
+
+                <div class="page-inner">
+                
+                    <section class="normal" id="section-gitbook_734">
+                    
+                        <blockquote>
+<p>翻譯：CMW</p>
+<h1 id="-">類型嵌套</h1>
+<hr>
+</blockquote>
+<p>本頁包含內容：</p>
+<ul>
+<li><a href="#nested_types_in_action">類型嵌套實例</a></li>
+<li><a href="#referring_to_nested_types">類型嵌套的引用</a></li>
+</ul>
+<p>枚舉類型常被用於實現特定類或結構體的功能。也能夠在有多種變量類型的環境中，方便地定義通用類或結構體來使用，為了實現這種功能，Swift允許你定義類型嵌套，可以在枚舉類型、類和結構體中定義支持嵌套的類型。</p>
+<p>要在一個類型中嵌套另一個類型，將需要嵌套的類型的定義寫在被嵌套類型的區域{}內，而且可以根據需要定義多級嵌套。</p>
+<p><a name="nested_types_in_action"></a></p>
+<h2 id="-">類型嵌套實例</h2>
+<p>下面這個例子定義了一個結構體<code>BlackjackCard</code>(二十一點)，用來模擬<code>BlackjackCard</code>中的撲克牌點數。 <code>BlackjackCard</code>結構體包含2個嵌套定義的枚舉類型<code>Suit</code> 和<code>Rank</code>。</p>
+<p>在<code>BlackjackCard</code>規則中，<code>Ace</code>牌可以表示1或者11，<code>Ace</code>牌的這一特徵用一個嵌套在枚舉型<code>Rank</code>的結構體<code>Values​​</code>來表示。</p>
+<pre><code>struct BlackjackCard {
+    // 嵌套定義枚舉型Suit
+    enum Suit: Character {
+       case Spades = &quot;♠&quot;, Hearts = &quot;♡&quot;, Diamonds = &quot;♢&quot;, Clubs = &quot;♣&quot;
+   }
+    // 嵌套定義枚舉型Rank
+    enum Rank: Int {
+       case Two = 2, Three, Four, Five, Six, Seven, Eight, Nine, Ten
+       case Jack, Queen, King, Ace
+       struct Values​​ {
+           let first: Int, second: Int?
+       }
+       var values​​: Values​​ {
+        switch self {
+        case .Ace:
+            return Values​​(first: 1, second: 11)
+        case .Jack, .Queen, .King:
+            return Values​​(first: 10, second: nil)
+        default:
+            return Values​​(first: self.toRaw(), second: nil)
+            }
+       }
+    }
+    // BlackjackCard 的屬性和方法
+    let rank: Rank, suit: Suit
+    var description: String {
+    var output = &quot;suit is \(suit.toRaw()),&quot;
+        output += &quot; value is \(rank.values​​.first)&quot;
+        if let second = rank.values​​.second {
+            output += &quot; or \(second)&quot;
+        }
+        return output
+    }
+}
+</code></pre><p>枚舉型的<code>Suit</code>用來描述撲克牌的四種花色，並分別用一個<code>Character</code>類型的值代表花色符號。</p>
+<p>枚舉型的<code>Rank</code>用來描述撲克牌從<code>Ace</code>~10,<code>J</code>,<code>Q</code>,<code>K</code>,13張牌，並分別用一個<code>Int</code>類型的值表示牌的面值。 (這個<code>Int</code>類型的值不適用於<code>Ace</code>,<code>J</code>,<code>Q</code>,<code>K</code>的牌)。</p>
+<p>如上文所提到的，枚舉型<code>Rank</code>在自己內部定義了一個嵌套結構體<code>Values​​</code>。這個結構體包含兩個變量，只有<code>Ace</code>有兩個數值，其餘牌都只有一個數值。結構體<code>Values​​</code>中定義的兩個屬性：</p>
+<p><code>first</code>, 為<code>Int</code>
+<code>second</code>, 為 <code>Int?</code>, 或 “optional <code>Int</code>”</p>
+<p><code>Rank</code>定義了一個計算屬性<code>values​​</code>，這個計算屬性會根據牌的面值，用適當的數值去初始化<code>Values​​</code>實例，並賦值給<code>values​​</code>。對於<code>J</code>,<code>Q</code>,<code>K</code>,<code>Ace</code>會使用特殊數值，對於數字面值的牌使用<code>Int</code>類型的值。</p>
+<p><code>BlackjackCard</code>結構體自身有兩個屬性—<code>rank</code>與<code>suit</code>，也同樣定義了一個計算屬性<code>description</code>，<code>description</code>屬性用<code>rank</code>和<code>suit</code>的中內容來構建對這張撲克牌名字和數值的描述，並用可選類型<code>second</code>來檢查是否存在第二個值，若存在，則在原有的描述中增加對第二數值的描述。</p>
+<p>因為<code>BlackjackCard</code>是一個沒有自定義構造函數的結構體，在<a href="https://github.com/CocoaChina-editors/Welcome-to-Swift/blob/master/The%20Swift% 20Programming%20Language/02Language%20Guide/14Initialization.md" target="_blank">Memberwise Initializers for Structure Types</a>中知道結構體有默認的成員構造函數，所以你可以用默認的<code>initializer</code>去初始化新的常量<code>theAceOfSpades</code>:</p>
+<pre><code>let theAceOfSpades = BlackjackCard(rank: .Ace, suit: .Spades)
+println(&quot;theAceOfSpades: \(theAceOfSpades.description)&quot;)
+// 打印出&quot;theAceOfSpades: suit is ♠, value is 1 or 11&quot;
+</code></pre><p>儘管<code>Rank</code>和<code>Suit</code>嵌套在<code>BlackjackCard</code>中，但仍可被引用，所以在初始化實例時能夠通過枚舉類型中的成員名稱單獨引用。在上面的例子中<code>description</code>屬性能正確得輸出對<code>Ace</code>牌有1和11兩個值。</p>
+<p><a name="referring_to_nested_types"></a></p>
+<h2 id="-">類型嵌套的引用</h2>
+<p>在外部對嵌套類型的引用，以被嵌套類型的名字為前綴，加上所要引用的屬性名：</p>
+<pre><code>let heartsSymbol = BlackjackCard.Suit.Hearts.toRaw()
+// 紅心的符號 為 &quot;♡&quot;
+</code></pre><p>對於上面這個例子，這樣可以使<code>Suit</code>, <code>Rank</code>, 和<code>Values​​</code>的名​​字盡可能的短，因為它們的名字會自然的由被定義的上下文來限定。</p>
+
+                    
+                    </section>
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../chapter2/18_Type_Casting.html" class="navigation navigation-prev " aria-label="Previous page: 類型轉換"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../chapter2/20_Extensions.html" class="navigation navigation-next " aria-label="Next page: 擴展"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="../gitbook/jsrepl/jsrepl.js" id="jsrepl-script"></script>
+<script src="../gitbook/app.js"></script>
+
+    
+    <script src="http://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-mathjax/plugin.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {};
+    gitbook.start(config);
+});
+</script>
+
+        
+    </body>
+    
+</html>
