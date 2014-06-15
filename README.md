@@ -16,8 +16,9 @@ The Swift Programming Language in Traditional Chinese
 # 當前階段
 
 Swift 雨燕編程語言 繁體中文版
-2014/6/15翻譯完成
+2014/6/15 12:30翻譯完成
 
+翻譯者:CMW
 
 # 貢獻力量
 
