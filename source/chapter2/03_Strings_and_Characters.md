@@ -1,49 +1,46 @@
-> 翻译：wh1100717
-
-> 校对：Hawstein
-
+> 翻譯：CMW
 # 字符串和字符（Strings and Characters）
 -----------------
 
-本页包含内容：
+本頁包含內容：
 
 - [字符串字面量](#string_literals)
 - [初始化空字符串](#initializing_an_empty_string)
-- [字符串可变性](#string_mutability)
-- [字符串是值类型](#strings_are_value_types)
+- [字符串可變性](#string_mutability)
+- [字符串是值類型](#strings_are_value_types)
 - [使用字符](#working_with_characters)
-- [计算字符数量](#counting_characters)
-- [连接字符串和字符](#concatenating_strings_and_characters)
+- [計算字符數量](#counting_characters)
+- [連接字符串和字符](#concatenating_strings_and_characters)
 - [字符串插值](#string_interpolation)
-- [比较字符串](#comparing_strings)
-- [字符串大小写](#uppercase_and_lowercase_strings)
+- [比較字符串](#comparing_strings)
+- [字符串大小寫](#uppercase_and_lowercase_strings)
 - [Unicode](#unicode)
 
-`String`是例如“hello, world”，“海贼王” 这样的有序的`Character`（字符）类型的值的集合，通过`String`类型来表示。
+`String`是例如“hello, world”，“海賊王” 這樣的有序的`Character`（字符）類型的值的集合，通過`String`類型來表示。
 
-Swift 的`String`和`Character`类型提供了一个快速的，兼容 Unicode 的方式来处理代码中的文本信息。
-创建和操作字符串的语法与 C 语言中字符串操作相似，轻量并且易读。
-字符串连接操作只需要简单地通过`+`号将两个字符串相连即可。
-与 Swift 中其他值一样，能否更改字符串的值，取决于其被定义为常量还是变量。
+Swift 的`String`和`Character`類型提供了一個快速的，兼容Unicode 的方式來處理代碼中的文本信息。
+創建和操作字符串的語法與C 語言中字符串操作相似，輕量並且易讀。
+字符串連接操作只需要簡單地通過`+`號將兩個字符串相連即可。
+與Swift 中其他值一樣，能否更改字符串的值，取決於其被定義為常量還是變量。
 
-尽管语法简易，但`String`类型是一种快速、现代化的字符串实现。
-每一个字符串都是由独立编码的 Unicode 字符组成，并提供了以不同 Unicode 表示（representations）来访问这些字符的支持。
+儘管語法簡易，但`String`類型是一種快速、現代化的字符串實現。
+每一個字符串都是由獨立編碼的Unicode 字符組成，並提供了以不同Unicode 表示（representations）來訪問這些字符的支持。
 
-Swift 可以在常量、变量、字面量和表达式中进行字符串插值操作，可以轻松创建用于展示、存储和打印的自定义字符串。
+Swift 可以在常量、變量、字面量和表達式中進行字符串插值操作，可以輕鬆創建用於展示、存儲和打印的自定義字符串。
 
 > 注意：
 >
-Swift 的`String`类型与 Foundation `NSString`类进行了无缝桥接。如果您利用 Cocoa 或 Cocoa Touch 中的 Foundation 框架进行工作。所有`NSString` API 都可以调用您创建的任意`String`类型的值。除此之外，还可以使用本章介绍的`String`特性。您也可以在任意要求传入`NSString`实例作为参数的 API 中使用`String`类型的值作为替代。
+Swift 的`String`類型與Foundation `NSString`類進行了無縫橋接。如果您利用Cocoa 或Cocoa Touch 中的Foundation 框架進行工作。所有`NSString` API 都可以調用您創建的任意`String`類型的值。除此之外，還可以使用本章介紹的`String`特性。您也可以在任意要求傳入`NSString`實例作為參數的API 中使用`String`類型的值作為替代。
 >
->更多关于在 Foundation 和 Cocoa 中使用`String`的信息请查看 [Using Swift with Cocoa and Objective-C](https://developer.apple.com/library/prerelease/ios/documentation/Swift/Conceptual/BuildingCocoaApps/index.html#//apple_ref/doc/uid/TP40014216)。
+>更多關於在Foundation 和Cocoa 中使用`String`的信息請查看[Using Swift with Cocoa and Objective-C](https://developer.apple.com/library/prerelease/ios/documentation/Swift/Conceptual/ BuildingCocoaApps/index.html#//apple_ref/doc/uid/TP40014216)。
 
 <a name="string_literals"></a>
 ## 字符串字面量（String Literals）
 
-您可以在您的代码中包含一段预定义的字符串值作为字符串字面量。
-字符串字面量是由双引号 ("") 包裹着的具有固定顺序的文本字符集。
+您可以在您的代碼中包含一段預定義的字符串值作為字符串字面量。
+字符串字面量是由雙引號("") 包裹著的具有固定順序的文本字符集。
 
-字符串字面量可以用于为常量和变量提供初始值。
+字符串字面量可以用於為常量和變量提供初始值。
 
 ```
 let someString = "Some string literal value"
@@ -51,94 +48,94 @@ let someString = "Some string literal value"
 
 > 注意：
 >
-`someString`变量通过字符串字面量进行初始化，Swift 因此推断该变量为`String`类型。
+`someString`變量通過字符串字面量進行初始化，Swift 因此推斷該變量為`String`類型。
 
 字符串字面量可以包含以下特殊字符：
 
-* 转义字符`\0`(空字符)、`\\`(反斜线)、`\t`(水平制表符)、`\n`(换行符)、`\r`(回车符)、`\"`(双引号)、`\'`(单引号)。
-* 单字节 Unicode 标量，写成`\xnn`，其中`nn`为两位十六进制数。
-* 双字节 Unicode 标量，写成`\unnnn`，其中`nnnn`为四位十六进制数。
-* 四字节 Unicode 标量，写成`\Unnnnnnnn`，其中`nnnnnnnn`为八位十六进制数。
+* 轉義字符`\0`(空字符)、`\\`(反斜線)、`\t`(水平製表符)、`\n`(換行符)、`\r`(回車符)、`\"`(雙引號)、`\'`(單引號)。
+* 單字節Unicode 標量，寫成`\xnn`，其中`nn`為兩位十六進制數。
+* 雙字節Unicode 標量，寫成`\unnnn`，其中`nnnn`為四位十六進制數。
+* 四字節Unicode 標量，寫成`\Unnnnnnnn`，其中`nnnnnnnn`為八位十六進制數。
 
-下面的代码为各种特殊字符的使用示例。
-`wiseWords`常量包含了两个转移特殊字符 (双括号)；
-`dollarSign`、`blackHeart`和`sparklingHeart`常量演示了三种不同格式的 Unicode 标量：
+下面的代碼為各種特殊字符的使用示例。
+`wiseWords`常量包含了兩個轉移特殊字符(雙括號)；
+`dollarSign`、`blackHeart`和`sparklingHeart`常量演示了三種不同格式的Unicode 標量：
 
 ```
-let wiseWords = "\"我是要成为海贼王的男人\" - 路飞"
-// "我是要成为海贼王的男人" - 路飞
-let dollarSign = "\x24"        		// $,  Unicode 标量 U+0024
-let blackHeart = "\u2665"      		// ♥,  Unicode 标量 U+2665
-let sparklingHeart = "\U0001F496"	// 💖, Unicode 标量 U+1F496
+let wiseWords = "\"我是要成為海賊王的男人\" - 路飛"
+// "我是要成為海賊王的男人" - 路飛
+let dollarSign = "\x24" // $, Unicode 標量U+0024
+let blackHeart = "\u2665" // ♥, Unicode 標量U+2665
+let sparklingHeart = "\U0001F496" // 💖, Unicode 標量U+1F496
 ```
 
 <a name="initializing_an_empty_string"></a>
-## 初始化空字符串 (Initializing an Empty String)
+## 初始化空字符串(Initializing an Empty String)
 
-为了构造一个很长的字符串，可以创建一个空字符串作为初始值。
-可以将空的字符串字面量赋值给变量，也可以初始化一个新的`String`实例：
+為了構造一個很長的字符串，可以創建一個空字符串作為初始值。
+可以將空的字符串字面量賦值給變量，也可以初始化一個新的`String`實例：
 
 ```
-var emptyString = ""               // 空字符串字面量
-var anotherEmptyString = String()  // 初始化 String 实例
-// 两个字符串均为空并等价。
+var emptyString = "" // 空字符串字面量
+var anotherEmptyString = String() // 初始化String 實例
+// 兩個字符串均為空並等價。
 ```
 
-您可以通过检查其`Boolean`类型的`isEmpty`属性来判断该字符串是否为空：
+您可以通過檢查其`Boolean`類型的`isEmpty`屬性來判斷該字符串是否為空：
 
 ```
 if emptyString.isEmpty {
-    println("什么都没有")
+    println("什麼都沒有")
 }
-// 打印输出："什么都没有"
+// 打印輸出："什麼都沒有"
 ```
 
 <a name="string_mutability"></a>
-## 字符串可变性 (String Mutability)
+## 字符串可變性 (String Mutability)
 
-您可以通过将一个特定字符串分配给一个变量来对其进行修改，或者分配给一个常量来保证其不会被修改：
+您可以通過將一個特定字符串分配給一個變量來對其進行修改，或者分配給一個常量來保證其不會被修改：
 
 ```
 var variableString = "Horse"
 variableString += " and carriage"
-// variableString 现在为 "Horse and carriage"
+// variableString 現在為 "Horse and carriage"
 let constantString = "Highlander"
 constantString += " and another Highlander"
-// 这会报告一个编译错误 (compile-time error) - 常量不可以被修改。
+// 這會報告一個編譯錯誤(compile-time error) - 常量不可以被修改。
 ```
 
 > 注意：
 >
-在 Objective-C 和 Cocoa 中，您通过选择两个不同的类(`NSString`和`NSMutableString`)来指定该字符串是否可以被修改，Swift 中的字符串是否可以修改仅通过定义的是变量还是常量来决定，实现了多种类型可变性操作的统一。
+在Objective-C 和Cocoa 中，您通過選擇兩個不同的類(`NSString`和`NSMutableString`)來指定該字符串是否可以被修改，Swift 中的字符串是否可以修改僅通過定義的是變量還是常量來決定，實現了多種類型可變性操作的統一。
 
 <a name="strings_are_value_types"></a>
-## 字符串是值类型（Strings Are Value Types）
+## 字符串是值類型（Strings Are Value Types）
 
-Swift 的`String`类型是值类型。
-如果您创建了一个新的字符串，那么当其进行常量、变量赋值操作或在函数/方法中传递时，会进行值拷贝。
-任何情况下，都会对已有字符串值创建新副本，并对该新副本进行传递或赋值操作。
-值类型在 [结构体和枚举是值类型](09_Classes_and_Structures.html#structures_and_enumerations_are_value_types) 中进行了说明。
+Swift 的`String`類型是值類型。
+如果您創建了一個新的字符串，那麼當其進行常量、變量賦值操作或在函數/方法中傳遞時，會進行值拷貝。
+任何情況下，都會對已有字符串值創建新副本，並對該新副本進行傳遞或賦值操作。
+值類型在[結構體和枚舉是值類型](09_Classes_and_Structures.html#structures_and_enumerations_are_value_types) 中進行了說明。
 
 > 注意：
 >
-与 Cocoa 中的`NSString`不同，当您在 Cocoa 中创建了一个`NSString`实例，并将其传递给一个函数/方法，或者赋值给一个变量，您传递或赋值的是该`NSString`实例的一个引用，除非您特别要求进行值拷贝，否则字符串不会生成新的副本来进行赋值操作。
+與Cocoa 中的`NSString`不同，當您在Cocoa 中創建了一個`NSString`實例，並將其傳遞給一個函數/方法，或者賦值給一個變量，您傳遞或賦值的是該`NSString`實例的一個引用，除非您特別要求進行值拷貝，否則字符串不會生成新的副本來進行賦值操作。
 
-Swift 默认字符串拷贝的方式保证了在函数/方法中传递的是字符串的值。
-很明显无论该值来自于哪里，都是您独自拥有的。
-您可以放心您传递的字符串本身不会被更改。
+Swift 默認字符串拷貝的方式保證了在函數/方法中傳遞的是字符串的值。
+很明顯無論該值來自於哪裡，都是您獨自擁有的。
+您可以放心您傳遞的字符串本身不會被更改。
 
-在实际编译时，Swift 编译器会优化字符串的使用，使实际的复制只发生在绝对必要的情况下，这意味着您将字符串作为值类型的同时可以获得极高的性能。
+在實際編譯時，Swift 編譯器會優化字符串的使用，使實際的複制只發生在絕對必要的情況下，這意味著您將字符串作為值類型的同時可以獲得極高的性能。
 
 <a name="working_with_characters"></a>
 ## 使用字符（Working with Characters）
 
-Swift 的`String`类型表示特定序列的`Character`（字符） 类型值的集合。
-每一个字符值代表一个 Unicode 字符。
-您可利用`for-in`循环来遍历字符串中的每一个字符：
+Swift 的`String`類型表示特定序列的`Character`（字符） 類型值的集合。
+每一個字符值代表一個 Unicode 字符。
+您可利用`for-in`循環來遍歷字符串中的每一個字符：
 
 ```
 for character in "Dog!🐶" {
-    println(character)
+    println(character)
 }
 // D
 // o
@@ -147,35 +144,35 @@ for character in "Dog!🐶" {
 // 🐶
 ```
 
-for-in 循环在 [For Loops](05_Control_Flow.html#for_loops) 中进行了详细描述。
+for-in 循環在[For Loops](05_Control_Flow.html#for_loops) 中進行了詳細描述。
 
-另外，通过标明一个`Character`类型注解并通过字符字面量进行赋值，可以建立一个独立的字符常量或变量：
+另外，通過標明一個`Character`類型註解並通過字符字面量進行賦值，可以建立一個獨立的字符常量或變量：
 
 ```
 let yenSign: Character = "¥"
 ```
 
 <a name="counting_characters"></a>
-## 计算字符数量 (Counting Characters)
+## 計算字符數量 (Counting Characters)
 
-通过调用全局`countElements`函数，并将字符串作为参数进行传递，可以获取该字符串的字符数量。
+通過調用全局`countElements`函數，並將字符串作為參數進行傳遞，可以獲取該字符串的字符數量。
 
 ```
 let unusualMenagerie = "Koala 🐨, Snail 🐌, Penguin 🐧, Dromedary 🐪"
 println("unusualMenagerie has \(countElements(unusualMenagerie)) characters")
-// 打印输出："unusualMenagerie has 40 characters"
+// 打印輸出："unusualMenagerie has 40 characters"
 ```
 
 > 注意：
 >
-不同的 Unicode 字符以及相同 Unicode 字符的不同表示方式可能需要不同数量的内存空间来存储。所以 Swift 中的字符在一个字符串中并不一定占用相同的内存空间。因此字符串的长度不得不通过迭代字符串中每一个字符的长度来进行计算。如果您正在处理一个长字符串，需要注意`countElements`函数必须遍历字符串中的字符以精准计算字符串的长度。
+不同的Unicode 字符以及相同Unicode 字符的不同表示方式可能需要不同數量的內存空間來存儲。所以Swift 中的字符在一個字符串中並不一定佔用相同的內存空間。因此字符串的長度不得不通過迭代字符串中每一個字符的長度來進行計算。如果您正在處理一個長字符串，需要注意`countElements`函數必須遍歷字符串中的字符以精準計算字符串的長度。
 >
-> 另外需要注意的是通过`countElements`返回的字符数量并不总是与包含相同字符的`NSString`的`length`属性相同。`NSString`的`length`属性是基于利用 UTF-16 表示的十六位代码单元数字，而不是基于 Unicode 字符。为了解决这个问题，`NSString`的`length`属性在被 Swift 的`String`访问时会成为`utf16count`。
+> 另外需要注意的是通過`countElements`返回的字符數量並不總是與包含相同字符的`NSString`的`length`屬性相同。 `NSString`的`length`屬性是基於利用UTF-16 表示的十六位代碼單元數字，而不是基於Unicode 字符。為了解決這個問題，`NSString`的`length`屬性在被Swift 的`String`訪問時會成為`utf16count`。
 
 <a name="concatenating_strings_and_characters"></a>
-## 连接字符串和字符 (Concatenating Strings and Characters)
+## 連接字符串和字符(Concatenating Strings and Characters)
 
-字符串和字符的值可以通过加法运算符（`+`）相加在一起并创建一个新的字符串值：
+字符串和字符的值可以通過加法運算符（`+`）相加在一起並創建一個新的字符串值：
 
 ```
 let string1 = "hello"
@@ -183,168 +180,168 @@ let string2 = " there"
 let character1: Character = "!"
 let character2: Character = "?"
 
-let stringPlusCharacter = string1 + character1        // 等于 "hello!"
-let stringPlusString = string1 + string2              // 等于 "hello there"
-let characterPlusString = character1 + string1        // 等于 "!hello"
-let characterPlusCharacter = character1 + character2  // 等于 "!?"
+let stringPlusCharacter = string1 + character1 // 等於"hello!"
+let stringPlusString = string1 + string2 // 等於"hello there"
+let characterPlusString = character1 + string1 // 等於"!hello"
+let characterPlusCharacter = character1 + character2 // 等於"!?"
 ```
 
-您也可以通过加法赋值运算符 (`+=`) 将一个字符串或者字符添加到一个已经存在字符串变量上：
+您也可以通過加法賦值運算符(`+=`) 將一個字符串或者字符添加到一個已經存在字符串變量上：
 
 ```
 var instruction = "look over"
 instruction += string2
-// instruction 现在等于 "look over there"
+// instruction 現在等於 "look over there"
 
 var welcome = "good morning"
 welcome += character1
-// welcome 现在等于 "good morning!"
+// welcome 現在等於 "good morning!"
 ```
 
 > 注意：
 >
-您不能将一个字符串或者字符添加到一个已经存在的字符变量上，因为字符变量只能包含一个字符。
+您不能將一個字符串或者字符添加到一個已經存在的字符變量上，因為字符變量只能包含一個字符。
 
 <a name="string_interpolation"></a>
 ## 字符串插值 (String Interpolation)
 
-字符串插值是一种构建新字符串的方式，可以在其中包含常量、变量、字面量和表达式。
-您插入的字符串字面量的每一项都被包裹在以反斜线为前缀的圆括号中：
+字符串插值是一種構建新字符串的方式，可以在其中包含常量、變量、字面量和表達式。
+您插入的字符串字面量的每一項都被包裹在以反斜線為前綴的圓括號中：
 
 ```
 let multiplier = 3
-let message = "\(multiplier) 乘以 2.5 是 \(Double(multiplier) * 2.5)"
+let message = "\(multiplier) 乘以2.5 是\(Double(multiplier) * 2.5)"
 // message 是 "3 乘以 2.5 是 7.5"
 ```
 
-在上面的例子中，`multiplier`作为`\(multiplier)`被插入到一个字符串字面量中。
-当创建字符串执行插值计算时此占位符会被替换为`multiplier`实际的值。
+在上面的例子中，`multiplier`作為`\(multiplier)`被插入到一個字符串字面量中。
+當創建字符串執行插值計算時此佔位符會被替換為`multiplier`實際的值。
 
-`multiplier`的值也作为字符串中后面表达式的一部分。
-该表达式计算`Double(multiplier) * 2.5`的值并将结果 (7.5) 插入到字符串中。
-在这个例子中，表达式写为`\(Double(multiplier) * 2.5)`并包含在字符串字面量中。
+`multiplier`的值也作為字符串中後面表達式的一部分。
+該表達式計算`Double(multiplier) * 2.5`的值並將結果(7.5) 插入到字符串中。
+在這個例子中，表達式寫為`\(Double(multiplier) * 2.5)`並包含在字符串字面量中。
 
 > 注意：
 >
-插值字符串中写在括号中的表达式不能包含非转义双引号 (`"`) 和反斜杠 (`\`)，并且不能包含回车或换行符。
+插值字符串中寫在括號中的表達式不能包含非轉義雙引號(`"`) 和反斜杠(`\`)，並且不能包含回車或換行符。
 
 <a name="comparing_strings"></a>
-## 比较字符串 (Comparing Strings)
+## 比較字符串 (Comparing Strings)
 
-Swift 提供了三种方式来比较字符串的值：字符串相等、前缀相等和后缀相等。
+Swift 提供了三種方式來比較字符串的值：字符串相等、前綴相等和後綴相等。
 
 <a name="string_equality"></a>
 ### 字符串相等 (String Equality)
 
-如果两个字符串以同一顺序包含完全相同的字符，则认为两者字符串相等：
+如果兩個字符串以同一順序包含完全相同的字符，則認為兩者字符串相等：
 
 ```
-let quotation = "我们是一样一样滴."
-let sameQuotation = "我们是一样一样滴."
+let quotation = "我們是一樣一樣滴."
+let sameQuotation = "我們是一樣一樣滴."
 if quotation == sameQuotation {
-    println("这两个字符串被认为是相同的")
+    println("這兩個字符串被認為是相同的")
 }
-// 打印输出："这两个字符串被认为是相同的"
+// 打印輸出："這兩個字符串被認為是相同的"
 ```
 
 <a name="prefix_and_suffix_equality"></a>
-### 前缀/后缀相等 (Prefix and Suffix Equality)
+### 前綴/後綴相等(Prefix and Suffix Equality)
 
-通过调用字符串的`hasPrefix`/`hasSuffix`方法来检查字符串是否拥有特定前缀/后缀。
-两个方法均需要以字符串作为参数传入并传出`Boolean`值。
-两个方法均执行基本字符串和前缀/后缀字符串之间逐个字符的比较操作。
+通過調用字符串的`hasPrefix`/`hasSuffix`方法來檢查字符串是否擁有特定前綴/後綴。
+兩個方法均需要以字符串作為參數傳入並傳出`Boolean`值。
+兩個方法均執行基本字符串和前綴/後綴字符串之間逐個字符的比較操作。
 
-下面的例子以一个字符串数组表示莎士比亚话剧《罗密欧与朱丽叶》中前两场的场景位置：
+下面的例子以一個字符串數組表示莎士比亞話劇《羅密歐與朱麗葉》中前兩場的場景位置：
 
 ```
 let romeoAndJuliet = [
-    "Act 1 Scene 1: Verona, A public place",
-    "Act 1 Scene 2: Capulet's mansion",
-    "Act 1 Scene 3: A room in Capulet's mansion",
-    "Act 1 Scene 4: A street outside Capulet's mansion",
-    "Act 1 Scene 5: The Great Hall in Capulet's mansion",
-    "Act 2 Scene 1: Outside Capulet's mansion",
-    "Act 2 Scene 2: Capulet's orchard",
-    "Act 2 Scene 3: Outside Friar Lawrence's cell",
-    "Act 2 Scene 4: A street in Verona",
-    "Act 2 Scene 5: Capulet's mansion",
-    "Act 2 Scene 6: Friar Lawrence's cell"
+    "Act 1 Scene 1: Verona, A public place",
+    "Act 1 Scene 2: Capulet's mansion",
+    "Act 1 Scene 3: A room in Capulet's mansion",
+    "Act 1 Scene 4: A street outside Capulet's mansion",
+    "Act 1 Scene 5: The Great Hall in Capulet's mansion",
+    "Act 2 Scene 1: Outside Capulet's mansion",
+    "Act 2 Scene 2: Capulet's orchard",
+    "Act 2 Scene 3: Outside Friar Lawrence's cell",
+    "Act 2 Scene 4: A street in Verona",
+    "Act 2 Scene 5: Capulet's mansion",
+    "Act 2 Scene 6: Friar Lawrence's cell"
 ]
 ```
 
-您可以利用`hasPrefix`方法来计算话剧中第一幕的场景数：
+您可以利用`hasPrefix`方法來計算話劇中第一幕的場景數：
 
 ```
 var act1SceneCount = 0
 for scene in romeoAndJuliet {
-    if scene.hasPrefix("Act 1 ") {
-        ++act1SceneCount
-    }
+    if scene.hasPrefix("Act 1 ") {
+        ++act1SceneCount
+    }
 }
 println("There are \(act1SceneCount) scenes in Act 1")
-// 打印输出："There are 5 scenes in Act 1"
+// 打印輸出："There are 5 scenes in Act 1"
 ```
 
-相似地，您可以用`hasSuffix`方法来计算发生在不同地方的场景数：
+相似地，您可以用`hasSuffix`方法來計算發生在不同地方的場景數：
 
 ```
 var mansionCount = 0
 var cellCount = 0
 for scene in romeoAndJuliet {
-    if scene.hasSuffix("Capulet's mansion") {
-        ++mansionCount
-    } else if scene.hasSuffix("Friar Lawrence's cell") {
-        ++cellCount
-    }
+    if scene.hasSuffix("Capulet's mansion") {
+        ++mansionCount
+    } else if scene.hasSuffix("Friar Lawrence's cell") {
+        ++cellCount
+    }
 }
 println("\(mansionCount) mansion scenes; \(cellCount) cell scenes")
-// 打印输出："6 mansion scenes; 2 cell scenes”
+// 打印輸出："6 mansion scenes; 2 cell scenes”
 ```
 
 <a name="uppercase_and_lowercase_strings"></a>
-### 大写和小写字符串（Uppercase and Lowercase Strings）
+### 大寫和小寫字符串（Uppercase and Lowercase Strings）
 
-您可以通过字符串的`uppercaseString`和`lowercaseString`属性来访问大写/小写版本的字符串。
+您可以通過字符串的`uppercaseString`和`lowercaseString`屬性來訪問大寫/小寫版本的字符串。
 
 ```
 let normal = "Could you help me, please?"
 let shouty = normal.uppercaseString
-// shouty 值为 "COULD YOU HELP ME, PLEASE?"
+// shouty 值為 "COULD YOU HELP ME, PLEASE?"
 let whispered = normal.lowercaseString
-// whispered 值为 "could you help me, please?"
+// whispered 值為 "could you help me, please?"
 ```
 
 <a name="unicode"></a>
 ## Unicode
 
-Unicode 是一个国际标准，用于文本的编码和表示。
-它使您可以用标准格式表示来自任意语言几乎所有的字符，并能够对文本文件或网页这样的外部资源中的字符进行读写操作。
+Unicode 是一個國際標準，用於文本的編碼和表示。
+它使您可以用標準格式表示來自任意語言幾乎所有的字符，並能夠對文本文件或網頁這樣的外部資源中的字符進行讀寫操作。
 
-Swift 的字符串和字符类型是完全兼容 Unicode 标准的，它支持如下所述的一系列不同的 Unicode 编码。
+Swift 的字符串和字符類型是完全兼容Unicode 標準的，它支持如下所述的一系列不同的Unicode 編碼。
 
 <a name="unicode_terminology"></a>
-### Unicode 术语（Unicode Terminology）
+### Unicode 術語（Unicode Terminology）
 
-Unicode 中每一个字符都可以被解释为一个或多个 unicode 标量。
-字符的 unicode 标量是一个唯一的21位数字(和名称)，例如`U+0061`表示小写的拉丁字母A ("a")，`U+1F425`表示小鸡表情 ("🐥")
+Unicode 中每一個字符都可以被解釋為一個或多個unicode 標量。
+字符的unicode 標量是一個唯一的21位數字(和名稱)，例如`U+0061`表示小寫的拉丁字母A ("a")，`U+1F425`表示小雞表情("🐥")
 
-当 Unicode 字符串被写进文本文件或其他存储结构当中，这些 unicode 标量将会按照 Unicode 定义的集中格式之一进行编码。其包括`UTF-8`（以8位代码单元进行编码） 和`UTF-16`（以16位代码单元进行编码）。
+當Unicode 字符串被寫進文本文件或其他存儲結構當中，這些unicode 標量將會按照Unicode 定義的集中格式之一進行編碼。其包括`UTF-8`（以8位代碼單元進行編碼） 和`UTF-16`（以16位代碼單元進行編碼）。
 
 <a name="unicode_representations_of_strings"></a>
-### 字符串的 Unicode 表示（Unicode Representations of Strings）
+### 字符串的Unicode 表示（Unicode Representations of Strings）
 
-Swift 提供了几种不同的方式来访问字符串的 Unicode 表示。
+Swift 提供了幾種不同的方式來訪問字符串的Unicode 表示。
 
-您可以利用`for-in`来对字符串进行遍历，从而以 Unicode 字符的方式访问每一个字符值。
-该过程在 [使用字符](#working_with_characters) 中进行了描述。
+您可以利用`for-in`來對字符串進行遍歷，從而以Unicode 字符的方式訪問每一個字符值。
+該過程在[使用字符](#working_with_characters) 中進行了描述。
 
-另外，能够以其他三种 Unicode 兼容的方式访问字符串的值：
+另外，能夠以其他三種Unicode 兼容的方式訪問字符串的值：
 
-* UTF-8 代码单元集合 (利用字符串的`utf8`属性进行访问)
-* UTF-16 代码单元集合 (利用字符串的`utf16`属性进行访问)
-* 21位的 Unicode 标量值集合 (利用字符串的`unicodeScalars`属性进行访问)
+* UTF-8 代碼單元集合(利用字符串的`utf8`屬性進行訪問)
+* UTF-16 代碼單元集合(利用字符串的`utf16`屬性進行訪問)
+* 21位的Unicode 標量值集合(利用字符串的`unicodeScalars`屬性進行訪問)
 
-下面由`D``o``g``!`和`🐶`(`DOG FACE`，Unicode 标量为`U+1F436`)组成的字符串中的每一个字符代表着一种不同的表示：
+下面由`D``o``g``!`和`🐶`(`DOG FACE`，Unicode 標量為`U+1F436`)組成的字符串中的每一個字符代表著一種不同的表示：
 
 ```
 let dogString = "Dog!🐶"
@@ -353,65 +350,65 @@ let dogString = "Dog!🐶"
 <a name="UTF-8"></a>
 ### UTF-8
 
-您可以通过遍历字符串的`utf8`属性来访问它的`UTF-8`表示。
-其为`UTF8View`类型的属性，`UTF8View`是无符号8位 (`UInt8`) 值的集合，每一个`UInt8`值都是一个字符的 UTF-8 表示：
+您可以通過遍歷字符串的`utf8`屬性來訪問它的`UTF-8`表示。
+其為`UTF8View`類型的屬性，`UTF8View`是無符號8位(`UInt8`) 值的集合，每一個`UInt8`值都是一個字符的UTF-8 表示：
 
 ```
 for codeUnit in dogString.utf8 {
-    print("\(codeUnit) ")
+    print("\(codeUnit) ")
 }
 print("\n")
 // 68 111 103 33 240 159 144 182
 ```
 
-上面的例子中，前四个10进制代码单元值 (68, 111, 103, 33) 代表了字符`D` `o` `g`和`!`，他们的 UTF-8 表示与 ASCII 表示相同。
-后四个代码单元值 (240, 159, 144, 182) 是`DOG FACE`的4字节 UTF-8 表示。
+上面的例子中，前四個10進制代碼單元值(68, 111, 103, 33) 代表了字符`D` `o` `g`和`!`，他們的UTF-8 表示與ASCII 表示相同。
+後四個代碼單元值(240, 159, 144, 182) 是`DOG FACE`的4字節UTF-8 表示。
 
 <a name="UTF-16"></a>
 ### UTF-16
 
-您可以通过遍历字符串的`utf16`属性来访问它的`UTF-16`表示。
-其为`UTF16View`类型的属性，`UTF16View`是无符号16位 (`UInt16`) 值的集合，每一个`UInt16`都是一个字符的 UTF-16 表示：
+您可以通過遍歷字符串的`utf16`屬性來訪問它的`UTF-16`表示。
+其為`UTF16View`類型的屬性，`UTF16View`是無符號16位(`UInt16`) 值的集合，每一個`UInt16`都是一個字符的UTF-16 表示：
 
 ```
 for codeUnit in dogString.utf16 {
-    print("\(codeUnit) ")
+    print("\(codeUnit) ")
 }
 print("\n")
 // 68 111 103 33 55357 56374
 ```
 
-同样，前四个代码单元值 (68, 111, 103, 33) 代表了字符`D` `o` `g`和`!`，他们的 UTF-16 代码单元和 UTF-8 完全相同。
+同樣，前四個代碼單元值(68, 111, 103, 33) 代表了字符`D` `o` `g`和`!`，他們的UTF-16 代碼單元和UTF-8 完全相同。
 
-第五和第六个代码单元值 (55357 和 56374) 是`DOG FACE`字符的UTF-16 表示。
-第一个值为`U+D83D`(十进制值为 55357)，第二个值为`U+DC36`(十进制值为 56374)。
+第五和第六個代碼單元值(55357 和56374) 是`DOG FACE`字符的UTF-16 表示。
+第一個值為`U+D83D`(十進制值為55357)，第二個值為`U+DC36`(十進制值為56374)。
 
 <a name="unicode_scalars"></a>
-### Unicode 标量 (Unicode Scalars)
+### Unicode 標量 (Unicode Scalars)
 
-您可以通过遍历字符串的`unicodeScalars`属性来访问它的 Unicode 标量表示。
-其为`UnicodeScalarView`类型的属性， `UnicodeScalarView`是`UnicodeScalar`的集合。
-`UnicodeScalar`是21位的 Unicode 代码点。
+您可以通過遍歷字符串的`unicodeScalars`屬性來訪問它的Unicode 標量表示。
+其為`UnicodeScalarView`類型的屬性， `UnicodeScalarView`是`UnicodeScalar`的集合。
+`UnicodeScalar`是21位的 Unicode 代碼點。
 
-每一个`UnicodeScalar`拥有一个值属性，可以返回对应的21位数值，用`UInt32`来表示。
+每一個`UnicodeScalar`擁有一個值屬性，可以返回對應的21位數值，用`UInt32`來表示。
 
 ```
 for scalar in dogString.unicodeScalars {
-    print("\(scalar.value) ")
+    print("\(scalar.value) ")
 }
 print("\n")
 // 68 111 103 33 128054
 ```
 
-同样，前四个代码单元值 (68, 111, 103, 33) 代表了字符`D` `o` `g`和`!`。
-第五位数值，128054，是一个十六进制1F436的十进制表示。
-其等同于`DOG FACE`的Unicode 标量 U+1F436。
+同樣，前四個代碼單元值(68, 111, 103, 33) 代表了字符`D` `o` `g`和`!`。
+第五位數值，128054，是一個十六進制1F436的十進製表示。
+其等同於`DOG FACE`的Unicode 標量U+1F436。
 
-作为查询字符值属性的一种替代方法，每个`UnicodeScalar`值也可以用来构建一个新的字符串值，比如在字符串插值中使用：
+作為查詢字符值屬性的一種替代方法，每個`UnicodeScalar`值也可以用來構建一個新的字符串值，比如在字符串插值中使用：
 
 ```
 for scalar in dogString.unicodeScalars {
-    println("\(scalar) ")
+    println("\(scalar) ")
 }
 // D
 // o
@@ -419,4 +416,3 @@ for scalar in dogString.unicodeScalars {
 // !
 // 🐶
 ```
-
