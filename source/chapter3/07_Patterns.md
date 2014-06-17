@@ -8,7 +8,7 @@
 - [標識符模式（Identifier Pattern）](#identifier_pattern)
 - [值綁定模式（Value-Binding Pattern）](#value-binding_pattern)
 - [元組模式（Tuple Pattern）](#tuple_pattern)
-- [枚舉案例模式（Enumeration Case Pattern）](#enumeration_case_pattern)
+- [列舉案例模式（Enumeration Case Pattern）](#enumeration_case_pattern)
 - [類型轉換模式（Type-Casting Patterns）](#type-casting_patterns)
 - [表達式模式（Expression Pattern）](#expression_pattern)
 
@@ -113,13 +113,13 @@ let (a): Int = 2 // a: Int = 2
 > tuple-pattern-element → pattern
 
 <a name="enumeration_case_pattern"></a>
-## 枚舉案例模式（Enumeration Case Pattern）
+## 列舉案例模式（Enumeration Case Pattern）
 
-枚舉案例模式匹配現有的枚舉類型的某種案例。枚舉案例模式僅在`switch`語句中的`case`標籤中出現。
+列舉案例模式匹配現有的列舉類型的某種案例。列舉案例模式僅在`switch`語句中的`case`標籤中出現。
 
-如果你準備匹配的枚舉案例有任何關聯的值，則相應的枚舉案例模式必須指定一個包含每個關聯值元素的元組模式。關於使用`switch`語句來匹配包含關聯值枚舉案例的例子，請參閱`Associated Values​​`.
+如果你準備匹配的列舉案例有任何關聯的值，則相應的列舉案例模式必須指定一個包含每個關聯值元素的元組模式。關於使用`switch`語句來匹配包含關聯值列舉案例的例子，請參閱`Associated Values​​`.
 
-> 枚舉案例模式的語法：
+> 列舉案例模式的語法：
 >
 > enum-case-pattern → type-identifier opt . enum-case-name tuple-pattern opt
 

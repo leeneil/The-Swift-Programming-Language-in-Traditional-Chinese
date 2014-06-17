@@ -149,7 +149,7 @@ _________________
 > *聲明* → [*變量聲明*](..\chapter3\05_Declarations.html#variable_declaration)
 > *聲明* → [*類型別名聲明*](..\chapter3\05_Declarations.html#typealias_declaration)
 > *聲明* → [*函數聲明*](..\chapter3\05_Declarations.html#function_declaration)
-> *聲明* → [*枚舉聲明*](..\chapter3\05_Declarations.html#enum_declaration)
+> *聲明* → [*列舉聲明*](..\chapter3\05_Declarations.html#enum_declaration)
 > *聲明* → [*結構體聲明*](..\chapter3\05_Declarations.html#struct_declaration)
 > *聲明* → [*類聲明*](..\chapter3\05_Declarations.html#class_declaration)
 > *聲明* → [*協議聲明*](..\chapter3\05_Declarations.html#protocol_declaration)
@@ -241,22 +241,22 @@ _________________
 
 <p></p>
 
-> 枚舉聲明語法
-> *枚舉聲明* → [*特性(Attributes)列表*](..\chapter3\06_Attributes.html#attributes) _可選_ [*聯合式枚舉*](..\chapter3\05_Declarations.html# union_style_enum) | [*特性(Attributes)列表*](..\chapter3\06_Attributes.html#attributes) _可選_ [*原始值式枚舉*](..\chapter3\05_Declarations.html#raw_value_style_enum)
-> *聯合式枚舉* → [*枚舉名*](..\chapter3\05_Declarations.html#enum_name) [*泛型參數子句*](GenericParametersAndArguments.html#generic_parameter_clause) _可選_ **{ ** [*union-style-enum-members*](..\chapter3\05_Declarations.html#union_style_enum_members) _可選_ **}**
+> 列舉聲明語法
+> *列舉聲明* → [*特性(Attributes)列表*](..\chapter3\06_Attributes.html#attributes) _可選_ [*聯合式列舉*](..\chapter3\05_Declarations.html# union_style_enum) | [*特性(Attributes)列表*](..\chapter3\06_Attributes.html#attributes) _可選_ [*原始值式列舉*](..\chapter3\05_Declarations.html#raw_value_style_enum)
+> *聯合式列舉* → [*列舉名*](..\chapter3\05_Declarations.html#enum_name) [*泛型參數子句*](GenericParametersAndArguments.html#generic_parameter_clause) _可選_ **{ ** [*union-style-enum-members*](..\chapter3\05_Declarations.html#union_style_enum_members) _可選_ **}**
 > *union-style-enum-members* → [*union-style-enum-member*](..\chapter3\05_Declarations.html#union_style_enum_member) [*union-style-enum-members*](..\chapter3 \05_Declarations.html#union_style_enum_members) _可選_
-> *union-style-enum-member* → [*聲明*](..\chapter3\05_Declarations.html#declaration) | [*聯合式(Union Style)的枚舉case子句*](..\chapter3 \05_Declarations.html#union_style_enum_case_clause)
-> *聯合式(Union Style)的枚舉case子句* → [*特性(Attributes)列表*](..\chapter3\06_Attributes.html#attributes) _可選_ **case** [*聯合式(Union Style)的枚舉case列表*](..\chapter3\05_Declarations.html#union_style_enum_case_list)
-> *聯合式(Union Style)的枚舉case列表* → [*聯合式(Union Style)的case*](..\chapter3\05_Declarations.html#union_style_enum_case) | [*聯合式(Union Style)的case *](..\chapter3\05_Declarations.html#union_style_enum_case) **,** [*聯合式(Union Style)的枚舉case列表*](..\chapter3\05_Declarations.html#union_style_enum_case_list)
-> *聯合式(Union Style)的case* → [*枚舉的case名*](..\chapter3\05_Declarations.html#enum_case_name) [*元組類型*](..\chapter3\03_Types.html# tuple_type) _可選_
-> *枚舉名* → [*標識符*](LexicalStructure.html#identifier)
-> *枚舉的case名* → [*標識符*](LexicalStructure.html#identifier)
-> *原始值式枚舉* → [*枚舉名*](..\chapter3\05_Declarations.html#enum_name) [*泛型參數子句*](GenericParametersAndArguments.html#generic_parameter_clause) _可選_ ** :** [*類型標識*](..\chapter3\03_Types.html#type_identifier)​​ **{** [*原始值式枚舉成員列表*](..\chapter3\05_Declarations.html#raw_value_style_enum_members) _可選_ **}**
-> *原始值式枚舉成員列表* → [*原始值式枚舉成員*](..\chapter3\05_Declarations.html#raw_value_style_enum_member) [*原始值式枚舉成員列表*](..\chapter3\ 05_Declarations.html#raw_value_style_enum_members) _可選_
-> *原始值式枚舉成員* → [*聲明*](..\chapter3\05_Declarations.html#declaration) | [*原始值式枚舉case子句*](..\chapter3\05_Declarations.html# raw_value_style_enum_case_clause)
-> *原始值式枚舉case子句* → [*特性(Attributes)列表*](..\chapter3\06_Attributes.html#attributes) _可選_ **case** [*原始值式枚舉case列表*](..\chapter3\05_Declarations.html#raw_value_style_enum_case_list)
-> *原始值式枚舉case列表* → [*原始值式枚舉case*](..\chapter3\05_Declarations.html#raw_value_style_enum_case) | [*原始值式枚舉case*](..\chapter3\ 05_Declarations.html#raw_value_style_enum_case) **,** [*原始值式枚舉case列表*](..\chapter3\05_Declarations.html#raw_value_style_enum_case_list)
-> *原始值式枚舉case* → [*枚舉的case名*](..\chapter3\05_Declarations.html#enum_case_name) [*原始值賦值*](..\chapter3\05_Declarations.html#raw_value_assignment) _可選_
+> *union-style-enum-member* → [*聲明*](..\chapter3\05_Declarations.html#declaration) | [*聯合式(Union Style)的列舉case子句*](..\chapter3 \05_Declarations.html#union_style_enum_case_clause)
+> *聯合式(Union Style)的列舉case子句* → [*特性(Attributes)列表*](..\chapter3\06_Attributes.html#attributes) _可選_ **case** [*聯合式(Union Style)的列舉case列表*](..\chapter3\05_Declarations.html#union_style_enum_case_list)
+> *聯合式(Union Style)的列舉case列表* → [*聯合式(Union Style)的case*](..\chapter3\05_Declarations.html#union_style_enum_case) | [*聯合式(Union Style)的case *](..\chapter3\05_Declarations.html#union_style_enum_case) **,** [*聯合式(Union Style)的列舉case列表*](..\chapter3\05_Declarations.html#union_style_enum_case_list)
+> *聯合式(Union Style)的case* → [*列舉的case名*](..\chapter3\05_Declarations.html#enum_case_name) [*元組類型*](..\chapter3\03_Types.html# tuple_type) _可選_
+> *列舉名* → [*標識符*](LexicalStructure.html#identifier)
+> *列舉的case名* → [*標識符*](LexicalStructure.html#identifier)
+> *原始值式列舉* → [*列舉名*](..\chapter3\05_Declarations.html#enum_name) [*泛型參數子句*](GenericParametersAndArguments.html#generic_parameter_clause) _可選_ ** :** [*類型標識*](..\chapter3\03_Types.html#type_identifier)​​ **{** [*原始值式列舉成員列表*](..\chapter3\05_Declarations.html#raw_value_style_enum_members) _可選_ **}**
+> *原始值式列舉成員列表* → [*原始值式列舉成員*](..\chapter3\05_Declarations.html#raw_value_style_enum_member) [*原始值式列舉成員列表*](..\chapter3\ 05_Declarations.html#raw_value_style_enum_members) _可選_
+> *原始值式列舉成員* → [*聲明*](..\chapter3\05_Declarations.html#declaration) | [*原始值式列舉case子句*](..\chapter3\05_Declarations.html# raw_value_style_enum_case_clause)
+> *原始值式列舉case子句* → [*特性(Attributes)列表*](..\chapter3\06_Attributes.html#attributes) _可選_ **case** [*原始值式列舉case列表*](..\chapter3\05_Declarations.html#raw_value_style_enum_case_list)
+> *原始值式列舉case列表* → [*原始值式列舉case*](..\chapter3\05_Declarations.html#raw_value_style_enum_case) | [*原始值式列舉case*](..\chapter3\ 05_Declarations.html#raw_value_style_enum_case) **,** [*原始值式列舉case列表*](..\chapter3\05_Declarations.html#raw_value_style_enum_case_list)
+> *原始值式列舉case* → [*列舉的case名*](..\chapter3\05_Declarations.html#enum_case_name) [*原始值賦值*](..\chapter3\05_Declarations.html#raw_value_assignment) _可選_
 > *原始值賦值* → **=** [*字面量*](LexicalStructure.html#literal)
 
 <p></p>
@@ -387,8 +387,8 @@ _________________
 
 <p></p>
 
-> 枚舉用例模式語法
-> *enum-case-pattern* → [*類型標識*](..\chapter3\03_Types.html#type_identifier)​​ _可選_ **.** [*枚舉的case名*](..\chapter3 \05_Declarations.html#enum_case_name) [*元組模式*](..\chapter3\07_Patterns.html#tuple_pattern) _可選_
+> 列舉用例模式語法
+> *enum-case-pattern* → [*類型標識*](..\chapter3\03_Types.html#type_identifier)​​ _可選_ **.** [*列舉的case名*](..\chapter3 \05_Declarations.html#enum_case_name) [*元組模式*](..\chapter3\07_Patterns.html#tuple_pattern) _可選_
 
 <p></p>
 
