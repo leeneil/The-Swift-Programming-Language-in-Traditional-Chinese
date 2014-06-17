@@ -11,7 +11,7 @@
    * [控制流](chapter2/05_Control_Flow.md)
    * [函數](chapter2/06_Functions.md)
    * [閉包](chapter2/07_Closures.md)
-   * [枚舉](chapter2/08_Enumerations.md)
+   * [列舉](chapter2/08_Enumerations.md)
    * [類和結構體](chapter2/09_Classes_and_Structures.md)
    * [屬性](chapter2/10_Properties.md)
    * [方法](chapter2/11_Methods.md)

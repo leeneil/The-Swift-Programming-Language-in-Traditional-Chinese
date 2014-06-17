@@ -92,7 +92,7 @@ class Person {
 var residence: Residence?
 }
 
-`Residence`類比之前複雜些。這次，它定義了一個變量`rooms`，它被初始化為一個`Room[]`類型的空數組：
+`Residence`類比之前複雜些。這次，它定義了一個變量`rooms`，它被初始化為一個`Room[]`類型的空陣列：
 
 class Residence {
 var rooms = Room[]()
@@ -108,14 +108,14 @@ println("The number of ro​​oms is \(numberOfRooms)")
 var address: Address?
 }
 
-因為`Residence`存儲了一個`Room`實例的數組，它的`numberOfRooms`屬性值不是一個固定的存儲值，而是通過計算而來的。 `numberOfRooms`屬性值是由返回`rooms`數組的`count`屬性值得到的。
+因為`Residence`存儲了一個`Room`實例的陣列，它的`numberOfRooms`屬性值不是一個固定的存儲值，而是通過計算而來的。 `numberOfRooms`屬性值是由返回`rooms`陣列的`count`屬性值得到的。
 
-為了能快速訪問`rooms`數組，`Residence`定義了一個只讀的子腳本，通過插入數組的元素角標就可以成功調用。如果該角標存在，子腳本則將該元素返回。
+為了能快速訪問`rooms`陣列，`Residence`定義了一個只讀的子腳本，通過插入陣列的元素角標就可以成功調用。如果該角標存在，子腳本則將該元素返回。
 
 `Residence`中也提供了一個`printNumberOfRooms`的方法，即簡單的打印房間個數。
 
 最後，`Residence`定義了一個可選屬性叫`address`（`address?`）。 `Address`類的屬性將在後面定義。
-用於`rooms`數組的`Room`類是一個很簡單的類，它只有一個`name`屬性和一個設定`room`名的初始化器。
+用於`rooms`陣列的`Room`類是一個很簡單的類，它只有一個`name`屬性和一個設定`room`名的初始化器。
 
 class Room {
 let name: String
@@ -189,7 +189,7 @@ println("It was not possible to print the number of ro​​oms.")
 > 注意：
 當你使用可選鏈來獲取子腳本的時候，你應該將問號放在子腳本括號的前面而不是後面。可選鏈的問號一般直接跟在表達語句的後面。
 
-下面這個例子用在`Residence`類中定義的子腳本來獲取`john.residence`數組中第一個房間的名字。因為`john.residence`現在是`nil`，子腳本的調用失敗了。
+下面這個例子用在`Residence`類中定義的子腳本來獲取`john.residence`陣列中第一個房間的名字。因為`john.residence`現在是`nil`，子腳本的調用失敗了。
 
 if let firstRoomName = john.residence?[0].name {
 println("The first room name is \(firstRoomName).")
@@ -200,7 +200,7 @@ println("Unable to retrieve the first room name.")
 
 在子代碼調用中可選鏈的問號直接跟在`john.residence`的後面，在子腳本括號的前面，因為`john.residence`是可選鏈試圖獲得的可選值。
 
-如果你創建一個`Residence`實例給`john.residence`，且在他的`rooms`數組中有一個或多個`Room`實例，那麼你可以使用可選鏈通過`Residence`子腳本來獲取在`rooms`數組中的實例了：
+如果你創建一個`Residence`實例給`john.residence`，且在他的`rooms`陣列中有一個或多個`Room`實例，那麼你可以使用可選鏈通過`Residence`子腳本來獲取在`rooms`陣列中的實例了：
 
 let johnsHouse = Residence()
 johnsHouse.rooms += Room(name: "Living Room")

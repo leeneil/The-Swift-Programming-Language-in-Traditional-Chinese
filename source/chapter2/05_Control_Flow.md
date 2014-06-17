@@ -11,7 +11,7 @@
 
 Swift提供了類似C 語言的流程控制結構，包括可以多次執行任務的`for`和`while`迴圈，基於特定條件選擇執行不同代碼分支的`if`和`switch`語句，還有控制流程跳轉到其他代碼的`break`和`continue`語句。
 
-除了C 語言裡面傳統的for條件遞增（`for-condition-increment`）迴圈，Swift 還增加了`for-in`迴圈，用來更簡單地遍歷數組（array），字典（dictionary），區間（range ），字符串（string）和其他序列類型。
+除了C 語言裡面傳統的for條件遞增（`for-condition-increment`）迴圈，Swift 還增加了`for-in`迴圈，用來更簡單地遍歷陣列（array），字典（dictionary），區間（range ），字符串（string）和其他序列類型。
 
 Swift 的`switch`語句比C 語言中更加強大。在C 語言中，如果某個case 不小心漏寫了`break`，這個case 就會貫穿（fallthrough）至下一個case，Swift 無需寫`break`，所以不會發生這種貫穿（fallthrough）的情況。 case 還可以匹配更多的類型模式，包括區間匹配（range matching），元組（tuple）和特定類型的描述。 `switch`的case 語句中匹配的值可以是由case 體內部臨時的常量或者變量決定，也可以由`where`分句描述更複雜的匹配條件。
 
@@ -27,7 +27,7 @@ Swift 的`switch`語句比C 語言中更加強大。在C 語言中，如果某�
 <a name="for_in"></a>
 ### For-In
 
-你可以使用`for-in`迴圈來遍歷一個集合裡面的所有元素，例如由數字表示的區間、數組中的元素、字符串中的字符。
+你可以使用`for-in`迴圈來遍歷一個集合裡面的所有元素，例如由數字表示的區間、陣列中的元素、字符串中的字符。
 
 下面的例子用來輸出乘5 乘法表前面一部分內容：
 
@@ -65,7 +65,7 @@ println("\(base) to the power of \(power) is \(answer)")
 
 這個例子計算base 這個數的power 次冪（本例中，是`3`的`10`次冪），從`1`（`3`的`0`次冪）開始做`3`的乘法，進行`10`次，使用`1`到`10`的閉區間迴圈。這個計算並不需要知道每一次迴圈中計數器具體的值，只需要執行了正確的迴圈次數即可。下劃線符號`_`（替代迴圈中的變量）能夠忽略具體的值，並且不提供迴圈遍歷時對值的訪問。
 
-使用`for-in`遍歷一個數組所有元素：
+使用`for-in`遍歷一個陣列所有元素：
 
 ```swift
 let names = ["Anna", "Alex", "Brian", "Jack"]
@@ -90,9 +90,9 @@ for (animalName, legCount) in numberOfLegs {
 // cats have 4 legs
 ```
 
-字典元素的遍歷順序和插入順序可能不同，字典的內容在內部是無序的，所以遍曆元素時不能保證順序。關於數組和字典，詳情參見[集合類型](../chapter2/04_Collection_Types.html)。
+字典元素的遍歷順序和插入順序可能不同，字典的內容在內部是無序的，所以遍曆元素時不能保證順序。關於陣列和字典，詳情參見[集合類型](../chapter2/04_Collection_Types.html)。
 
-除了數組和字典，你也可以使用`for-in`迴圈來遍歷字符串中的字符（`Character`）：
+除了陣列和字典，你也可以使用`for-in`迴圈來遍歷字符串中的字符（`Character`）：
 
 ```swift
 for character in "Hello" {
@@ -195,7 +195,7 @@ while `condition` {
 * 如果在某輪結束，你移動到了梯子的底部，可以順著梯子爬上去；
 * 如果在某輪結束，你移動到了蛇的頭部，你會順著蛇的身體滑下去。
 
-遊戲盤面可以使用一個`Int`數組來表達。數組的長度由一個`finalSquare`常量儲存，用來初始化數組和檢測最終勝利條件。遊戲盤面由26 個`Int` 0 值初始化，而不是25 個（由`0`到`25`，一共26 個）：
+遊戲盤面可以使用一個`Int`陣列來表達。陣列的長度由一個`finalSquare`常量儲存，用來初始化陣列和檢測最終勝利條件。遊戲盤面由26 個`Int` 0 值初始化，而不是25 個（由`0`到`25`，一共26 個）：
 
 ```swift
 let finalSquare = 25
@@ -233,7 +233,7 @@ println("Game over!")
 
 擲完骰子後，玩家向前移動`diceRoll`個方格，如果玩家移動超過了第25 個方格，這個時候遊戲結束，相應地，代碼會在`square`增加`board[square]`的值向前或向後移動（遇到了梯子或者蛇）之前，檢測`square`的值是否小於`board`的`count`屬性。
 
-如果沒有這個檢測（`square < board.count`），`board[square]`可能會越界訪問`board`數組，導致錯誤。例如如果`square`等於`26`， 代碼會去嘗試訪問`board[26]`，超過數組的長度。
+如果沒有這個檢測（`square < board.count`），`board[square]`可能會越界訪問`board`陣列，導致錯誤。例如如果`square`等於`26`， 代碼會去嘗試訪問`board[26]`，超過陣列的長度。
 
 當本輪`while`迴圈運行完畢，會再檢測迴圈條件是否需要再運行一次迴圈。如果玩家移動到或者超過第25 個方格，迴圈條件結果為`false`，此時遊戲結束。
 
@@ -282,7 +282,7 @@ println("Game over!")
 
 檢測完玩家是否踩在梯子或者蛇上之後，開始擲骰子，然後玩家向前移動`diceRoll`個方格，本輪迴圈結束。
 
-迴圈條件（`while square < finalSquare`）和`while`方式相同，但是只會在迴圈結束後進行計算。在這個遊戲中，`do-whil​​e`表現得比`while`迴圈更好。 `do-whil​​e`方式會在條件判斷`square`沒有超出後直接運行`square += board[square]`，這種方式可以去掉`while`版本中的數組越界判斷。
+迴圈條件（`while square < finalSquare`）和`while`方式相同，但是只會在迴圈結束後進行計算。在這個遊戲中，`do-whil​​e`表現得比`while`迴圈更好。 `do-whil​​e`方式會在條件判斷`square`沒有超出後直接運行`square += board[square]`，這種方式可以去掉`while`版本中的陣列越界判斷。
 
 <a name="conditional_statement"></a>
 ## 條件語句

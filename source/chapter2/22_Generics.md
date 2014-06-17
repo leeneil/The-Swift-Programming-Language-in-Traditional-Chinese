@@ -16,7 +16,7 @@
 
 *泛型代碼*可以讓你寫出根據自我需求定義、適用於任何類型的，靈活且可重用的函數和類型。它的可以讓你避免重複的代碼，用一種清晰和抽象的方式來表達代碼的意圖。
 
-泛型是Swift 強大特徵中的其中一個，許多Swift 標準庫是通過泛型代碼構建出來的。事實上，泛型的使用貫穿了整本語言手冊，只是你沒有發現而已。例如，Swift 的數組和字典類型都是泛型集。你可以創建一個`Int`數組，也可創建一個`String`數組，或者甚至於可以是任何其他Swift 的類型數據數組。同樣的，你也可以創建存儲任何指定類型的字典（dictionary），而且這些類型可以是沒有限制的。
+泛型是Swift 強大特徵中的其中一個，許多Swift 標準庫是通過泛型代碼構建出來的。事實上，泛型的使用貫穿了整本語言手冊，只是你沒有發現而已。例如，Swift 的陣列和字典類型都是泛型集。你可以創建一個`Int`陣列，也可創建一個`String`陣列，或者甚至於可以是任何其他Swift 的類型數據陣列。同樣的，你也可以創建存儲任何指定類型的字典（dictionary），而且這些類型可以是沒有限制的。
 
 <a name="the_problem_that_generics_solve"></a>
 ## 泛型所解決的問題
@@ -112,7 +112,7 @@ b = temporaryA
 <a name="naming_type_parameters"></a>
 ## 命名類型參數
 
-在簡單的情況下，泛型函數或泛型類型需要指定一個佔位類型（如上面的`swapTwoValues​​`泛型函數，或一個存儲單一類型的泛型集，如數組），通常用一單個字母` T`來命名類型參數。不過，你可以使用任何有效的標識符來作為類型參數名。
+在簡單的情況下，泛型函數或泛型類型需要指定一個佔位類型（如上面的`swapTwoValues​​`泛型函數，或一個存儲單一類型的泛型集，如陣列），通常用一單個字母` T`來命名類型參數。不過，你可以使用任何有效的標識符來作為類型參數名。
 
 如果你使用多個參數定義更複雜的泛型函數或泛型類型，那麼使用更多的描述類型參數是非常有用的。例如，Swift 字典（Dictionary）類型有兩個類型參數，一個是鍵，另外一個是值。如果你自己寫字典，你或許會定義這兩個類型參數為`KeyType`和`ValueType`，用來記住它們在你的泛型代碼中的作用。
 
@@ -125,7 +125,7 @@ b = temporaryA
 
 通常在泛型函數中，Swift 允許你定義你自己的泛型類型。這些自定義類、結構體和枚舉作用於任何類型，如同`Array`和`Dictionary`的用法。
 
-這部分向你展示如何寫一個泛型集類型--`Stack`（棧）。一個棧是一系列值域的集合，和`Array`（數組）類似，但其是一個比Swift 的`Array`類型更多限制的集合。一個數組可以允許其里面任何位置的插入/刪除操作，而棧，只允許在集合的末端添加新的項（如同*push*一個新值進棧）。同樣的一個棧也只能從末端移除項（如同*pop*一個值出棧）。
+這部分向你展示如何寫一個泛型集類型--`Stack`（棧）。一個棧是一系列值域的集合，和`Array`（陣列）類似，但其是一個比Swift 的`Array`類型更多限制的集合。一個陣列可以允許其里面任何位置的插入/刪除操作，而棧，只允許在集合的末端添加新的項（如同*push*一個新值進棧）。同樣的一個棧也只能從末端移除項（如同*pop*一個值出棧）。
 
 >注意
 棧的概念已被`UINavigationController`類使用來模擬試圖控制器的導航結構。你通過調用`UINavigationController`的`pushViewController:animated:`方法來為導航棧添加（add）新的試圖控制器；而通過`popViewControllerAnimated:`的方法來從導航棧中移除（pop）某個試圖控制器。每當你需要一個嚴格的`後進先出`方式來管理集合，堆棧都是最實用的模型。
@@ -152,7 +152,7 @@ return items.removeLast()
 }
 }
 
-這個結構體在棧中使用一個`Array`性質的`items`存儲值。 `Stack`提供兩個方法：`push`和`pop`，從棧中壓進一個值和移除一個值。這些方法標記為可變的，因為他們需要修改（或*轉換*）結構體的`items`數組。
+這個結構體在棧中使用一個`Array`性質的`items`存儲值。 `Stack`提供兩個方法：`push`和`pop`，從棧中壓進一個值和移除一個值。這些方法標記為可變的，因為他們需要修改（或*轉換*）結構體的`items`陣列。
 
 上面所展現的`IntStack`類型只能用於`Int`值，不過，其對於定義一個泛型`Stack`類（可以處理*任何*類型值的棧）是非常有用的。
 
@@ -174,7 +174,7 @@ return items.removeLast()
 
 `T`定義了一個名為“某種類型T”的節點提供給後來用。這種將來類型可以在結構體的定義裡任何地方表示為“T”。在這種情況下，`T`在如下三個地方被用作節點：
 
-- 創建一個名為`items`的屬性，使用空的T類型值數組對其進行初始化；
+- 創建一個名為`items`的屬性，使用空的T類型值陣列對其進行初始化；
 - 指定一個包含一個參數名為`item`的`push`方法，該參數必須是T類型；
 - 指定一個`pop`方法的返回值，該返回值將是一個T類型值。
 
@@ -224,7 +224,7 @@ func someFunction<T: SomeClass, U: SomeProtocol>(someT: T, someU: U) {
 
 ### 類型約束行為
 
-這裡有個名為`findStringIndex`的非泛型函數，該函數功能是去查找包含一給定`String`值的數組。若查找到匹配的字符串，`findStringIndex`函數返回該字符串在數組中的索引值（`Int`），反之則返回`nil`：
+這裡有個名為`findStringIndex`的非泛型函數，該函數功能是去查找包含一給定`String`值的陣列。若查找到匹配的字符串，`findStringIndex`函數返回該字符串在陣列中的索引值（`Int`），反之則返回`nil`：
 
 func findStringIndex(array: String[], valueToFind: String) -> Int? {
 for (index, value) in enumerate(array) {
@@ -236,7 +236,7 @@ return nil
 }
 
 
-`findStringIndex`函數可以作用於查找一字符串數組中的某個字符串:
+`findStringIndex`函數可以作用於查找一字符串陣列中的某個字符串:
 
 let strings = ["cat", "dog", "llama", "parakeet", "terrapin"]
 if let foundIndex = findStringIndex(strings, "llama") {
@@ -244,9 +244,9 @@ println("The index of llama is \(foundIndex)")
 }
 // 輸出 "The index of llama is 2"
 
-如果只是針對字符串而言查找在數組中的某個值的索引，用處不是很大，不過，你可以寫出相同功能的泛型函數`findIndex`，用某個類型`T`值替換掉提到的字符串。
+如果只是針對字符串而言查找在陣列中的某個值的索引，用處不是很大，不過，你可以寫出相同功能的泛型函數`findIndex`，用某個類型`T`值替換掉提到的字符串。
 
-這裡展示如何寫一個你或許期望的`findStringIndex`的泛型版本`findIndex`。請注意這個函數仍然返回`Int`，是不是有點迷惑呢，而不是泛型類型?那是因為函數返回的是一個可選的索引數，而不是從數組中得到的一個可選值。需要提醒的是，這個函數不會編譯，原因在例子後面會說明：
+這裡展示如何寫一個你或許期望的`findStringIndex`的泛型版本`findIndex`。請注意這個函數仍然返回`Int`，是不是有點迷惑呢，而不是泛型類型?那是因為函數返回的是一個可選的索引數，而不是從陣列中得到的一個可選值。需要提醒的是，這個函數不會編譯，原因在例子後面會說明：
 
 func findIndex<T>(array: T[], valueToFind: T) -> Int? {
 for (index, value) in enumerate(array) {
@@ -457,7 +457,7 @@ println("Not all items match.")
 }
 // 輸出 "All items match."
 
- 上面的例子創建一個`Stack`單例來存儲`String`，然後壓了三個字符串進棧。這個例子也創建了一個`Array`單例，並初始化包含三個同棧裡一樣的原始字符串。即便棧和數組否是不同的類型，但他們都遵循`Container`協議，而且他們都包含同樣的類型值。你因此可以調用`allItemsMatch`函數，用這兩個容器作為它的參數。在上面的例子中，`allItemsMatch`函數正確的顯示了所有的這兩個容器的`items`匹配。
+ 上面的例子創建一個`Stack`單例來存儲`String`，然後壓了三個字符串進棧。這個例子也創建了一個`Array`單例，並初始化包含三個同棧裡一樣的原始字符串。即便棧和陣列否是不同的類型，但他們都遵循`Container`協議，而且他們都包含同樣的類型值。你因此可以調用`allItemsMatch`函數，用這兩個容器作為它的參數。在上面的例子中，`allItemsMatch`函數正確的顯示了所有的這兩個容器的`items`匹配。
 
   [1]: ../chapter2/06_Functions.html
   [2]: https://developer.apple.com/library/prerelease/ios/documentation/Swift/Conceptual/Swift_Programming_Language/Art/stackPushPop_2x.png

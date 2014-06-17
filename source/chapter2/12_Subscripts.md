@@ -8,7 +8,7 @@
 - [附屬腳本用法](#subscript_usage)
 - [附屬腳本選項](#subscript_options)
 
-*附屬腳本* 可以定義在類（Class）、結構體（structure）和枚舉（enumeration）這些目標中，可以認為是訪問對象、集合或序列的快捷方式，不需要再調用實例的特定的賦值和訪問方法。舉例來說，用附屬腳本訪問一個數組(Array)實例中的元素可以這樣寫`someArray[index]` ，訪問字典(Dictionary)實例中的元素可以這樣寫`someDictionary[key]`。
+*附屬腳本* 可以定義在類（Class）、結構體（structure）和枚舉（enumeration）這些目標中，可以認為是訪問對象、集合或序列的快捷方式，不需要再調用實例的特定的賦值和訪問方法。舉例來說，用附屬腳本訪問一個陣列(Array)實例中的元素可以這樣寫`someArray[index]` ，訪問字典(Dictionary)實例中的元素可以這樣寫`someDictionary[key]`。
 
 對於同一個目標可以定義多個附屬腳本，通過索引值類型的不同來進行重載，而且索引值的個數可以是多個。
 
@@ -118,7 +118,7 @@ func indexIsValidForRow(row: Int, column: Int) -> Bool {
 }
 ```
 
-`Matrix`提供了一個兩個入參的構造方法，入參分別是`rows`和`columns`，創建了一個足夠容納`rows * columns`個數的`Double`類型數組。為了存儲，將數組的大小和數組每個元素初始值0.0，都傳入數組的構造方法中來創建一個正確大小的新數組。關於數組的構造方法和析構方法請參考[創建並且構造一個數組](../chapter2/04_Collection_Types.html)。
+`Matrix`提供了一個兩個入參的構造方法，入參分別是`rows`和`columns`，創建了一個足夠容納`rows * columns`個數的`Double`類型陣列。為了存儲，將陣列的大小和陣列每個元素初始值0.0，都傳入陣列的構造方法中來創建一個正確大小的新陣列。關於陣列的構造方法和析構方法請參考[創建並且構造一個陣列](../chapter2/04_Collection_Types.html)。
 
 你可以通過傳入合適的`row`和`column`的數量來構造一個新的`Matrix`實例：
 
@@ -126,7 +126,7 @@ func indexIsValidForRow(row: Int, column: Int) -> Bool {
 var matrix = Matrix(rows: 2, columns: 2)
 ```
 
-上例中創建了一個新的兩行兩列的`Matrix`實例。在閱讀順序從左上到右下的`Matrix`實例中的數組實例`grid`是矩陣二維數組的扁平化存儲：
+上例中創建了一個新的兩行兩列的`Matrix`實例。在閱讀順序從左上到右下的`Matrix`實例中的陣列實例`grid`是矩陣二維陣列的扁平化存儲：
 
 ```
 // 示意圖
@@ -151,7 +151,7 @@ matrix[1, 0] = 3.2
  3.2, 0.0]
 ```
 
-`Matrix`附屬腳本的`getter`和`setter`中同時調用了附屬腳本入參的`row`和`column`是否有效的判斷。為了方便進行斷言，`Matrix`包含了一個名為`indexIsValid`的成員方法，用來確認入參的`row`或`column`值是否會造成數組越界：
+`Matrix`附屬腳本的`getter`和`setter`中同時調用了附屬腳本入參的`row`和`column`是否有效的判斷。為了方便進行斷言，`Matrix`包含了一個名為`indexIsValid`的成員方法，用來確認入參的`row`或`column`值是否會造成陣列越界：
 
 ```
 func indexIsValidForRow(row: Int, column: Int) -> Bool {

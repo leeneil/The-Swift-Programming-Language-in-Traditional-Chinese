@@ -178,7 +178,7 @@ lightSwitch.toggle()
 
 * 作為函數，方法或構造器中的參數類型，返回值類型
 * 作為常量，變量，屬性的類型
-* 作為數組，字典或其他容器中的元素類型
+* 作為陣列，字典或其他容器中的元素類型
 
 > 注意：
 >
@@ -391,7 +391,7 @@ println(somethingTextRepresentable.asText())
 
 let things: TextRepresentable[] = [game,d12,simoTheHamster]
 
-如下所示，`things`數組可以被直接遍歷，並調用其中元素的`asText()`函數：
+如下所示，`things`陣列可以被直接遍歷，並調用其中元素的`asText()`函數：
 
 for thing in things {
 println(thing.asText())
@@ -438,11 +438,11 @@ output += "▼ "
     }
 }
 
-在`for in`中迭代出了`board`數組中的每一個元素：
+在`for in`中迭代出了`board`陣列中的每一個元素：
 
-* 當從數組中迭代出的元素的值大於0時，用`▲`表示
-* 當從數組中迭代出的元素的值小於0時，用`▼`表示
-* 當從數組中迭代出的元素的值等於0時，用`○`表示
+* 當從陣列中迭代出的元素的值大於0時，用`▲`表示
+* 當從陣列中迭代出的元素的值小於0時，用`▼`表示
+* 當從陣列中迭代出的元素的值等於0時，用`○`表示
 
 任意`SankesAndLadders`的實例都可以使用`asPrettyText()`方法。
 
@@ -522,7 +522,7 @@ var legs: Int
 init(legs: Int) { self.legs = legs }
 }
 
-`Circle,Country,Animal`並沒有一個相同的基類，所以採用`AnyObject`類型的數組來裝載在他們的實例，如下所示：
+`Circle,Country,Animal`並沒有一個相同的基類，所以採用`AnyObject`類型的陣列來裝載在他們的實例，如下所示：
 
 let objects: AnyObject[] = [
 Circle(radius: 2.0),
@@ -530,7 +530,7 @@ Country(area: 243_610),
 Animal(legs: 4)
 ]
 
-如下所示，在迭代時檢查`object`數組的元素是否`遵循`了`HasArea`協議：
+如下所示，在迭代時檢查`object`陣列的元素是否`遵循`了`HasArea`協議：
 
 for object in objects {
 if let objectWithArea = object as? HasArea {
@@ -543,9 +543,9 @@ println("Something that doesn't have an area")
 // Area is 243610.0
 // Something that doesn't have an area
 
-當數組中的元素遵循`HasArea`協議時，通過`as?`操作符將其`可選綁定(optional binding)`到`objectWithArea`常量上。
+當陣列中的元素遵循`HasArea`協議時，通過`as?`操作符將其`可選綁定(optional binding)`到`objectWithArea`常量上。
 
-`objects`數組中元素的類型並不會因為`向下轉型`而改變，當它們被賦值給`objectWithArea`時只被視為`HasArea`類型，因此只有`area`屬性能夠被訪問。
+`objects`陣列中元素的類型並不會因為`向下轉型`而改變，當它們被賦值給`objectWithArea`時只被視為`HasArea`類型，因此只有`area`屬性能夠被訪問。
 
 <a name="optional_protocol_requirements"></a>
 ## 可選協議要求

@@ -538,7 +538,7 @@ println(item.description)
 // 1 x bacon ✘
 // 6 x eggs ✘
 
-如上所述，例子中通過字面量方式創建了一個新數組`breakfastList`，它包含了三個新的`ShoppingListItem`實例，因此數組的類型也能自動推導為`ShoppingListItem[]`。在數組創建完之後，數組中第一個`ShoppingListItem`實例的名字從`[Unnamed]`修改為`Orange juice`，並標記為已購買。接下來通過遍歷數組每個元素並打印它們的描述值，展示了所有項當前的默認狀態都已按照預期完成了賦值。
+如上所述，例子中通過字面量方式創建了一個新陣列`breakfastList`，它包含了三個新的`ShoppingListItem`實例，因此陣列的類型也能自動推導為`ShoppingListItem[]`。在陣列創建完之後，陣列中第一個`ShoppingListItem`實例的名字從`[Unnamed]`修改為`Orange juice`，並標記為已購買。接下來通過遍歷陣列每個元素並打印它們的描述值，展示了所有項當前的默認狀態都已按照預期完成了賦值。
 
 <a name="setting_a_default_property_value_with_a_closure_or_function"></a>
 ## 通過閉包和函數來設置屬性的默認值
@@ -567,9 +567,9 @@ return someValue
 
 ![西洋跳棋棋盤](https://developer.apple.com/library/prerelease/ios/documentation/swift/conceptual/swift_programming_language/Art/checkersBoard_2x.png)
 
-西洋跳棋遊戲在一副黑白格交替的10x10 的棋盤中進行。為了呈現這副遊戲棋盤，`Checkerboard`結構體定義了一個屬性`boardColors`，它是一個包含100 個布爾值的數組。數組中的某元素布爾值為`true`表示對應的是一個黑格，布爾值為`false`表示對應的是一個白格。數組中第一個元素代表棋盤上左上角的格子，最後一個元素代表棋盤上右下角的格子。
+西洋跳棋遊戲在一副黑白格交替的10x10 的棋盤中進行。為了呈現這副遊戲棋盤，`Checkerboard`結構體定義了一個屬性`boardColors`，它是一個包含100 個布爾值的陣列。陣列中的某元素布爾值為`true`表示對應的是一個黑格，布爾值為`false`表示對應的是一個白格。陣列中第一個元素代表棋盤上左上角的格子，最後一個元素代表棋盤上右下角的格子。
 
-`boardColor`數組是通過一個閉包來初始化和組裝顏色值的：
+`boardColor`陣列是通過一個閉包來初始化和組裝顏色值的：
 
 struct Checkerboard {
 let boardColors: Bool[] = {
@@ -589,7 +589,7 @@ return boardColors[(row * 10) + column]
 }
 }
 
-每當一個新的`Checkerboard`實例創建時，對應的賦值閉包會執行，一系列顏色值會被計算出來作為默認值賦值給`boardColors`。上面例子中描述的閉包將計算出棋盤中每個格子合適的顏色，將這些顏色值保存到一個臨時數組`temporaryBoard`中，並在構建完成時將此數組作為閉包返回值返回。這個返回的值將保存到`boardColors`中，並可以通`squareIsBlackAtRow`這個工具函數來查詢。
+每當一個新的`Checkerboard`實例創建時，對應的賦值閉包會執行，一系列顏色值會被計算出來作為默認值賦值給`boardColors`。上面例子中描述的閉包將計算出棋盤中每個格子合適的顏色，將這些顏色值保存到一個臨時陣列`temporaryBoard`中，並在構建完成時將此陣列作為閉包返回值返回。這個返回的值將保存到`boardColors`中，並可以通`squareIsBlackAtRow`這個工具函數來查詢。
 
 let board = Checkerboard()
 println(board.squareIsBlackAtRow(0, column: 1))

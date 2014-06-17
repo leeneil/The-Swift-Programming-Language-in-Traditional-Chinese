@@ -95,7 +95,7 @@ manager.data += "Some more data"
 
 ```
 
-`DataManager`類包含一個名為`data`的存儲屬性，初始值是一個空的字符串（`String`）數組。雖然沒有寫出全部代碼，`DataManager`類的目的是管理和提供對這個字符串數組的訪問。
+`DataManager`類包含一個名為`data`的存儲屬性，初始值是一個空的字符串（`String`）陣列。雖然沒有寫出全部代碼，`DataManager`類的目的是管理和提供對這個字符串陣列的訪問。
 
 `DataManager`的一個功能是從文件導入數據，該功能由`DataImporter`類提供，`DataImporter`需要消耗不少時間完成初始化：因為它的實例在初始化時可能要打開文件，還要讀取文件內容到內存。
 
