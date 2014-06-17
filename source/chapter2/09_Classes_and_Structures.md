@@ -7,7 +7,7 @@
 - [結構體和枚舉是值類型](#structures_and_enumerations_are_value_types)
 - [類是引用類型](#classes_are_reference_types)
 - [類和結構體的選擇](#choosing_between_classes_and_structures)
-- [集合（collection）類型的賦值與復制行為](#assignment_and_copy_behavior_for_collection_types)
+- [集合（collection）類型的賦值與拷貝行為](#assignment_and_copy_behavior_for_collection_types)
 
 類和結構體是人們構建代碼所用的一種通用且靈活的構造體。為了在類和結構體中實現各種功能，我們必須要嚴格按照對於常量，變量以及函數所規定的語法規則來定義屬性和添加方法。
 
@@ -277,7 +277,7 @@ println(ages["Peter"])
 
 如果你將一個`數組（Array）`實例賦給一個變量或常量，或者將其作為參數傳遞給函數或方法調用，在事件發生時數組的內容`不`會被拷貝。相反，數組公用相同的元素序列。當你在一個數組內修改某一元素，修改結果也會在另一數組顯示。
 
-對數組來說，拷貝行為僅僅當操作有可能修改數組`長度`時才會發生。這種行為包括了附加（appending）,插入（inserting）,刪除（removing）或者使用範圍下標（ranged subscript）去替換這一範圍內的元素。只有當數組拷貝確要發生時，數組內容的行為規則與字典中鍵值的相同，參見章節[集合（collection）類型的賦值與復制行為](#assignment_and_copy_behavior_for_collection_types。
+對數組來說，拷貝行為僅僅當操作有可能修改數組`長度`時才會發生。這種行為包括了附加（appending）,插入（inserting）,刪除（removing）或者使用範圍下標（ranged subscript）去替換這一範圍內的元素。只有當數組拷貝確要發生時，數組內容的行為規則與字典中鍵值的相同，參見章節[集合（collection）類型的賦值與拷貝行為](#assignment_and_copy_behavior_for_collection_types。
 
 下面的示例將一個`整數（Int）`數組賦給了一個名為`a`的變量，繼而又被賦給了變量`b`和`c`：
 
@@ -361,16 +361,16 @@ println("These two subarrays do not share the same elements.")
 }
 // 輸出"These two subarrays share the same elements."
 
-### 強制複製數組
+### 強制拷貝數組
 
-我們通過調用數組的`copy`方法進行強制顯性複制。這個方法對數組進行了淺拷貝（shallow copy）,並且返回一個包含此拷貝的新數組。
+我們通過調用數組的`copy`方法進行強制顯性拷貝。這個方法對數組進行了淺拷貝（shallow copy）,並且返回一個包含此拷貝的新數組。
 
 下面這個示例中定義了一個`names`數組，其包含了七個人名。還定義了一個`copiedNames`變量，用以儲存在`names`上調用`copy`方法所返回的結果：
 
 var names = ["Mohsen", "Hilary", "Justyn", "Amy", "Rich", "Graham", "Vic"]
 var copiedNames = names.copy()
 
-我們可以通過修改一個數組中某元素，並且檢查另一個數組中對應元素的方法來判定`names`數組確已被複製。如果你將`copiedNames`中第一個元素從"`Mohsen`"修改為"`Mo`",則`names`數組返回的仍是拷貝發生前的"`Mohsen`"：
+我們可以通過修改一個數組中某元素，並且檢查另一個數組中對應元素的方法來判定`names`數組確已被拷貝。如果你將`copiedNames`中第一個元素從"`Mohsen`"修改為"`Mo`",則`names`數組返回的仍是拷貝發生前的"`Mohsen`"：
 
 copiedName[0] = "Mo"
 println(name[0])
