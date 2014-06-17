@@ -13,14 +13,14 @@
 - [數值型字面量](#numeric_literals)
 - [數值型類型轉換](#numeric_type_conversion)
 - [類型別名](#type_aliases)
-- [布爾值](#booleans)
+- [布林值](#booleans)
 - [元組](#tuples)
 - [可選](#optionals)
 - [斷言](#assertions)
 
 Swift 是iOS 和OS X 應用開發的一門新語言。然而，如果你有C 或者Objective-C 開發經驗的話，你會發現Swift 的很多內容都是你熟悉的。
 
-Swift 的類型是在C 和Objective-C 的基礎上提出的，`Int`是整型；`Double`和`Float`是浮點型；`Bool`是布爾型；`String`是字符串。 Swift 還有兩個有用的集合類型，`Array`和`Dictionary`，請參考[集合類型](04_Collection_Types.html)。
+Swift 的類型是在C 和Objective-C 的基礎上提出的，`Int`是整型；`Double`和`Float`是浮點型；`Bool`是布林型；`String`是字符串。 Swift 還有兩個有用的集合類型，`Array`和`Dictionary`，請參考[集合類型](04_Collection_Types.html)。
 
 就像C 語言一樣，Swift 使用變量來進行存儲並通過變量名來關聯值。在Swift 中，值不可變的變量有著廣泛的應用，它們就是常量，而且比C 語言的常量更強大。在Swift 中，如果你要處理的值不需要改變，那使用常量可以讓你的代碼更加安全並且更好地表達你的意圖。
 
@@ -345,16 +345,16 @@ _類型別名（type aliases）_就是給現有類型定義另一個名字。你
 本例中，`AudioSample`被定義為`UInt16`的一個別名。因為它是別名，`AudioSample.min`實際上是`UInt16.min`，所以會給`maxAmplitudeFound`賦一個初值`0`。
 
 <a name="booleans"></a>
-## 布爾值
+## 布林值
 
-Swift 有一個基本的_布爾（Boolean）_類型，叫做`Bool`。布爾值指_邏輯上的（logical）_，因為它們只能是真或者假。 Swift 有兩個布爾常量，`true`和`false`：
+Swift 有一個基本的_布林（Boolean）_類型，叫做`Bool`。布林值_邏輯上的（logical）_，因為它們只能是真或者假。 Swift 有兩個布林常量，`true`和`false`：
 
     let orangesAreOrange = true
     let turnipsAreDelicious = false
 
-`orangesAreOrange`和`turnipsAreDelicious`的類型會被推測為`Bool`，因為它們的初值是布爾字面量。就像之前提到的`Int`和`Double`一樣，如果你​​創建變量的時候給它們賦值`true`或者`false`，那你不需要將常量或者變量聲明為`Bool`類型。初始化常量或者變量的時候如果所賦的值類型已知，就可以觸發類型推測，這讓Swift 代碼更加簡潔並且可讀性更高。
+`orangesAreOrange`和`turnipsAreDelicious`的類型會被推測為`Bool`，因為它們的初值是布林字面量。就像之前提到的`Int`和`Double`一樣，如果你​​創建變量的時候給它們賦值`true`或者`false`，那你不需要將常量或者變量聲明為`Bool`類型。初始化常量或者變量的時候如果所賦的值類型已知，就可以觸發類型推測，這讓Swift 代碼更加簡潔並且可讀性更高。
 
-當你編寫條件語句比如`if`語句的時候，布爾值非常有用：
+當你編寫條件語句比如`if`語句的時候，布林值非常有用：
 
     if turnipsAreDelicious {
         println("Mmm, tasty turnips!")
@@ -365,7 +365,7 @@ Swift 有一個基本的_布爾（Boolean）_類型，叫做`Bool`。布爾值�
 
 條件語句，例如`if`，請參考[控制流](05_Control_Flow.html)。
 
-如果你在需要使用`Bool`類型的地方使用了非布爾值，Swift 的類型安全機制會報錯。下面的例子會報告一個編譯時錯誤：
+如果你在需要使用`Bool`類型的地方使用了非布林值，Swift 的類型安全機制會報錯。下面的例子會報告一個編譯時錯誤：
 
     let i = 1
     if i {
