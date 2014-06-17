@@ -7,23 +7,23 @@
 - [類型嵌套實例](#nested_types_in_action)
 - [類型嵌套的引用](#referring_to_nested_types)
 
-枚舉類型常被用於實現特定類或結構體的功能。也能夠在有多種變量類型的環境中，方便地定義通用類或結構體來使用，為了實現這種功能，Swift允許你定義類型嵌套，可以在枚舉類型、類和結構體中定義支持嵌套的類型。
+列舉類型常被用於實現特定類或結構體的功能。也能夠在有多種變量類型的環境中，方便地定義通用類或結構體來使用，為了實現這種功能，Swift允許你定義類型嵌套，可以在列舉類型、類和結構體中定義支持嵌套的類型。
 
 要在一個類型中嵌套另一個類型，將需要嵌套的類型的定義寫在被嵌套類型的區域{}內，而且可以根據需要定義多級嵌套。
 
 <a name="nested_types_in_action"></a>
 ##類型嵌套實例
 
-下面這個例子定義了一個結構體`BlackjackCard`(二十一點)，用來模擬`BlackjackCard`中的撲克牌點數。 `BlackjackCard`結構體包含2個嵌套定義的枚舉類型`Suit` 和`Rank`。
+下面這個例子定義了一個結構體`BlackjackCard`(二十一點)，用來模擬`BlackjackCard`中的撲克牌點數。 `BlackjackCard`結構體包含2個嵌套定義的列舉類型`Suit` 和`Rank`。
 
-在`BlackjackCard`規則中，`Ace`牌可以表示1或者11，`Ace`牌的這一特徵用一個嵌套在枚舉型`Rank`的結構體`Values​​`來表示。
+在`BlackjackCard`規則中，`Ace`牌可以表示1或者11，`Ace`牌的這一特徵用一個嵌套在列舉型`Rank`的結構體`Values​​`來表示。
 
     struct BlackjackCard {
-        // 嵌套定義枚舉型Suit
+        // 嵌套定義列舉型Suit
         enum Suit: Character {
            case Spades = "♠", Hearts = "♡", Diamonds = "♢", Clubs = "♣"
        }
-        // 嵌套定義枚舉型Rank
+        // 嵌套定義列舉型Rank
         enum Rank: Int {
            case Two = 2, Three, Four, Five, Six, Seven, Eight, Nine, Ten
            case Jack, Queen, King, Ace
@@ -53,11 +53,11 @@
         }
     }
 
-枚舉型的`Suit`用來描述撲克牌的四種花色，並分別用一個`Character`類型的值代表花色符號。
+列舉型的`Suit`用來描述撲克牌的四種花色，並分別用一個`Character`類型的值代表花色符號。
 
-枚舉型的`Rank`用來描述撲克牌從`Ace`~10,`J`,`Q`,`K`,13張牌，並分別用一個`Int`類型的值表示牌的面值。 (這個`Int`類型的值不適用於`Ace`,`J`,`Q`,`K`的牌)。
+列舉型的`Rank`用來描述撲克牌從`Ace`~10,`J`,`Q`,`K`,13張牌，並分別用一個`Int`類型的值表示牌的面值。 (這個`Int`類型的值不適用於`Ace`,`J`,`Q`,`K`的牌)。
 
-如上文所提到的，枚舉型`Rank`在自己內部定義了一個嵌套結構體`Values​​`。這個結構體包含兩個變量，只有`Ace`有兩個數值，其餘牌都只有一個數值。結構體`Values​​`中定義的兩個屬性：
+如上文所提到的，列舉型`Rank`在自己內部定義了一個嵌套結構體`Values​​`。這個結構體包含兩個變量，只有`Ace`有兩個數值，其餘牌都只有一個數值。結構體`Values​​`中定義的兩個屬性：
 
 `first`, 為` Int`
 `second`, 為 `Int?`, 或 “optional `Int`”
@@ -72,7 +72,7 @@
     println("theAceOfSpades: \(theAceOfSpades.description)")
     // 打印出"theAceOfSpades: suit is ♠, value is 1 or 11"
 
-儘管`Rank`和`Suit`嵌套在`BlackjackCard`中，但仍可被引用，所以在初始化實例時能夠通過枚舉類型中的成員名稱單獨引用。在上面的例子中`description`屬性能正確得輸出對`Ace`牌有1和11兩個值。
+儘管`Rank`和`Suit`嵌套在`BlackjackCard`中，但仍可被引用，所以在初始化實例時能夠通過列舉類型中的成員名稱單獨引用。在上面的例子中`description`屬性能正確得輸出對`Ace`牌有1和11兩個值。
 
 <a name="referring_to_nested_types"></a>
 ##類型嵌套的引用
