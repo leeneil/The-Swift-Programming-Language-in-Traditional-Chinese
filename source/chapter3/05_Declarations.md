@@ -28,7 +28,7 @@
 在swift中，大多數聲明在某種意義上講也是執行或同事聲明它們的初始化定義。這意味著，因為協議和他們的成員不匹配，
 大多數協議成員需要單獨的聲明。為了方便起見，也因為這些區別在swift裡不是很重要，聲明語句同時包含了聲明和定義。
 
->GRAMMAR OF A DECLARATION
+>聲明的語法
 
 >declaration → import-declaration­
 

@@ -15,7 +15,7 @@
 
 是否將分號（`;`）添加到語句的結尾處是可選的。但若要在同一行內寫多條獨立語句，請務必使用分號。
 
-> GRAMMAR OF A STATEMENT
+> 語句的語法
 
 > *statement* → [*expression*](https://developer.apple.com/library/prerelease/ios/documentation/Swift/Conceptual/Swift_Programming_Language/Expressions.html#//apple_ref/swift/grammar/expression)* *;** *opt*
 
@@ -237,7 +237,7 @@ default:
 
 `switch`語句的*控製表達式（control expression）*會首先被計算，然後與每一個case 的模式（pattern）進行匹配。如果匹配成功，程序將會執行對應的case 分支裡的*statements*。另外，每一個case 分支都不能為空，也就是說在每一個case 分支中至少有一條語句。如果你不想在匹配到的case 分支中執行代碼，只需在該分支裡寫一條`break`語句即可。
 
-可以用作控製表達式的值是十分靈活的，除了標量類型(scalar types，如`Int`、`Character`)外，你可以使用任何類型的值，包括浮點數、字符串、元組、自定義類的實例和可選（optional）類型，甚至是枚舉類型中的成員值和指定的範圍(range)等。關於在`switch`語句中使用這些類型，詳情參見[控制流](../chapter2/05_Control_Flow.html)一章的[Switch](../chapter2/05_Control_Flow.html#switch)。
+可以用作控製表達式的值是十分靈活的，除了標量類型(scalar types，如`Int`、`Character`)外，你可以使用任何類型的值，包括浮點數、字符串、元組、自定義類的實例和可選（optional）類型，甚至是列舉類型中的成員值和指定的範圍(range)等。關於在`switch`語句中使用這些類型，詳情參見[控制流](../chapter2/05_Control_Flow.html)一章的[Switch](../chapter2/05_Control_Flow.html#switch)。
 
 你可以在模式後面添加一個起保護作用的表達式(guard expression)。 *起保護作用的表達式*是這樣構成的：關鍵字`where`後面跟著一個作為額外測試條件的表達式。因此，當且僅當*控製表達式*匹配一個*case*的某個模式且起保護作用的表達式為真時，對應case 分支中的*statements* 才會被執行。在下面的例子中，*控製表達式*只會匹配含兩個相等元素的元組，如`(1, 1)`：
 
