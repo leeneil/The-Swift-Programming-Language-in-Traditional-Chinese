@@ -4,7 +4,7 @@
    * [關於 Swift](chapter1/01_swift.md)
    * [Swift 初見](chapter1/02_a_swift_tour.md)
 * [Swift 教程](chapter2/chapter2.md)
-   * [基础部分](chapter2/01_The_Basics.md)
+   * [基礎部分](chapter2/01_The_Basics.md)
    * [基本運算符](chapter2/02_Basic_Operators.md)
    * [字符串和字符](chapter2/03_Strings_and_Characters.md)
    * [集合類型](chapter2/04_Collection_Types.md)
@@ -37,5 +37,5 @@
    * [特性](chapter3/06_Attributes.md)
    * [模式](chapter3/07_Patterns.md)
    * [泛型參數](chapter3/08_Generic_Parameters_and_Arguments.md)
-   * [语法总结](chapter3/09_Summary_of_the_Grammar.md)
+   * [語法總結](chapter3/09_Summary_of_the_Grammar.md)
 

@@ -13,7 +13,7 @@
 - [接口和擴展（Protocols and Extensions）](#protocols_and_extensions)
 - [泛型（Generics）](#generics)
 
-通常來說，編程語言教程中的第一個程序應該在屏幕上打印“Hello, world”。在 Swift 中，可以用一行代碼實現：
+通常來說，編程語言教程中的第一個程序應該在屏幕上印出“Hello, world”。在 Swift 中，可以用一行代碼實現：
 
 ```swift
 println("Hello, world")

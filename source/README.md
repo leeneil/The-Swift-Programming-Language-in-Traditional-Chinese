@@ -26,11 +26,11 @@ https://github.com/SwiftPlus/The-Swift-Programming-Language-in-Traditional-Chine
 #Facebook
 http://goo.gl/5u4iMH
 
-# 在線閱讀
+# 線上閱讀
 
-使用Gitbook製作，可以直接[在線閱讀](swiftplus.github.io/The-Swift-Programming-Language-in-Traditional-Chinese)。
+使用Gitbook製作，可以直接[線上閱讀](swiftplus.github.io/The-Swift-Programming-Language-in-Traditional-Chinese)。
 
-其他格式可以通過PDF轉換
+其他格式可以透過PDF轉換
 
 # 貢獻力量
 
